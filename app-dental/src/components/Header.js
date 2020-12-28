@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../images/logo-dent.png";
 
-const Header = () => {
+const Header = ({ setPantalla }) => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark fondo-cyan">
       <a className="navbar-brand" href="/#">
@@ -19,18 +19,36 @@ const Header = () => {
       ></button>
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li className="nav-item active">
-            <a className="nav-link" href="/#">
-              Home <span className="sr-only">(current)</span>
+          <li className="nav-item ">
+            <a
+              className="nav-link"
+              href="/#"
+              onClick={() => {
+                setPantalla("listaPacientes");
+              }}
+            >
+              Lista de pacientes <span className="sr-only">(current)</span>
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/#">
-              Pacientes
+            <a
+              className="nav-link"
+              href="/#"
+              onClick={() => {
+                setPantalla("historiasClinicas");
+              }}
+            >
+              Hojas Clínicas
             </a>
           </li>
           <li className="nav-item">
-            <a href="/#" className="nav-link">
+            <a
+              href="/#"
+              className="nav-link"
+              onClick={() => {
+                setPantalla("citas");
+              }}
+            >
               Citas
             </a>
           </li>
