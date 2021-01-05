@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import Contenido from "./components/Contenido";
-import { getPacientes } from "./services/services";
+// import { getPacientes } from "./services/services";
 
 const App = () => {
   const [pantalla, setPantalla] = useState("ListaPacientes");
