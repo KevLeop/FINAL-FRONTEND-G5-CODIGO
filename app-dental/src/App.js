@@ -1,25 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import "./App.css";
-import Contenido from "./components/Contenido";
-// import { getPacientes } from "./services/services";
+
+import HomeScreen from "./screens/HomeScreen";
+import ListaPacientesScreen from "./screens/ListaPacientesScreen";
+import PacientesState from "./contexts/pacientesState";
+import HistoriasClinicasScreen from "./screens/HistoriasClinicasScreen";
+import HistoriasClinicasState from "./contexts/historiasClinicasState";
 
 const App = () => {
-  const [pantalla, setPantalla] = useState("ListaPacientes");
-
   return (
-    <>
-      <Header setPantalla={setPantalla} />
-
-      <main className="container-fluid">
-        <div className="row">
-          <div className="col-md-2">INFO USUARIO</div>
-          <div className="col-md-10">
-            <Contenido pantalla={pantalla} />
-          </div>
-        </div>
-      </main>
-    </>
+    <PacientesState>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route path="/ListaPacientes" component={ListaPacientesScreen} />
+          <HistoriasClinicasState>
+            <Route
+              path="/HistoriasClinicas"
+              component={HistoriasClinicasScreen}
+            />
+          </HistoriasClinicasState>
+          {/* <Route path="/Citas" component={Citas} /> */}
+          <Route path="/" component={HomeScreen} />
+        </Switch>
+      </BrowserRouter>
+    </PacientesState>
   );
 };
 

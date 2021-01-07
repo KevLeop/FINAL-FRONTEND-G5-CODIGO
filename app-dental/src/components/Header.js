@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../images/logo-dent.png";
 
-const Header = ({ setPantalla }) => {
+const Header = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark fondo-cyan">
-      <a className="navbar-brand" href="/#">
+      <Link className="navbar-brand" to="/">
         <img src={logo} alt="" width="35px" height="35px" />
         <span>MediDent</span>
-      </a>
+      </Link>
       <button
         className="navbar-toggler d-lg-none"
         type="button"
@@ -20,38 +21,25 @@ const Header = ({ setPantalla }) => {
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item ">
-            <a
-              className="nav-link"
-              href="/#"
-              onClick={() => {
-                setPantalla("listaPacientes");
-              }}
-            >
-              Lista de pacientes <span className="sr-only">(current)</span>
-            </a>
+            <NavLink className="nav-link" activeClassName="active" exact to="/">
+              Home
+            </NavLink>
           </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              href="/#"
-              onClick={() => {
-                setPantalla("historiasClinicas");
-              }}
-            >
-              Hojas Clínicas
-            </a>
+          <li className="nav-item ">
+            <NavLink className="nav-link" to="/ListaPacientes">
+              Pacientes
+            </NavLink>
           </li>
-          <li className="nav-item">
-            <a
-              href="/#"
-              className="nav-link"
-              onClick={() => {
-                setPantalla("citas");
-              }}
-            >
+          <li className="nav-item ">
+            <NavLink className="nav-link" to="/HistoriasClinicas">
+              Historias Clinicas
+            </NavLink>
+          </li>
+          {/* <li className="nav-item ">
+            <Link className="nav-link" to="/Citas">
               Citas
-            </a>
-          </li>
+            </Link>
+          </li> */}
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <input
