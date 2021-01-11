@@ -4,10 +4,10 @@ import HistoriasClinicas from "../HistoriasClinicas/components/HistoriasClinicas
 
 const HistoriasClinicasScreen = () => {
   return (
-    <main className="container-fluid">
+    <main className="container-fluid mt-4">
       <div className="row">
-        <DetalleHClinica />
         <HistoriasClinicas />
+        <DetalleHClinica />
       </div>
     </main>
   );

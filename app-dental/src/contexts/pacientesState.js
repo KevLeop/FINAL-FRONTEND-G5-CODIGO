@@ -5,6 +5,15 @@ import PacientesContext from "./pacientesContext";
 const PacientesState = ({ children }) => {
   const [pacientes, setPacientes] = useState([]);
   const [cargandoPacientes, setCargandoPacientes] = useState(true);
+  const [pacienteDetalle, setPacienteDetalle] = useState(false);
+  const [objDetallePaciente, setObjDetallePaciente] = useState({
+    nombre: "",
+    apellido: "",
+    fechadenacimiento: "",
+    telefono: "",
+    sexo: "",
+  });
+  const [modalCrearPaciente, setmodalCrearPaciente] = useState(false);
 
   const obtenerPacientes = () => {
     setCargandoPacientes(true);
@@ -24,6 +33,12 @@ const PacientesState = ({ children }) => {
         pacientes: pacientes,
         cargandoPacientes: cargandoPacientes,
         obtenerPacientes: obtenerPacientes,
+        pacienteDetalle: pacienteDetalle,
+        setPacienteDetalle: setPacienteDetalle,
+        objDetallePaciente: objDetallePaciente,
+        setObjDetallePaciente: setObjDetallePaciente,
+        modalCrearPaciente: modalCrearPaciente,
+        setmodalCrearPaciente: setmodalCrearPaciente,
       }}
     >
       {children}
