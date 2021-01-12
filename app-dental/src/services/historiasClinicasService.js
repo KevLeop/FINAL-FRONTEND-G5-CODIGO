@@ -14,5 +14,6 @@ export const posthClinica = async (objhClinica) => {
       "Content-type": "application/json",
     },
   });
-
+  const data = await peticion.json();
+  return data;
 };
