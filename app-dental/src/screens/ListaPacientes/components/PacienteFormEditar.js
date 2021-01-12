@@ -30,6 +30,10 @@ const PacienteFormEditar = () => {
       icon: "question",
       text: "Los cambios se guardarán en la base de datos",
       showCancelButton: "true",
+    }).then((rpta) => {
+      if (rpta.isConfirmed) {
+        console.log("Entraste a isconfirmed");
+      }
     });
   };
   return (
