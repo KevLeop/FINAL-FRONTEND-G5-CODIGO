@@ -55,7 +55,9 @@ const HistoriasClinicas = () => {
                     <th>id</th>
                     <th>Paciente</th>
                     <th>Fecha</th>
-                    <th>Observaciones</th>
+                    <th>Problema</th>
+                    <th>Diagnostico</th>
+                    <th>Tratamiento</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -66,7 +68,9 @@ const HistoriasClinicas = () => {
                         <td>{objHClinica.id_hclinica}</td>
                         <td>{nombrePaciente(objHClinica)}</td>
                         <td>{objHClinica.fecha}</td>
-                        <td>{objHClinica.observaciones}</td>
+                        <td>{objHClinica.problema}</td>
+                        <td>{objHClinica.diagnostico}</td>
+                        <td>{objHClinica.tratamiento}</td>
                         <td>
                           <button className="btn btn-secondary">
                             Acciones
