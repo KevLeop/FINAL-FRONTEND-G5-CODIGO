@@ -4,7 +4,6 @@ import HistoriasClinicasContext from "./historiasClinicasContext";
 
 const HistoriasClinicasState = ({ children }) => {
   const [hClinicas, setHClinicas] = useState([]);
-
   const [cargandoHClinicas, setCargandoHClinicas] = useState(true);
 
   const obtenerHClinicas = () => {

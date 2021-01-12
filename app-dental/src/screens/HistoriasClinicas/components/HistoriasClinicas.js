@@ -7,6 +7,7 @@ const HistoriasClinicas = () => {
   const { hClinicas, cargandoHClinicas, obtenerHClinicas } = useContext(
     HistoriasClinicasContext
   );
+
   const { pacientes } = useContext(PacientesContext);
 
   const nombrePaciente = (objHC) => {

@@ -15,6 +15,9 @@ const PacientesState = ({ children }) => {
   });
   const [modalCrearPaciente, setmodalCrearPaciente] = useState(false);
 
+  const [modalEditarPaciente, setModalEditarPaciente] = useState(false);
+  const [pacienteEditar, setPacienteEditar] = useState({});
+
   const obtenerPacientes = () => {
     setCargandoPacientes(true);
     getPacientes().then((data) => {
@@ -39,6 +42,10 @@ const PacientesState = ({ children }) => {
         setObjDetallePaciente: setObjDetallePaciente,
         modalCrearPaciente: modalCrearPaciente,
         setmodalCrearPaciente: setmodalCrearPaciente,
+        modalEditarPaciente: modalEditarPaciente,
+        setModalEditarPaciente: setModalEditarPaciente,
+        pacienteEditar: pacienteEditar,
+        setPacienteEditar: setPacienteEditar,
       }}
     >
       {children}

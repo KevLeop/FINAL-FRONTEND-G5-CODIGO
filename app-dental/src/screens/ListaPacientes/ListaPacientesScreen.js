@@ -4,12 +4,15 @@ import ListaPacienteDetalle from "../ListaPacientes/components/ListaPacienteDeta
 import ListaPacientes from "../ListaPacientes/components/ListaPacientes";
 import { Modal } from "react-bootstrap";
 import PacienteFormCrear from "./components/PacienteFormCrear";
+import PacienteFormEditar from "./components/PacienteFormEditar";
 
 const ListaPacientesScreen = () => {
   const {
     pacienteDetalle,
     modalCrearPaciente,
     setmodalCrearPaciente,
+    modalEditarPaciente,
+    setModalEditarPaciente,
   } = useContext(PacientesContext);
 
   return (
@@ -30,6 +33,20 @@ const ListaPacientesScreen = () => {
         </Modal.Header>
         <Modal.Body>
           <PacienteFormCrear />
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={modalEditarPaciente}
+        onHide={() => {
+          setModalEditarPaciente(false);
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Paciente</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PacienteFormEditar />
         </Modal.Body>
       </Modal>
     </main>

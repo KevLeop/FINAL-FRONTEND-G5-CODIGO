@@ -10,9 +10,14 @@ const ListaPacientes = () => {
     setPacienteDetalle,
     setObjDetallePaciente,
     // objDetallePaciente,
-    modalCrearPaciente,
+    // modalCrearPaciente,
     setmodalCrearPaciente,
+    modalEditarPaciente,
+    setModalEditarPaciente,
+    pacienteEditar,
+    setPacienteEditar,
   } = useContext(PacientesContext);
+
   console.log(pacientes);
   console.log("fromListaPacientes2");
   return (
@@ -43,6 +48,8 @@ const ListaPacientes = () => {
                 }}
               >
                 <i className="fa fa-refresh" aria-hidden="true"></i>
+                {/*boton info*/}
+                refresh
               </button>
               <button
                 className="btn btn-success rounded-circle mx-1"
@@ -51,6 +58,7 @@ const ListaPacientes = () => {
                 }}
               >
                 <i className="fa fa-plus" aria-hidden="true"></i>
+                {/*boton (+) */}
               </button>
             </div>
             <div className="table-responsive">
@@ -81,7 +89,6 @@ const ListaPacientes = () => {
                           <button
                             className="btn rounded-circle fa-lg px-0 py-0 ml-1"
                             onClick={(e) => {
-                              setPacienteDetalle(false);
                               setPacienteDetalle(true);
                               setObjDetallePaciente({
                                 nombre: objPaciente.nombre,
@@ -94,15 +101,24 @@ const ListaPacientes = () => {
                             }}
                           >
                             <i
-                              className="fa fa-info-circle fa-sm"
+                              className="fa fa-info-circle fa-sm" // boton info
                               aria-hidden="true"
                             ></i>
                           </button>
                           <button className="btn rounded-circle px-0 py-0 ml-1">
                             <i
-                              className="fa fa-minus-circle fa-lg"
+                              className="fa fa-minus-circle fa-lg" // boton eliminar
                               aria-hidden="true"
                             ></i>
+                          </button>
+                          <button
+                            className="btn btn-secondary px-1 py-0 ml-1"
+                            onClick={() => {
+                              setPacienteEditar(objPaciente);
+                              setModalEditarPaciente(true);
+                            }}
+                          >
+                            Editar
                           </button>
                         </td>
                       </tr>
