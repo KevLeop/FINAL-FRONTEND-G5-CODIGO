@@ -3,7 +3,7 @@ import PacientesContext from "../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import Moment from "moment";
 import { deletePaciente } from "../../../services/pacientesService";
-Moment.locale("es");
+// Moment.locale("es");
 const ListaPacientes = () => {
   const {
     pacientes,
@@ -32,9 +32,11 @@ const ListaPacientes = () => {
       showCancelButton: true,
     }).then((rpta) => {
       if (rpta.isConfirmed) {
+        setPacienteDetalle(false);
         deletePaciente(paciente_id).then((data) => {
           if (data.id_paciente) {
             obtenerPacientes();
+            setPacienteDetalle(false);
             Swal.fire({
               title: "Eliminado",
               icon: "success",
@@ -67,26 +69,44 @@ const ListaPacientes = () => {
             <h3>Listado de Pacientes</h3>
           </div>
           <div className="card-body ">
-            <div className="text-right mb-2">
-              <button
-                className="btn btn-success rounded-circle mx-1"
-                onClick={() => {
-                  obtenerPacientes();
-                  setPacienteDetalle(false);
-                }}
-              >
-                <i className="fa fa-refresh" aria-hidden="true"></i>
-                {/**Boton refresh */}
-              </button>
-              <button
-                className="btn btn-success rounded-circle mx-1"
-                onClick={() => {
-                  setmodalCrearPaciente(true);
-                }}
-              >
-                <i className="fa fa-plus" aria-hidden="true"></i>
-                {/*boton (+) */}
-              </button>
+            <div className="row ">
+              <div className="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Buscar pacientes..."
+                    aria-label="Buscar pacientes"
+                  />
+                </div>
+              </div>
+
+              <div className="col text-right">
+                <button
+                  className="btn btn-success rounded-circle mx-1"
+                  onClick={() => {
+                    obtenerPacientes();
+                    setPacienteDetalle(false);
+                  }}
+                >
+                  <i className="fa fa-refresh" aria-hidden="true"></i>
+                  {/**Boton refresh */}
+                </button>
+                <button
+                  className="btn btn-success rounded-circle mx-1"
+                  onClick={() => {
+                    setmodalCrearPaciente(true);
+                  }}
+                >
+                  <i className="fa fa-plus" aria-hidden="true"></i>
+                  {/*boton (+) */}
+                </button>
+              </div>
             </div>
             <div className="table-responsive">
               <table className="table table-bordered table-striped">

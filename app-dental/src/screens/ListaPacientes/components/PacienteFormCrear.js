@@ -92,7 +92,10 @@ const PacienteFormCrear = () => {
       </div>
       <div className="form-group">
         <div className="form-control input-group">
-          <label htmlFor="fechadenacimiento">Fecha de Nacimiento:</label>
+          <label htmlFor="fechadenacimiento">
+            Fecha de Nacimiento: {"\u00A0"}
+          </label>
+
           <input
             className="custom-date"
             type="date"

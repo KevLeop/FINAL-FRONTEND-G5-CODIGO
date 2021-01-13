@@ -56,6 +56,11 @@ const ListaPacienteDetalle = () => {
               <p>{objDetallePaciente.sexo}</p>
             </div>
           </legend>
+          <div className="form-group text-center">
+            <button className="btn btn-info btn-lg ">
+              Crear Historia Clinica
+            </button>
+          </div>
         </div>
       </div>
     </section>
