@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
+import Moment from "moment";
 
 const ListaPacienteDetalle = () => {
   const { objDetallePaciente } = useContext(PacientesContext);
-
+  const calcularEdad = (fecha) => {
+    // let fNacimiento = new Date(fecha);
+    let edad = Moment().diff(fecha, "years", false);
+    // console.log(`Fecha eadd: ${edad}`);
+    return edad;
+  };
   return (
     <section className="col-md-3 ">
       <div className="card shadow animate__animated animate__fadeInRight ">
@@ -33,6 +39,11 @@ const ListaPacienteDetalle = () => {
               <strong>Fecha de Nacimiento: </strong>
               <br />
               <p>{objDetallePaciente.fechadenacimiento}</p>
+            </div>
+            <div className="form-group">
+              <strong>Edad:</strong>
+              <br />
+              <p>{calcularEdad(objDetallePaciente.fechadenacimiento)}</p>
             </div>
             <div className="form-group">
               <strong>Telefono: </strong>

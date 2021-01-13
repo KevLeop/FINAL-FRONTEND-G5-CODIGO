@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
-
+import Moment from "moment";
+Moment.locale("es");
 const ListaPacientes = () => {
   const {
     pacientes,
@@ -20,6 +21,14 @@ const ListaPacientes = () => {
 
   console.log(pacientes);
   console.log("fromListaPacientes2");
+  const calcularEdad = (fecha) => {
+    // let fNacimiento = new Date(fecha);
+    let edad = Moment().diff(fecha, "years", false);
+    // console.log(`Fecha eadd: ${edad}`);
+    return edad;
+  };
+
+  calcularEdad();
   return (
     <section className="col-md-9">
       {cargandoPacientes ? (
@@ -41,15 +50,14 @@ const ListaPacientes = () => {
           <div className="card-body ">
             <div className="text-right mb-2">
               <button
-                className="btn btn-success mx-1"
+                className="btn btn-success rounded-circle mx-1"
                 onClick={() => {
                   obtenerPacientes();
                   setPacienteDetalle(false);
                 }}
               >
                 <i className="fa fa-refresh" aria-hidden="true"></i>
-                {/*boton info*/}
-                refresh
+                {/**Boton refresh */}
               </button>
               <button
                 className="btn btn-success rounded-circle mx-1"
@@ -82,7 +90,9 @@ const ListaPacientes = () => {
 
                         <td>{objPaciente.nombre}</td>
                         <td>{objPaciente.apellido}</td>
-                        <td>{objPaciente.fechadenacimiento}</td>
+                        <td>
+                          {Moment(objPaciente.fechadenacimiento).format("LL")}
+                        </td>
                         <td>{objPaciente.telefono}</td>
                         <td>{objPaciente.sexo}</td>
                         <td>
@@ -90,11 +100,13 @@ const ListaPacientes = () => {
                             className="btn rounded-circle fa-lg px-0 py-0 ml-1"
                             onClick={(e) => {
                               setPacienteDetalle(true);
-                              setObjDetallePaciente({ 
+                              setObjDetallePaciente({
                                 nombre: objPaciente.nombre,
                                 apellido: objPaciente.apellido,
-                                fechadenacimiento:
-                                  objPaciente.fechadenacimiento,
+                                fechadenacimiento: Moment(
+                                  objPaciente.fechadenacimiento
+                                ).format("LL"),
+
                                 telefono: objPaciente.telefono,
                                 sexo: objPaciente.sexo,
                               });

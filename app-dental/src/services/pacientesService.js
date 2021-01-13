@@ -17,3 +17,18 @@ export const postPacientes = async (objPaciente) => {
   const data = await peticion.json();
   return data;
 };
+
+export const putPacientes = async (objProducto) => {
+  const peticion = await fetch(
+    `${URL_BACKEND}/pacientes/${objProducto.id_paciente}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(objProducto),
+      headers: {
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const data = await peticion.json();
+  return data;
+};
