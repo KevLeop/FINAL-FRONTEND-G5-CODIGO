@@ -14,8 +14,8 @@ const DetalleHClinica = () => {
     pagado:false
   }
 
-  const [formulario,setFormulario] = useState(formularioVacio)
-  const [obtenerHClinicas] = useContext(HistoriasClinicasContext)
+  const [formulario,setFormulario] = useState(formularioVacio);
+  const [obtenerHClinicas] = useContext(HistoriasClinicasContext);
 
   const handleChange = (e) =>{
     setFormulario({
