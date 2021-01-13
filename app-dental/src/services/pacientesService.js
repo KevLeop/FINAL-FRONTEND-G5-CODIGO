@@ -18,17 +18,25 @@ export const postPacientes = async (objPaciente) => {
   return data;
 };
 
-export const putPacientes = async (objProducto) => {
+export const putPacientes = async (objPaciente) => {
   const peticion = await fetch(
-    `${URL_BACKEND}/pacientes/${objProducto.id_paciente}`,
+    `${URL_BACKEND}/pacientes/${objPaciente.id_paciente}`,
     {
       method: "PUT",
-      body: JSON.stringify(objProducto),
+      body: JSON.stringify(objPaciente),
       headers: {
         "Content-type": "application/json",
       },
     }
   );
+  const data = await peticion.json();
+  return data;
+};
+
+export const deletePaciente = async (prod_id) => {
+  const peticion = await fetch(`${URL_BACKEND}/pacientes/${prod_id}`, {
+    method: "DELETE",
+  });
   const data = await peticion.json();
   return data;
 };

@@ -50,7 +50,9 @@ const PacienteFormEditar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
+        <label htmlFor="nombre">Nombre:</label>
         <input
+          id="nombre"
           className="form-control"
           type="text"
           placeholder="Nombres del paciente"
@@ -60,7 +62,9 @@ const PacienteFormEditar = () => {
         />
       </div>
       <div className="form-group">
+        <label htmlFor="apellido">Apellido:</label>
         <input
+          id="apellido"
           className="form-control"
           type="text"
           placeholder="Apellidos del paciente"
@@ -84,7 +88,9 @@ const PacienteFormEditar = () => {
       </div>
 
       <div className="form-group">
+        <label htmlFor="telefono">Telefono:</label>
         <input
+          id="telefono"
           className="form-control"
           type="text"
           placeholder="Teléfono"
@@ -94,7 +100,9 @@ const PacienteFormEditar = () => {
         />
       </div>
       <div className="form-group">
+        <label htmlFor="sexo">Sexo:</label>
         <input
+          id="sexo"
           className="form-control"
           type="text"
           placeholder="Ingrese género"

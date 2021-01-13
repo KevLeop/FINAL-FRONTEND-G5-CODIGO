@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
+import Swal from "sweetalert2";
 import Moment from "moment";
+import { deletePaciente } from "../../../services/pacientesService";
 Moment.locale("es");
 const ListaPacientes = () => {
   const {
@@ -21,14 +23,31 @@ const ListaPacientes = () => {
 
   console.log(pacientes);
   console.log("fromListaPacientes2");
-  const calcularEdad = (fecha) => {
-    // let fNacimiento = new Date(fecha);
-    let edad = Moment().diff(fecha, "years", false);
-    // console.log(`Fecha eadd: ${edad}`);
-    return edad;
+
+  const eliminar = (paciente_id) => {
+    Swal.fire({
+      title: "¿Seguro de eliminar paciente?",
+      icon: "error",
+      text: "Los cambios serán irreversibles",
+      showCancelButton: true,
+    }).then((rpta) => {
+      if (rpta.isConfirmed) {
+        deletePaciente(paciente_id).then((data) => {
+          if (data.id_paciente) {
+            obtenerPacientes();
+            Swal.fire({
+              title: "Eliminado",
+              icon: "success",
+              timer: 800,
+              showCancelButton: false,
+              position: "top-center",
+            });
+          }
+        });
+      }
+    });
   };
 
-  calcularEdad();
   return (
     <section className="col-md-9">
       {cargandoPacientes ? (
@@ -117,20 +136,29 @@ const ListaPacientes = () => {
                               aria-hidden="true"
                             ></i>
                           </button>
-                          <button className="btn rounded-circle px-0 py-0 ml-1">
-                            <i
-                              className="fa fa-minus-circle fa-lg" // boton eliminar
-                              aria-hidden="true"
-                            ></i>
-                          </button>
+
                           <button
-                            className="btn btn-secondary px-1 py-0 ml-1"
+                            className="btn px-0 py-0 ml-1"
                             onClick={() => {
                               setPacienteEditar(objPaciente);
                               setModalEditarPaciente(true);
                             }}
                           >
-                            Editar
+                            <i
+                              class="fa fa-pencil-square fa-lg"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                          <button
+                            className="btn rounded-circle px-0 py-0 ml-1"
+                            onClick={() => {
+                              eliminar(objPaciente.id_paciente);
+                            }}
+                          >
+                            <i
+                              className="fa fa-minus-circle fa-lg" // boton eliminar
+                              aria-hidden="true"
+                            ></i>
                           </button>
                         </td>
                       </tr>
