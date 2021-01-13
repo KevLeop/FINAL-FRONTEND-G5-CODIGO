@@ -3,11 +3,13 @@ import PacientesContext from "../../../contexts/pacientesContext";
 import Moment from "moment";
 
 const ListaPacienteDetalle = () => {
-  const { objDetallePaciente } = useContext(PacientesContext);
+  const { objDetallePaciente, modalCrearHC, setModalCrearHC } = useContext(
+    PacientesContext
+  );
   const calcularEdad = (fecha) => {
-    // let fNacimiento = new Date(fecha);
+    Moment(fecha, "YYYY-MM-DD");
     let edad = Moment().diff(fecha, "years", false);
-    // console.log(`Fecha eadd: ${edad}`);
+
     return edad;
   };
   return (
@@ -57,7 +59,12 @@ const ListaPacienteDetalle = () => {
             </div>
           </legend>
           <div className="form-group text-center">
-            <button className="btn btn-info btn-lg ">
+            <button
+              className="btn btn-info btn-lg "
+              onClick={() => {
+                setModalCrearHC(true);
+              }}
+            >
               Crear Historia Clinica
             </button>
           </div>

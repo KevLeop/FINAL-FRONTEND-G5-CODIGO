@@ -16,6 +16,7 @@ const PacientesState = ({ children }) => {
   const [modalCrearPaciente, setmodalCrearPaciente] = useState(false);
 
   const [modalEditarPaciente, setModalEditarPaciente] = useState(false);
+  const [modalCrearHC, setModalCrearHC] = useState(false);
   const [pacienteEditar, setPacienteEditar] = useState({});
 
   const obtenerPacientes = () => {
@@ -46,6 +47,8 @@ const PacientesState = ({ children }) => {
         setModalEditarPaciente: setModalEditarPaciente,
         pacienteEditar: pacienteEditar,
         setPacienteEditar: setPacienteEditar,
+        modalCrearHC: modalCrearHC,
+        setModalCrearHC: setModalCrearHC,
       }}
     >
       {children}

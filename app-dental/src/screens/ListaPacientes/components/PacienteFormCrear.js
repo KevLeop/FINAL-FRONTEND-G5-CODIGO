@@ -18,6 +18,7 @@ const PacienteFormCrear = () => {
     setmodalCrearPaciente,
     // modalCrearPaciente,
   } = useContext(PacientesContext);
+
   const [formCrear, setFormCrear] = useState({
     nombre: "",
     apellido: "",
@@ -118,14 +119,20 @@ const PacienteFormCrear = () => {
         />
       </div>
       <div className="form-group">
-        <input
+        <select
           className="form-control"
-          type="text"
-          placeholder="Ingrese género"
           name="sexo"
-          value={formCrear.sexo}
+          id="sexo"
           onChange={handleChange}
-        />
+          value={0}
+        >
+          <option value="0" disabled>
+            --Seleccione genero del paciente...
+          </option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+          <option value="No especificar">No especificar</option>
+        </select>
       </div>
       <div className="form-group d-flex justify-content-between">
         <button className="btn btn-primary" type="submit">

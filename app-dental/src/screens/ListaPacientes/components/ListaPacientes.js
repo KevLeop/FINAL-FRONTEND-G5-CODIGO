@@ -71,17 +71,18 @@ const ListaPacientes = () => {
           <div className="card-body ">
             <div className="row ">
               <div className="col-6">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
-                      <i class="fa fa-search" aria-hidden="true"></i>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon1">
+                      <i className="fa fa-search" aria-hidden="true"></i>
                     </span>
                   </div>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Buscar pacientes..."
                     aria-label="Buscar pacientes"
+                    // Video Clase 30
                   />
                 </div>
               </div>
@@ -145,7 +146,6 @@ const ListaPacientes = () => {
                                 fechadenacimiento: Moment(
                                   objPaciente.fechadenacimiento
                                 ).format("LL"),
-
                                 telefono: objPaciente.telefono,
                                 sexo: objPaciente.sexo,
                               });
@@ -165,7 +165,7 @@ const ListaPacientes = () => {
                             }}
                           >
                             <i
-                              class="fa fa-pencil-square fa-lg"
+                              className="fa fa-pencil-square fa-lg"
                               aria-hidden="true"
                             ></i>
                           </button>

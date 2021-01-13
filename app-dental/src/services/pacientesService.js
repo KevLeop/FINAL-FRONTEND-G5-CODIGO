@@ -6,6 +6,12 @@ export const getPacientes = async () => {
   return data;
 };
 
+export const searchPaciente = async (nombrePaciente) => {
+  const peticion = await fetch(`${URL_BACKEND}/pacientes?=${nombrePaciente}`);
+  const data = await peticion.json();
+  return data;
+};
+
 export const postPacientes = async (objPaciente) => {
   const peticion = await fetch(`${URL_BACKEND}/pacientes`, {
     method: "POST",

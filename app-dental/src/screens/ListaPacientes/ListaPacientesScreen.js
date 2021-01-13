@@ -5,6 +5,7 @@ import ListaPacientes from "../ListaPacientes/components/ListaPacientes";
 import { Modal } from "react-bootstrap";
 import PacienteFormCrear from "./components/PacienteFormCrear";
 import PacienteFormEditar from "./components/PacienteFormEditar";
+import CrearHCForm from "./components/CrearHCForm";
 
 const ListaPacientesScreen = () => {
   const {
@@ -13,6 +14,8 @@ const ListaPacientesScreen = () => {
     setmodalCrearPaciente,
     modalEditarPaciente,
     setModalEditarPaciente,
+    modalCrearHC,
+    setModalCrearHC,
   } = useContext(PacientesContext);
 
   return (
@@ -47,6 +50,20 @@ const ListaPacientesScreen = () => {
         </Modal.Header>
         <Modal.Body>
           <PacienteFormEditar />
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={modalCrearHC}
+        onHide={() => {
+          setModalCrearHC(false);
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Crear Historia Clinica</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CrearHCForm />
         </Modal.Body>
       </Modal>
     </main>
