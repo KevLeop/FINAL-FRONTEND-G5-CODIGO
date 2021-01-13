@@ -16,7 +16,7 @@ const HistoriasClinicas = () => {
         return pac;
       } else return null;
     });
-    return `${objPac.nombre} ${objPac.apellido}`;
+    return `${objPac.nombre} ${objPac.apellido}`; 
   };
 
   return (
