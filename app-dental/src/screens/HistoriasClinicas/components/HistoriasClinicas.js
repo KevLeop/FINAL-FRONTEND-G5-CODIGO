@@ -10,16 +10,8 @@ const HistoriasClinicas = () => {
 
   const { pacientes } = useContext(PacientesContext);
 
-  const nombrePaciente = (objHC) => {
-    let objPac = pacientes.find((pac) => {
-      if (pac.id_paciente === objHC.id_paciente) {
-        return pac;
-      } else {
-        console.log("error");
-        return null;
-      }
-    });
-    return `${objPac.nombre}`;
+  const nombrePaciente = (idPacHC) => {
+    return pacientes.find((pac) => pac?.id_paciente === +idPacHC).nombre;
   };
 
   return (
@@ -69,7 +61,7 @@ const HistoriasClinicas = () => {
                     return (
                       <tr key={objHClinica.id_hclinica}>
                         <td>{objHClinica.id_hclinica}</td>
-                        <td>{nombrePaciente(objHClinica)}</td>
+                        <td> {objHClinica.id_paciente}</td>
                         <td>{objHClinica.fecha}</td>
                         <td>{objHClinica.problema}</td>
                         <td>{objHClinica.diagnostico}</td>
