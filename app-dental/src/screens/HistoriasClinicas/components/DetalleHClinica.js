@@ -14,12 +14,12 @@ const DetalleHClinica = () => {
   };
 
   const [formulario, setFormulario] = useState(formularioVacio);
-  const [obtenerHClinicas] = useContext(HistoriasClinicasContext);
+  const {obtenerHClinicas} = useContext(HistoriasClinicasContext);
 
   const handleChange = (e) => {
     setFormulario({
       ...formulario,
-      [e.target.id]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -49,8 +49,8 @@ const DetalleHClinica = () => {
           <h2>Crear Nueva Historia Clinica</h2>
 
           <form onSubmit={submit}>
-            <div class="form-group">
-              <label htmlfor="">Nombre del Paciente</label>
+            <div className="form-group">
+              <label htmlfor="">Codigo de Paciente</label>
               <input
                 type="text"
                 name="id_paciente"
@@ -103,14 +103,14 @@ const DetalleHClinica = () => {
                 type="text"
                 name="tratamiento"
                 id="tratamiento"
-                class="form-control"
+                className="form-control"
                 placeholder="Tratamiento"
                 aria-describedby="helpId"
                 value={formulario.tratamiento}
                 onChange={handleChange}
               />
               <br />
-              <div class="custom-control custom-switch">
+              <div className="custom-control custom-switch">
                 <input
                   type="checkbox"
                   class="custom-control-input"
