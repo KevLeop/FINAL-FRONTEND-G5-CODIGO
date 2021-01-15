@@ -4,23 +4,18 @@ import Swal from "sweetalert2";
 import Moment from "moment";
 import { MDBDataTable } from "mdbreact";
 import { deletePaciente } from "../../../services/pacientesService";
-import "moment/min/moment-with-locales";
-// import "moment-duration-format";
+import "moment/min/locales";
+
 Moment.locale("es");
 const ListaPacientes = () => {
   const {
     pacientes,
     cargandoPacientes,
     obtenerPacientes,
-    // pacienteDetalle,
     setPacienteDetalle,
     setObjDetallePaciente,
-    // objDetallePaciente,
-    // modalCrearPaciente,
     setmodalCrearPaciente,
-    modalEditarPaciente,
     setModalEditarPaciente,
-    pacienteEditar,
     setPacienteEditar,
   } = useContext(PacientesContext);
 

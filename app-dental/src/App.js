@@ -9,6 +9,7 @@ import ListaPacientesScreen from "./screens/ListaPacientes/ListaPacientesScreen"
 import PacientesState from "./contexts/pacientesState";
 import HistoriasClinicasScreen from "./screens/HistoriasClinicas/HistoriasClinicasScreen";
 import HistoriasClinicasState from "./contexts/historiasClinicasState";
+import CitasScreen from "./screens/Citas/CitasScreen";
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
               path="/HistoriasClinicas"
               component={HistoriasClinicasScreen}
             />
-            {/* <Route path="/Citas" component={Citas} /> */}
+            <Route path="/Citas" component={CitasScreen} />
             <Route path="/" component={HomeScreen} />
           </Switch>
         </HistoriasClinicasState>
