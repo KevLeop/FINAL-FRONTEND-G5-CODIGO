@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import Moment from "moment";
+import { MDBDataTable } from "mdbreact";
 import { deletePaciente } from "../../../services/pacientesService";
-// Moment.locale("es");
+import "moment/min/moment-with-locales";
+// import "moment-duration-format";
+Moment.locale("es");
 const ListaPacientes = () => {
   const {
     pacientes,
@@ -20,6 +23,93 @@ const ListaPacientes = () => {
     pacienteEditar,
     setPacienteEditar,
   } = useContext(PacientesContext);
+
+  const data = {
+    columns: [
+      {
+        label: "Id",
+        field: "id_paciente",
+      },
+      {
+        label: "Nombre",
+        field: "nombre",
+      },
+      {
+        label: "Apellido",
+        field: "apellido",
+      },
+      {
+        label: "Fech. Nac.",
+        field: "fechadenacimiento",
+      },
+
+      {
+        label: "Sexo",
+        field: "sexo",
+      },
+      {
+        label: "Cel",
+        field: "telefono",
+      },
+      {
+        label: "Acciones",
+        field: "acciones",
+      },
+    ],
+    rows: pacientes.map((objPaciente) => {
+      return {
+        ...objPaciente,
+        id_paciente: +objPaciente.id_paciente,
+        fechadenacimiento: Moment(objPaciente.fechadenacimiento).format(
+          "DD/MM/yyyy"
+        ),
+        acciones: (
+          <>
+            <button
+              className="btn rounded-circle fa-lg px-0 py-0 ml-1"
+              onClick={(e) => {
+                setPacienteDetalle(true);
+                setObjDetallePaciente({
+                  nombre: objPaciente.nombre,
+                  apellido: objPaciente.apellido,
+                  fechadenacimiento: Moment(
+                    objPaciente.fechadenacimiento
+                  ).format("LL"),
+                  telefono: objPaciente.telefono,
+                  sexo: objPaciente.sexo,
+                });
+              }}
+            >
+              <i
+                className="fa fa-info-circle fa-sm" // boton info
+                aria-hidden="true"
+              ></i>
+            </button>
+            <button
+              className="btn px-0 py-0 ml-1"
+              onClick={() => {
+                setPacienteEditar(objPaciente);
+                setModalEditarPaciente(true);
+              }}
+            >
+              <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              className="btn rounded-circle px-0 py-0 ml-1"
+              onClick={() => {
+                eliminar(objPaciente.id_paciente);
+              }}
+            >
+              <i
+                className="fa fa-minus-circle fa-lg" // boton eliminar
+                aria-hidden="true"
+              ></i>
+            </button>
+          </>
+        ),
+      };
+    }),
+  };
 
   console.log(pacientes);
   console.log("fromListaPacientes2");
@@ -70,23 +160,6 @@ const ListaPacientes = () => {
           </div>
           <div className="card-body ">
             <div className="row ">
-              <div className="col-6">
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text" id="basic-addon1">
-                      <i className="fa fa-search" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Buscar pacientes..."
-                    aria-label="Buscar pacientes"
-                    // Video Clase 30
-                  />
-                </div>
-              </div>
-
               <div className="col text-right">
                 <button
                   className="btn btn-success rounded-circle mx-1"
@@ -110,82 +183,19 @@ const ListaPacientes = () => {
               </div>
             </div>
             <div className="table-responsive">
-              <table className="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Telefono</th>
-                    <th>Sexo</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pacientes.map((objPaciente) => {
-                    return (
-                      <tr key={objPaciente.id_paciente}>
-                        <td>{objPaciente.id_paciente}</td>
-
-                        <td>{objPaciente.nombre}</td>
-                        <td>{objPaciente.apellido}</td>
-                        <td>
-                          {Moment(objPaciente.fechadenacimiento).format("LL")}
-                        </td>
-                        <td>{objPaciente.telefono}</td>
-                        <td>{objPaciente.sexo}</td>
-                        <td>
-                          <button
-                            className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-                            onClick={(e) => {
-                              setPacienteDetalle(true);
-                              setObjDetallePaciente({
-                                nombre: objPaciente.nombre,
-                                apellido: objPaciente.apellido,
-                                fechadenacimiento: Moment(
-                                  objPaciente.fechadenacimiento
-                                ).format("LL"),
-                                telefono: objPaciente.telefono,
-                                sexo: objPaciente.sexo,
-                              });
-                            }}
-                          >
-                            <i
-                              className="fa fa-info-circle fa-sm" // boton info
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-
-                          <button
-                            className="btn px-0 py-0 ml-1"
-                            onClick={() => {
-                              setPacienteEditar(objPaciente);
-                              setModalEditarPaciente(true);
-                            }}
-                          >
-                            <i
-                              className="fa fa-pencil-square fa-lg"
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                          <button
-                            className="btn rounded-circle px-0 py-0 ml-1"
-                            onClick={() => {
-                              eliminar(objPaciente.id_paciente);
-                            }}
-                          >
-                            <i
-                              className="fa fa-minus-circle fa-lg" // boton eliminar
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <MDBDataTable
+                data={data}
+                responsive
+                striped
+                hover
+                bordered
+                displayEntries={false}
+                entries={15}
+                fixed
+                infoLabel={["Mostrando", "a", "de", "pacientes"]}
+                paginationLabel={["Anterior", "Siguiente"]}
+                searchLabel="Buscar..."
+              />
             </div>
           </div>
         </div>

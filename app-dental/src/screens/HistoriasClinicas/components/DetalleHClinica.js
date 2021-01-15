@@ -14,11 +14,7 @@ const DetalleHClinica = () => {
   };
 
   const [formulario, setFormulario] = useState(formularioVacio);
-<<<<<<< HEAD
   const { obtenerHClinicas } = useContext(HistoriasClinicasContext);
-=======
-  const {obtenerHClinicas} = useContext(HistoriasClinicasContext);
->>>>>>> 12fb67618ce2365cf24bbc2e220b8bb66972303a
 
   const handleChange = (e) => {
     setFormulario({
