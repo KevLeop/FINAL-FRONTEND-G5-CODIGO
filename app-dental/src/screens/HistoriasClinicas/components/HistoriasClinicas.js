@@ -8,15 +8,21 @@ const HistoriasClinicas = () => {
     HistoriasClinicasContext
   );
 
-  const { pacientes } = useContext(PacientesContext);
+  const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
   const nombrePaciente = (idPacHC) => {
-    return pacientes.find((pac) => pac?.id_paciente === +idPacHC).nombre;
+    let objPac = pacientes.find((pac) => {
+      if (+pac?.id_paciente === +idPacHC) {
+        return pac;
+      }
+      return { nombre: "", apellido: "" };
+    });
+    return `${objPac.nombre} ${objPac.apellido}`;
   };
 
   return (
     <section className="col-md-9 ">
-      {cargandoHClinicas ? (
+      {cargandoHClinicas || cargandoPacientes ? (
         <div className="card shadow">
           <div className="card-title text-center mt-3">
             <h4>Cargando Historias Clinicas</h4>
@@ -61,7 +67,9 @@ const HistoriasClinicas = () => {
                     return (
                       <tr key={objHClinica.id_hclinica}>
                         <td>{objHClinica.id_hclinica}</td>
-                        <td> {objHClinica.id_paciente}</td>
+
+                        <td>{nombrePaciente(objHClinica.id_paciente)}</td>
+                        {/* <td>{objHClinica.id_paciente}</td> */}
                         <td>{objHClinica.fecha}</td>
                         <td>{objHClinica.problema}</td>
                         <td>{objHClinica.diagnostico}</td>

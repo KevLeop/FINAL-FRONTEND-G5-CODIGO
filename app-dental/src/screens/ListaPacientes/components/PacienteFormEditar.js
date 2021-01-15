@@ -100,16 +100,17 @@ const PacienteFormEditar = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="sexo">Sexo:</label>
-        <input
-          id="sexo"
+        <select
           className="form-control"
-          type="text"
-          placeholder="Ingrese género"
           name="sexo"
-          value={formEditar.sexo}
+          id="sexo"
           onChange={handleChange}
-        />
+        >
+          <option value="">--Seleccione genero del paciente...</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+          <option value="No especificar">No especificar</option>
+        </select>
       </div>
       <div className="form-group d-flex justify-content-between">
         <button className="btn btn-primary" type="submit">

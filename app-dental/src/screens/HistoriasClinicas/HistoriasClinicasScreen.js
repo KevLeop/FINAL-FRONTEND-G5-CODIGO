@@ -1,26 +1,29 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+
 import DetalleHClinica from "../HistoriasClinicas/components/DetalleHClinica";
 import HistoriasClinicas from "../HistoriasClinicas/components/HistoriasClinicas";
 
 const HistoriasClinicasScreen = () => {
-
-  const [formCrear,setFormCrear] = useState(false);
+  const [formCrear, setFormCrear] = useState(true);
 
   return (
     <main className="container-fluid mt-4">
       <div className="row mb-4">
         <div className="col text-right">
-          <button className="btn btn-info shadow" onClick={()=>{
-            setFormCrear(!formCrear)
-          }}>Crear Hoja Clinica</button>
+          <button
+            className="btn btn-info shadow"
+            onClick={() => {
+              setFormCrear(!formCrear);
+            }}
+          >
+            Crear Hoja Clinica
+          </button>
         </div>
       </div>
-        <div className="row">
+      <div className="row">
         <HistoriasClinicas />
-        {
-          formCrear && <DetalleHClinica />
-        }
-        </div>
+        {formCrear && <DetalleHClinica />}
+      </div>
     </main>
   );
 };

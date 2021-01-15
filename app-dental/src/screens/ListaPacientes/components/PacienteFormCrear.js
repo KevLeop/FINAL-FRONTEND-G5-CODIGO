@@ -124,11 +124,8 @@ const PacienteFormCrear = () => {
           name="sexo"
           id="sexo"
           onChange={handleChange}
-          value={0}
         >
-          <option value="0" disabled>
-            --Seleccione genero del paciente...
-          </option>
+          <option value="">--Seleccione genero del paciente...</option>
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
           <option value="No especificar">No especificar</option>

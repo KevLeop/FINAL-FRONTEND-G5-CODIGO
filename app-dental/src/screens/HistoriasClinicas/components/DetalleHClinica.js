@@ -14,12 +14,12 @@ const DetalleHClinica = () => {
   };
 
   const [formulario, setFormulario] = useState(formularioVacio);
-  const [obtenerHClinicas] = useContext(HistoriasClinicasContext);
+  const { obtenerHClinicas } = useContext(HistoriasClinicasContext);
 
   const handleChange = (e) => {
     setFormulario({
       ...formulario,
-      [e.target.id]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 

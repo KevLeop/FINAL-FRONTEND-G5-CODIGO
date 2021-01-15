@@ -35,7 +35,9 @@ const PacientesState = ({ children }) => {
     <PacientesContext.Provider
       value={{
         pacientes: pacientes,
+        setPacientes: setPacientes,
         cargandoPacientes: cargandoPacientes,
+        setCargandoPacientes: setCargandoPacientes,
         obtenerPacientes: obtenerPacientes,
         pacienteDetalle: pacienteDetalle,
         setPacienteDetalle: setPacienteDetalle,
