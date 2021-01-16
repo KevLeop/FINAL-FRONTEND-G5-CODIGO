@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import HistoriasClinicasContext from "../../../contexts/historiasClinicasContext";
 
 import PacientesContext from "../../../contexts/pacientesContext";
+import { deleteHclinica } from "../../../services/pacientesService";
 
 const HistoriasClinicas = () => {
-  const { hClinicas, cargandoHClinicas, obtenerHClinicas } = useContext(
-    HistoriasClinicasContext
-  );
+  const { hClinicas,
+     cargandoHClinicas,
+      obtenerHClinicas,
+    setModalCrearHClinica } = useContext(HistoriasClinicasContext);
 
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
@@ -44,6 +46,14 @@ const HistoriasClinicas = () => {
               >
                 <i className="fa fa-refresh" aria-hidden="true"></i>
               </button>
+              <button
+                  className="btn btn-success rounded-circle mx-1"
+                  onClick={() => {
+                    setModalCrearHClinica(true);
+                  }}
+                >
+                  <i className="fa fa-plus" aria-hidden="true"></i>
+                </button>
             </div>
             <div className="table-responsive mt-1">
               <table className="table table-bordered table-striped">
@@ -74,6 +84,7 @@ const HistoriasClinicas = () => {
                           <button className="btn btn-secondary">
                             Acciones
                           </button>
+             
                         </td>
                       </tr>
                     );
@@ -87,5 +98,31 @@ const HistoriasClinicas = () => {
     </section>
   );
 };
+ /*
+const eliminar = (hclinica_id) => {
+  Swal.fire({
+    title: "¿Seguro de eliminar paciente?",
+    icon: "error",
+    text: "Los cambios serán irreversibles",
+    showCancelButton: true,
+  }).then((rpta) => {
+    if (rpta.isConfirmed) {
+      setPacienteDetalle(false);
+      deleteHclinica(hclinica_id).then((data) => {
+        if (data.id_hclinica) {
+          obtenerHClinicas();
+          set(false);
+          Swal.fire({
+            title: "Eliminado",
+            icon: "success",
+            timer: 800,
+            showCancelButton: false,
+            position: "top-center",
+          });
+        }
+      });
+    }
+  });
+};*/
 
 export default HistoriasClinicas;

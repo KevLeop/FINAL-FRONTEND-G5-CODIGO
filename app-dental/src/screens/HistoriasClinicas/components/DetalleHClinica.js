@@ -14,7 +14,7 @@ const DetalleHClinica = () => {
   };
 
   const [formulario, setFormulario] = useState(formularioVacio);
-  const { obtenerHClinicas } = useContext(HistoriasClinicasContext);
+  const { obtenerHClinicas, setModalCrearPacientes } = useContext(HistoriasClinicasContext);
 
   const handleChange = (e) => {
     setFormulario({
@@ -36,6 +36,22 @@ const DetalleHClinica = () => {
           if (data.id_hclinica) {
             setFormulario(formularioVacio);
             obtenerHClinicas();
+            Swal.fire({
+              title: "Hecho!",
+              text: "El paciente ha sido creado exitosamente",
+              icon: "success",
+              showCancelButton: false,
+              timer: 800,
+            });
+            setModalCrearPacientes(false);
+          }else{
+            Swal.fire({
+              title: "Error!",
+              text: "No se pudo registrar paciente",
+              icon: "error",
+              showCancelButton: false,
+              timer: 800,
+            });
           }
         });
       }
@@ -43,8 +59,8 @@ const DetalleHClinica = () => {
   };
 
   return (
-    <section className="col-md-3">
-      <div className="card shadow">
+    <section className="col-md-3" >
+      <div className="card shadow ">
         <div className="card-body">
           <h2>Crear Nueva Historia Clinica</h2>
 
