@@ -14,9 +14,7 @@ const formularioVacio = {
 
 const PacienteFormCrear = () => {
   const {
-    obtenerPacientes,
-    setmodalCrearPaciente,
-    // modalCrearPaciente,
+    obtenerPacientes,setmodalCrearPaciente,// modalCrearPaciente,
   } = useContext(PacientesContext);
 
   const [formCrear, setFormCrear] = useState({
