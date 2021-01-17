@@ -1,9 +1,10 @@
 import React from "react";
+import CitasCalendario from "./components/CitasCalendario";
 
 const CitasScreen = () => {
   return (
     <div>
-      <p>Componente CitasScreen</p>
+      <CitasCalendario />
     </div>
   );
 };

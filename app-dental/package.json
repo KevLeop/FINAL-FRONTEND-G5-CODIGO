@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "add": "^2.0.6",
     "animate.css": "^4.1.1",
     "bootstrap": "^4.5.3",
     "font-awesome": "^4.7.0",
@@ -13,12 +14,14 @@
     "mdbreact": "^5.0.1",
     "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-big-calendar": "^0.30.0",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "sweetalert2": "^10.13.0",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
