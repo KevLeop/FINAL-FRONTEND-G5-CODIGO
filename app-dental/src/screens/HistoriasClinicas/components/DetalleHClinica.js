@@ -14,7 +14,9 @@ const DetalleHClinica = () => {
   };
 
   const [formulario, setFormulario] = useState(formularioVacio);
-  const { obtenerHClinicas, setModalCrearPacientes } = useContext(HistoriasClinicasContext);
+  const { obtenerHClinicas, setModalCrearPacientes } = useContext(
+    HistoriasClinicasContext
+  );
 
   const handleChange = (e) => {
     setFormulario({
@@ -44,7 +46,7 @@ const DetalleHClinica = () => {
               timer: 800,
             });
             setModalCrearPacientes(false);
-          }else{
+          } else {
             Swal.fire({
               title: "Error!",
               text: "No se pudo registrar paciente",
@@ -59,8 +61,8 @@ const DetalleHClinica = () => {
   };
 
   return (
-    <section className="col-md-3" >
-      <div className="card shadow ">
+    <section className="col-md-3">
+      <div className="card shadow flotante ">
         <div className="card-body">
           <h2>Crear Nueva Historia Clinica</h2>
 

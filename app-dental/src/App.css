@@ -3,3 +3,9 @@
 .fondo-cyan {
   background-color: #01debb;
 }
+
+/* ListaPacienteDetalle.js*/
+.flotante {
+  position: fixed !important;
+  width: 33vh;
+}
