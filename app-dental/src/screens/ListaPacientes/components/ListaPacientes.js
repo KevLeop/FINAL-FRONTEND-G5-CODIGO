@@ -51,12 +51,13 @@ const ListaPacientes = () => {
         field: "acciones",
       },
     ],
+
     rows: pacientes.map((objPaciente) => {
       return {
         ...objPaciente,
         id_paciente: +objPaciente.id_paciente,
         fechadenacimiento: Moment(objPaciente.fechadenacimiento).format(
-          "DD/MM/yyyy"
+          "DD-MM-YYYY"
         ),
         acciones: (
           <>

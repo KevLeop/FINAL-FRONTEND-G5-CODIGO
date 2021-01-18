@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
 import Moment from "moment";
+import "moment/min/locales";
+Moment.locale("es");
 
 const ListaPacienteDetalle = () => {
-  const { objDetallePaciente, modalCrearHC, setModalCrearHC } = useContext(
-    PacientesContext
-  );
+  const { objDetallePaciente, setModalCrearHC } = useContext(PacientesContext);
+
   const calcularEdad = (fecha) => {
-    Moment(fecha, "YYYY-MM-DD");
+    fecha = Moment(fecha, "LLL");
+    console.log(`Fecha:: ${fecha}`);
+
     let edad = Moment().diff(fecha, "years", false);
 
+    console.log(`Edad: ${edad}`);
     return edad;
   };
   return (
@@ -45,7 +49,11 @@ const ListaPacienteDetalle = () => {
             <div className="form-group">
               <strong>Edad:</strong>
               <br />
-              <p>{calcularEdad(objDetallePaciente.fechadenacimiento)}</p>
+              <p>
+                {calcularEdad(
+                  Moment(objDetallePaciente.fechadenacimiento, "LLL")
+                )}
+              </p>
             </div>
             <div className="form-group">
               <strong>Telefono: </strong>
