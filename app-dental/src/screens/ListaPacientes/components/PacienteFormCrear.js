@@ -14,16 +14,11 @@ const formularioVacio = {
 
 const PacienteFormCrear = () => {
   const {
-    obtenerPacientes,setmodalCrearPaciente,// modalCrearPaciente,
+    obtenerPacientes,
+    setmodalCrearPaciente, // modalCrearPaciente,
   } = useContext(PacientesContext);
 
-  const [formCrear, setFormCrear] = useState({
-    nombre: "",
-    apellido: "",
-    fechadenacimiento: "",
-    telefono: "",
-    sexo: "",
-  });
+  const [formCrear, setFormCrear] = useState(formularioVacio);
 
   const handleChange = (e) => {
     setFormCrear({

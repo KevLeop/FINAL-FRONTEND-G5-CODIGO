@@ -7,6 +7,7 @@ const PacientesState = ({ children }) => {
   const [cargandoPacientes, setCargandoPacientes] = useState(true);
   const [pacienteDetalle, setPacienteDetalle] = useState(false);
   const [objDetallePaciente, setObjDetallePaciente] = useState({
+    id_paciente: "",
     nombre: "",
     apellido: "",
     fechadenacimiento: "",

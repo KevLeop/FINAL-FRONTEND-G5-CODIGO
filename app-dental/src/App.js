@@ -6,10 +6,11 @@ import "animate.css/animate.min.css";
 
 import HomeScreen from "./screens/Home/HomeScreen";
 import ListaPacientesScreen from "./screens/ListaPacientes/ListaPacientesScreen";
-import PacientesState from "./contexts/pacientesState";
 import HistoriasClinicasScreen from "./screens/HistoriasClinicas/HistoriasClinicasScreen";
-import HistoriasClinicasState from "./contexts/historiasClinicasState";
 import CitasScreen from "./screens/Citas/CitasScreen";
+import PacientesState from "./contexts/pacientesState";
+import HistoriasClinicasState from "./contexts/historiasClinicasState";
+import CitasState from "./contexts/CitasState";
 
 const App = () => {
   return (
@@ -24,7 +25,9 @@ const App = () => {
               path="/HistoriasClinicas"
               component={HistoriasClinicasScreen}
             />
-            <Route path="/Citas" component={CitasScreen} />
+            <CitasState>
+              <Route path="/Citas" component={CitasScreen} />
+            </CitasState>
             <Route path="/" component={HomeScreen} />
           </Switch>
         </HistoriasClinicasState>

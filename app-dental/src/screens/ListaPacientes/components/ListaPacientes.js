@@ -66,6 +66,7 @@ const ListaPacientes = () => {
               onClick={(e) => {
                 setPacienteDetalle(true);
                 setObjDetallePaciente({
+                  id_paciente: objPaciente.id_paciente,
                   nombre: objPaciente.nombre,
                   apellido: objPaciente.apellido,
                   fechadenacimiento: Moment(
@@ -107,8 +108,8 @@ const ListaPacientes = () => {
     }),
   };
 
-  console.log(pacientes);
-  console.log("fromListaPacientes2");
+  // console.log(pacientes);
+  // console.log("fromListaPacientes2");
 
   const eliminar = (paciente_id) => {
     Swal.fire({
