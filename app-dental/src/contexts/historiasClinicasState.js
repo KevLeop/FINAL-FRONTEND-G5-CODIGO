@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import { getHistoriasClinicas } from "../services/historiasClinicasService";
-import { getPacientes } from "../services/pacientesService";
 import HistoriasClinicasContext from "./historiasClinicasContext";
-import PacientesContext from "./pacientesContext";
 
 const HistoriasClinicasState = ({ children }) => {
-  const { setPacientes, setCargandoPacientes } = useContext(PacientesContext);
-
+  const [modalCrearHClinica, setModalCrearHClinica] = useState(false);
   const [hClinicas, setHClinicas] = useState([]);
   const [cargandoHClinicas, setCargandoHClinicas] = useState(true);
 
@@ -29,6 +26,8 @@ const HistoriasClinicasState = ({ children }) => {
         hClinicas: hClinicas,
         cargandoHClinicas: cargandoHClinicas,
         obtenerHClinicas: obtenerHClinicas,
+        modalCrearHClinica: modalCrearHClinica,
+        setModalCrearHClinica: setModalCrearHClinica,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import HistoriasClinicasContext from "../../../contexts/historiasClinicasContext";
 
 import PacientesContext from "../../../contexts/pacientesContext";
@@ -8,7 +8,7 @@ const HistoriasClinicas = () => {
   const { hClinicas,
      cargandoHClinicas,
       obtenerHClinicas,
-    setModalCrearHClinica } = useContext(HistoriasClinicasContext);
+    setModalCrearHClinica } = useContext(HistoriasClinicasContext);    
 
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 

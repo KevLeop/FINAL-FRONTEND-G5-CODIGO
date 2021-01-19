@@ -18,24 +18,12 @@ const HistoriasClinicasScreen = () => {
         }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Crear Hclinica</Modal.Title>
+          <Modal.Title>Crear Historia Clinica</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <DetalleHClinica/>
         </Modal.Body>
       </Modal>
-        <div className="col text-right">
-
-          <button
-            className="btn btn-info shadow"
-            onClick={() => {
-              setFormCrear(!formCrear);
-            }}
-          >
-            Crear Hoja Clinica
-          </button>
-
-        </div>
       </div>
       <div className="row">
         <HistoriasClinicas />
