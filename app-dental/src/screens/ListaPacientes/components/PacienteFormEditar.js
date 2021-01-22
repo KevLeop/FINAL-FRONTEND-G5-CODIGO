@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import PacientesContext from "../../../contexts/pacientesContext";
 import { putPacientes } from "../../../services/pacientesService";
-
+import moment from "moment";
 const PacienteFormEditar = () => {
   const {
     pacienteEditar,
@@ -46,7 +46,7 @@ const PacienteFormEditar = () => {
       }
     });
   };
-
+  console.log(pacienteEditar.fechadenacimiento);
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -81,7 +81,7 @@ const PacienteFormEditar = () => {
             type="date"
             id="fechadenacimiento"
             name="fechadenacimiento"
-            value={formEditar.fechadenacimiento}
+            value={moment(formEditar.fechadenacimiento).format("YYYY-MM-DD")}
             onChange={handleChange}
           />
         </div>
@@ -116,15 +116,6 @@ const PacienteFormEditar = () => {
         <button className="btn btn-primary" type="submit">
           Guardar cambios
         </button>
-
-        {/* <button
-          className="btn btn-danger"
-          onClick={() => {
-            setmodalCrearPaciente(false);
-          }}
-        >
-          Cancelar
-        </button> */}
       </div>
     </form>
   );

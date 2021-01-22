@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
-
+import * as Math from "mathjs";
 import { postPacientes } from "../../../services/pacientesService";
 
 const formularioVacio = {
@@ -10,6 +10,7 @@ const formularioVacio = {
   fechadenacimiento: "",
   telefono: "",
   sexo: "",
+  paciente_img: "",
 };
 
 const PacienteFormCrear = () => {
@@ -36,7 +37,10 @@ const PacienteFormCrear = () => {
       showCancelButton: true,
     }).then((rpta) => {
       if (rpta.isConfirmed) {
-        postPacientes(formCrear).then((data) => {
+        postPacientes({
+          ...formCrear,
+          paciente_img: `https://randomuser.me/api/portraits/lego/9.jpg`, // MODIFICAR PARA GENERAR ALEATORIAMENTE
+        }).then((data) => {
           if (data.id_paciente) {
             setFormCrear(formularioVacio);
             obtenerPacientes();
@@ -60,6 +64,10 @@ const PacienteFormCrear = () => {
         });
       }
     });
+  };
+
+  const nroRandom = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
   return (

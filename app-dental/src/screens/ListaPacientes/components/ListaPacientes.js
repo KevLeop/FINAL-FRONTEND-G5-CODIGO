@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PacientesContext from "../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import Moment from "moment";
 import { MDBDataTable } from "mdbreact";
 import { deletePaciente } from "../../../services/pacientesService";
 import "moment/min/locales";
+import * as Math from "mathjs";
 
 Moment.locale("es");
 const ListaPacientes = () => {
@@ -13,11 +14,16 @@ const ListaPacientes = () => {
     cargandoPacientes,
     obtenerPacientes,
     setPacienteDetalle,
+    objDetallePaciente,
     setObjDetallePaciente,
     setmodalCrearPaciente,
     setModalEditarPaciente,
     setPacienteEditar,
   } = useContext(PacientesContext);
+
+  const nroRandom = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
   const data = {
     columns: [
@@ -74,7 +80,9 @@ const ListaPacientes = () => {
                   ).format("LL"),
                   telefono: objPaciente.telefono,
                   sexo: objPaciente.sexo,
+                  paciente_img: objPaciente.paciente_img,
                 });
+                console.log(objDetallePaciente);
               }}
             >
               <i

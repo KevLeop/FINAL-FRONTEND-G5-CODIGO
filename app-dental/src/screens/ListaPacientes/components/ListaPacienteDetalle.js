@@ -29,7 +29,7 @@ const ListaPacienteDetalle = () => {
           <figure className="text-center">
             <img
               className="rounded-circle"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTncxHwv7BXAjmaSBtTzrsp1mVdUkJGEKrUuA&usqp=CAU"
+              src={objDetallePaciente.paciente_img}
               alt=""
               width="150"
             />
@@ -52,7 +52,7 @@ const ListaPacienteDetalle = () => {
               <br />
               <p>
                 {calcularEdad(
-                  Moment(objDetallePaciente.fechadenacimiento, "LLL")
+                  Moment(objDetallePaciente.fechadenacimiento, "LL")
                 )}
               </p>
             </div>
