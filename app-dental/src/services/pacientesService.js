@@ -54,3 +54,5 @@ export const deleteHclinica = async (id_hclinica) => {
   const data = await peticion.json();
   return data;
 };
+
+

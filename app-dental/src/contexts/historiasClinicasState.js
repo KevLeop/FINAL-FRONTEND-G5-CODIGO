@@ -4,6 +4,7 @@ import HistoriasClinicasContext from "./historiasClinicasContext";
 
 const HistoriasClinicasState = ({ children }) => {
   const [modalCrearHClinica, setModalCrearHClinica] = useState(false);
+  const [modalEditarHClinica, setModalEditarHClinica] = useState(false);
   const [hClinicas, setHClinicas] = useState([]);
   const [cargandoHClinicas, setCargandoHClinicas] = useState(true);
 
@@ -28,6 +29,8 @@ const HistoriasClinicasState = ({ children }) => {
         obtenerHClinicas: obtenerHClinicas,
         modalCrearHClinica: modalCrearHClinica,
         setModalCrearHClinica: setModalCrearHClinica,
+        modalEditarHClinica: modalEditarHClinica,
+        setModalEditarHClinica: setModalEditarHClinica
       }}
     >
       {children}
