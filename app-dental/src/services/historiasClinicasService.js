@@ -17,3 +17,18 @@ export const posthClinica = async (objhClinica) => {
   const data = await peticion.json();
   return data;
 };
+
+export const putHclinica = async (objHClinica) => {
+  const peticion = await fetch(
+    `${URL_BACKEND}/pacientes/${objHClinica.id_paciente}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(objHClinica),
+      headers: {
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const data = await peticion.json();
+  return data;
+};

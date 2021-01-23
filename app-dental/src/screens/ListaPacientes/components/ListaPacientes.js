@@ -98,7 +98,7 @@ const ListaPacientes = () => {
               }}
             >
               <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-            </button>
+            </button> 
             <button
               className="btn rounded-circle px-0 py-0 ml-1"
               onClick={() => {

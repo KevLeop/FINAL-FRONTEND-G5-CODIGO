@@ -8,7 +8,9 @@ const HistoriasClinicas = () => {
   const { hClinicas,
      cargandoHClinicas,
       obtenerHClinicas,
-    setModalCrearHClinica } = useContext(HistoriasClinicasContext);    
+    setModalCrearHClinica,
+    setHClinicaEditar,
+    setModalEditarHClinica} = useContext(HistoriasClinicasContext);    
 
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
@@ -81,10 +83,38 @@ const HistoriasClinicas = () => {
                         <td>{objHClinica.diagnostico}</td>
                         <td>{objHClinica.tratamiento}</td>
                         <td>
-                          <button className="btn btn-secondary">
-                            Acciones
-                          </button>
-             
+                        <button
+                          className="btn rounded-circle fa-lg px-0 py-0 ml-1"
+                          /*onClick={(e) => {
+                            setPacienteDetalle(true);
+                            setObjDetallePaciente({
+                              id_paciente: objPaciente.id_paciente,
+                              nombre: objPaciente.nombre,
+                              apellido: objPaciente.apellido,
+                              fechadenacimiento: Moment(
+                                objPaciente.fechadenacimiento
+                              ).format("LL"),
+                              telefono: objPaciente.telefono,
+                              sexo: objPaciente.sexo,
+                              paciente_img: objPaciente.paciente_img,
+                            });
+                            console.log(objDetallePaciente);
+                          }} */
+                        >
+                          <i
+                            className="fa fa-info-circle fa-sm" // boton info
+                            aria-hidden="true"
+                          ></i>
+                        </button>
+                          <button
+                            className="btn px-0 py-0 ml-1"
+                            onClick={() => {
+                              setHClinicaEditar(objHClinica);
+                              setModalEditarHClinica(true);
+                            }}
+                          >
+                            <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+                          </button> 
                         </td>
                       </tr>
                     );
