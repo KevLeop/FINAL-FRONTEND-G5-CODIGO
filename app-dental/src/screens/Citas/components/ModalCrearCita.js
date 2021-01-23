@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import CitasContext from "../../../contexts/citasContext";
 import PacientesContext from "../../../contexts/pacientesContext";
+import Moment from "moment";
+import Swal from "sweetalert2";
+import { postCitas } from "../../../services/citasService";
 
 const formularioVacio = {
   id_paciente: "",
@@ -13,8 +16,11 @@ const formularioVacio = {
 
 const ModalCrearCita = () => {
   const [formCrearCita, setFormCrearCita] = useState(formularioVacio);
+
   const { pacientes } = useContext(PacientesContext);
-  const { setModalCrearCita } = useContext(CitasContext);
+  const { setModalCrearCita, obtenerCitas, setCargandoCitas } = useContext(
+    CitasContext
+  );
 
   const [fechaInicio, setFechaInicio] = useState(new Date());
   const [fechaFin, setFechaFin] = useState(new Date());
@@ -26,10 +32,92 @@ const ModalCrearCita = () => {
     });
   };
 
-  const handleChangeFechaInicio = () => {};
+  const handleChangeOption = (e) => {
+    setFormCrearCita({
+      ...formCrearCita,
+      id_paciente: e.target.value,
+    });
+    console.log(e.target);
+  };
+
+  const handleChangeFechaInicio = (e) => {
+    console.log(`${Moment(e).format()}`);
+    setFechaInicio(e);
+    setFormCrearCita({
+      ...formCrearCita,
+      fechahora_inicio: Moment(e).format(),
+    });
+  };
+
+  const handleChangeFechaFin = (e) => {
+    console.log(`${Moment(e).format()}`);
+    setFechaFin(e);
+    setFormCrearCita({
+      ...formCrearCita,
+      fechahora_fin: Moment(e).format(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: `Seguro de crear evento ${formCrearCita.titulo}`,
+      icon: "question",
+      text: "Los cambios se guardarán en la Base de Datos",
+      showCancelButton: true,
+    }).then((rpta) => {
+      if (rpta.isConfirmed) {
+        postCitas(formCrearCita).then((data) => {
+          if (data.id_paciente) {
+            setFormCrearCita(formularioVacio);
+            setCargandoCitas(true);
+            obtenerCitas();
+            Swal.fire({
+              title: "Hecho!",
+              text: "La cita ha sido creada exitosamente",
+              icon: "success",
+              showCancelButton: false,
+              timer: 800,
+            });
+            setModalCrearCita(false);
+          } else {
+            Swal.fire({
+              title: "Error!",
+              text: "No se pudo registrar cita",
+              icon: "error",
+              showCancelButton: false,
+              timer: 800,
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label>Seleccione paciente:</label>
+        <select
+          name="id_paciente"
+          id="id_paciente"
+          className="form-control"
+          onChange={handleChange}
+          // value={formCrearCita.nombre}
+        >
+          <option>--Seleccione paciente</option>
+          {pacientes.map((pac) => {
+            return (
+              <option
+                key={pac.id_paciente}
+                onClick={handleChangeOption}
+                value={pac.id_paciente}
+              >{`${pac.nombre} ${pac.apellido}`}</option>
+            );
+          })}
+        </select>
+      </div>
+
       <div className="form-group">
         <label>
           <strong>Título:</strong>
@@ -43,17 +131,6 @@ const ModalCrearCita = () => {
           onChange={handleChange}
         />
       </div>
-      <div className="form-group">
-        <label>Seleccione paciente:</label>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Nombres del paciente"
-          name="id_paciente"
-          value={formCrearCita.id_paciente}
-          onChange={handleChange}
-        />
-      </div>
 
       <div className="row">
         <div className="col-6">
@@ -61,16 +138,8 @@ const ModalCrearCita = () => {
             <label> Fecha y Hora de inicio: </label>
             <DateTimePicker
               value={fechaInicio}
-              onChange={(e) => {
-                setFechaInicio(e.target.value);
-                setFormCrearCita({
-                  ...formCrearCita,
-                  fechahora_inicio: fechaInicio,
-                });
-              }}
+              onChange={handleChangeFechaInicio}
               name="fechahora_inicio"
-              // value={formCrearCita.fechahora_inicio}
-              // onChange={handleChange}
             />
           </div>
         </div>
@@ -79,10 +148,8 @@ const ModalCrearCita = () => {
             <label> Fecha y Hora de fin: </label>
             <DateTimePicker
               value={fechaFin}
-              onChange={setFechaFin}
+              onChange={handleChangeFechaFin}
               name="fechahora_fin"
-              // value={formCrearCita.fechahora_fin}
-              // onChange={handleChange}
             />
           </div>
         </div>

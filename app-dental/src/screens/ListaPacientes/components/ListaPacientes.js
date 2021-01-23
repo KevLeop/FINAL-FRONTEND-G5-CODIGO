@@ -5,7 +5,6 @@ import Moment from "moment";
 import { MDBDataTable } from "mdbreact";
 import { deletePaciente } from "../../../services/pacientesService";
 import "moment/min/locales";
-import * as Math from "mathjs";
 
 Moment.locale("es");
 const ListaPacientes = () => {
@@ -20,10 +19,6 @@ const ListaPacientes = () => {
     setModalEditarPaciente,
     setPacienteEditar,
   } = useContext(PacientesContext);
-
-  const nroRandom = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
 
   const data = {
     columns: [
@@ -194,12 +189,15 @@ const ListaPacientes = () => {
                 striped
                 hover
                 bordered
+                pagingTop
                 displayEntries={false}
                 entries={15}
                 fixed
                 infoLabel={["Mostrando", "a", "de", "pacientes"]}
                 paginationLabel={["Anterior", "Siguiente"]}
                 searchLabel="Buscar..."
+                searchTop
+                // materialSearch
               />
             </div>
           </div>

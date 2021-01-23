@@ -19,7 +19,7 @@ const ListaPacienteDetalle = () => {
   };
   return (
     <section className="col-md-3 ">
-      <div className="card shadow animate__animated animate__fadeInRight flotante ">
+      <div className="card shadow animate__animated animate__fadeInRight">
         <div className="card-title text-center mt-3">
           <h4>
             <strong>Detalle de Paciente</strong>

@@ -14,7 +14,9 @@ const formularioVacio = {
 };
 
 const CrearHCForm = () => {
-  const { objDetallePaciente, setModalCrearHC } = useContext(PacientesContext);
+  const { objDetallePaciente, setModalCrearHC, pacientes } = useContext(
+    PacientesContext
+  );
   const [formCrearHCPacientes, setFormCrearHCPacientes] = useState({
     ...formularioVacio,
     id_paciente: objDetallePaciente.id_paciente,

@@ -17,9 +17,6 @@ const CitasState = ({ children }) => {
       console.log(data);
       setCitas(data);
       setCargandoCitas(false);
-
-      console.log(new Date(moment("2021-01-17T02:07:49-05:00")));
-      console.log(new Date(2015, 3, 1));
     });
 
     if (cargandoCitas === false) {
@@ -48,6 +45,8 @@ const CitasState = ({ children }) => {
         setModalCrearCita: setModalCrearCita,
         eventosCalendario: eventosCalendario,
         cargandoCitas: cargandoCitas,
+        setCargandoCitas: setCargandoCitas,
+        obtenerCitas: obtenerCitas,
       }}
     >
       {children}
