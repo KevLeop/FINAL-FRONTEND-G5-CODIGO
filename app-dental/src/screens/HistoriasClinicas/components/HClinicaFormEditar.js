@@ -31,7 +31,7 @@ const HClinicaFormEditar = () => {
     }).then((rpta) => {
       if (rpta.isConfirmed) {
         putHclinica({ ...formEditar }).then((data) => {
-          if (data.id_paciente) {
+          if (data.id_hclinica) {
             setModalEditarHClinica(false);
             obtenerHClinicas();
             Swal.fire({
@@ -50,67 +50,84 @@ const HClinicaFormEditar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="nombre">Nombre:</label>
-        <input
-          id="nombre"
-          className="form-control"
-          type="text"
-          placeholder="Nombres del paciente"
-          name="nombre"
-          value={formEditar.nombre}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="apellido">Apellido:</label>
-        <input
-          id="apellido"
-          className="form-control"
-          type="text"
-          placeholder="Apellidos del paciente"
-          name="apellido"
-          value={formEditar.apellido}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <div className="form-control input-group">
-          <label htmlFor="fechadenacimiento">Fecha de Nacimiento:</label>
+        <label htmlfor="">Codigo de Paciente</label>
           <input
-            className="custom-date"
-            type="date"
-            id="fechadenacimiento"
-            name="fechadenacimiento"
-            value={moment(formEditar.fechadenacimiento).format("YYYY-MM-DD")}
+            type="text"
+            name="id_paciente"
+            id="id_paciente"
+            class="form-control"
+            placeholder="Id de Paciente"
+            aria-describedby="helpId"
+            value={formEditar.id_paciente}
             onChange={handleChange}
           />
-        </div>
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="telefono">Telefono:</label>
-        <input
-          id="telefono"
-          className="form-control"
-          type="text"
-          placeholder="Teléfono"
-          name="telefono"
-          value={formEditar.telefono}
-          onChange={handleChange}
-        />
       </div>
       <div className="form-group">
-        <select
-          className="form-control"
-          name="sexo"
-          id="sexo"
-          onChange={handleChange}
-        >
-          <option value="">--Seleccione genero del paciente...</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Masculino">Masculino</option>
-          <option value="No especificar">No especificar</option>
-        </select>
+      <label htmlfor="">Fecha</label>
+          <input
+            type="date"
+            name="fecha"
+            id="fecha"
+            class="form-control"
+            placeholder="Fecha"
+            aria-describedby="helpId"
+            value={formEditar.fecha}
+            onChange={handleChange}
+          />
+      </div>
+      <div>
+      <label htmlfor="">Problema</label>
+              <input
+                type="text"
+                name="problema"
+                id="problema"
+                class="form-control"
+                placeholder="Problema"
+                aria-describedby="helpId"
+                value={formEditar.problema}
+                onChange={handleChange}
+              />
+      </div>
+      <div className="form-group">
+        <label htmlfor="">Diagnostico</label>
+          <input
+            type="text"
+            name="diagnostico"
+            id="diagnostico"
+            class="form-control"
+            placeholder="Diagnostico"
+            aria-describedby="helpId"
+            value={formEditar.diagnostico}
+            onChange={handleChange}
+          />
+      </div>
+      <div className="form-group">
+      <label htmlfor="">Tratamiento</label>
+            <input
+              type="text"
+              name="tratamiento"
+              id="tratamiento"
+              className="form-control"
+              placeholder="Tratamiento"
+              aria-describedby="helpId"
+              value={formEditar.tratamiento}
+              onChange={handleChange}
+            />
+      </div>
+      <div className="form-group">
+      <div className="custom-control custom-switch">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="customSwitch1"
+                  name="pagado"
+                  value={formEditar.pagado}
+                  onChange={handleChange}
+                />
+                <label class="custom-control-label" for="customSwitch1">
+                  Pago Realizado
+                </label>
+              </div>
       </div>
       <div className="form-group d-flex justify-content-between">
         <button className="btn btn-primary" type="submit">

@@ -64,7 +64,7 @@ const ListaPacientes = () => {
           <>
             <button
               className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-              onClick={(e) => {
+               onClick={(e) => {
                 setPacienteDetalle(true);
                 setObjDetallePaciente({
                   id_paciente: objPaciente.id_paciente,

@@ -7,6 +7,7 @@ const HistoriasClinicasState = ({ children }) => {
   const [modalEditarHClinica, setModalEditarHClinica] = useState(false);
   const [hClinicas, setHClinicas] = useState([]);
   const [cargandoHClinicas, setCargandoHClinicas] = useState(true);
+  const [hClinicasEditar, setHClinicaEditar] = useState({});
 
   const obtenerHClinicas = () => {
     getHistoriasClinicas().then((data) => {
@@ -30,7 +31,9 @@ const HistoriasClinicasState = ({ children }) => {
         modalCrearHClinica: modalCrearHClinica,
         setModalCrearHClinica: setModalCrearHClinica,
         modalEditarHClinica: modalEditarHClinica,
-        setModalEditarHClinica: setModalEditarHClinica
+        setModalEditarHClinica: setModalEditarHClinica,
+        hClinicasEditar : hClinicasEditar,
+        setHClinicaEditar : setHClinicaEditar
       }}
     >
       {children}

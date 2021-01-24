@@ -1,13 +1,15 @@
-import React, { useContext,useState } from "react";
+import React, { useContext } from "react";
 import HistoriasClinicasContext from "../../../contexts/historiasClinicasContext";
-
+import Moment from "moment";
 import PacientesContext from "../../../contexts/pacientesContext";
 import { deleteHclinica } from "../../../services/pacientesService";
 
+Moment.locale("es");
 const HistoriasClinicas = () => {
   const { hClinicas,
      cargandoHClinicas,
       obtenerHClinicas,
+      setHClinicaDetalle,
     setModalCrearHClinica,
     setHClinicaEditar,
     setModalEditarHClinica} = useContext(HistoriasClinicasContext);    
@@ -73,6 +75,7 @@ const HistoriasClinicas = () => {
                 <tbody>
                   {hClinicas.map((objHClinica) => {
                     return (
+                      
                       <tr key={objHClinica.id_hclinica}>
                         <td>{objHClinica.id_hclinica}</td>
 
@@ -86,17 +89,18 @@ const HistoriasClinicas = () => {
                         <button
                           className="btn rounded-circle fa-lg px-0 py-0 ml-1"
                           /*onClick={(e) => {
-                            setPacienteDetalle(true);
+                            setHClinicaDetalle(true);
                             setObjDetallePaciente({
-                              id_paciente: objPaciente.id_paciente,
-                              nombre: objPaciente.nombre,
-                              apellido: objPaciente.apellido,
-                              fechadenacimiento: Moment(
-                                objPaciente.fechadenacimiento
+                              id_hclinica: objHClinica.id_hclinica,
+                              fecha: objHClinica.fecha,
+                              tratamiento: objHClinica.tratamiento,
+                              problema: objHClinica.problema,
+                              Moment(
+                                objHClinica.fecha
                               ).format("LL"),
-                              telefono: objPaciente.telefono,
-                              sexo: objPaciente.sexo,
-                              paciente_img: objPaciente.paciente_img,
+                              telefono: objHClinica.telefono,
+                              sexo: objHClinica.sexo,
+                              paciente_img: objHClinica.paciente_img,
                             });
                             console.log(objDetallePaciente);
                           }} */
@@ -107,6 +111,7 @@ const HistoriasClinicas = () => {
                           ></i>
                         </button>
                           <button
+                          
                             className="btn px-0 py-0 ml-1"
                             onClick={() => {
                               setHClinicaEditar(objHClinica);
