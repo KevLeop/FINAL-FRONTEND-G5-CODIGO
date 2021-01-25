@@ -32,14 +32,6 @@ const ModalCrearCita = () => {
     });
   };
 
-  const handleChangeOption = (e) => {
-    setFormCrearCita({
-      ...formCrearCita,
-      id_paciente: e.target.value,
-    });
-    console.log(e.target);
-  };
-
   const handleChangeFechaInicio = (e) => {
     console.log(`${Moment(e).format()}`);
     setFechaInicio(e);
@@ -103,14 +95,14 @@ const ModalCrearCita = () => {
           id="id_paciente"
           className="form-control"
           onChange={handleChange}
-          // value={formCrearCita.nombre}
         >
-          <option>--Seleccione paciente</option>
+          <option selected disabled>
+            --Seleccione paciente
+          </option>
           {pacientes.map((pac) => {
             return (
               <option
                 key={pac.id_paciente}
-                onClick={handleChangeOption}
                 value={pac.id_paciente}
               >{`${pac.nombre} ${pac.apellido}`}</option>
             );

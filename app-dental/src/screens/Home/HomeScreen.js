@@ -2,9 +2,15 @@ import React from "react";
 
 const HomeScreen = () => {
   return (
-    <div>
-      <p>Componente HOME</p>
-    </div>
+    <main className="container">
+      <div className="row">
+        <div className="col">
+          <div className="card shadow">
+            <h1 className="display-1"> Bienvenido!</h1>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 

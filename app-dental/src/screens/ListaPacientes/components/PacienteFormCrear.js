@@ -136,14 +136,6 @@ const PacienteFormCrear = () => {
         <button className="btn btn-primary" type="submit">
           Crear
         </button>
-        {/* <button
-          className="btn btn-danger"
-          onClick={() => {
-            setmodalCrearPaciente(false);
-          }}
-        >
-          Cancelar
-        </button> */}
       </div>
     </form>
   );

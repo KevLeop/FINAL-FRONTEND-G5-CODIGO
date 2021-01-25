@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { getHistoriasClinicas } from "../services/historiasClinicasService";
 import HistoriasClinicasContext from "./historiasClinicasContext";
 
@@ -27,13 +27,14 @@ const HistoriasClinicasState = ({ children }) => {
       value={{
         hClinicas: hClinicas,
         cargandoHClinicas: cargandoHClinicas,
+        setCargandoHClinicas: setCargandoHClinicas,
         obtenerHClinicas: obtenerHClinicas,
         modalCrearHClinica: modalCrearHClinica,
         setModalCrearHClinica: setModalCrearHClinica,
         modalEditarHClinica: modalEditarHClinica,
         setModalEditarHClinica: setModalEditarHClinica,
-        hClinicasEditar : hClinicasEditar,
-        setHClinicaEditar : setHClinicaEditar
+        hClinicasEditar: hClinicasEditar,
+        setHClinicaEditar: setHClinicaEditar,
       }}
     >
       {children}

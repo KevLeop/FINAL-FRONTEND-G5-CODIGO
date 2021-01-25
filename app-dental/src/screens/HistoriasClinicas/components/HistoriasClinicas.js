@@ -6,13 +6,16 @@ import { deleteHclinica } from "../../../services/pacientesService";
 
 Moment.locale("es");
 const HistoriasClinicas = () => {
-  const { hClinicas,
-     cargandoHClinicas,
-      obtenerHClinicas,
-      setHClinicaDetalle,
+  const {
+    hClinicas,
+    cargandoHClinicas,
+    obtenerHClinicas,
+    setHClinicaDetalle,
+    setCargandoHClinicas,
     setModalCrearHClinica,
     setHClinicaEditar,
-    setModalEditarHClinica} = useContext(HistoriasClinicasContext);    
+    setModalEditarHClinica,
+  } = useContext(HistoriasClinicasContext);
 
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
@@ -24,7 +27,7 @@ const HistoriasClinicas = () => {
 
   return (
     <section className="col-md-9 ">
-      {cargandoHClinicas || cargandoPacientes ? (
+      {cargandoHClinicas ? (
         <div className="card shadow">
           <div className="card-title text-center mt-3">
             <h4>Cargando Historias Clinicas</h4>
@@ -45,19 +48,21 @@ const HistoriasClinicas = () => {
               <button
                 className="btn btn-success"
                 onClick={() => {
+                  setCargandoHClinicas(true);
                   obtenerHClinicas();
+                  setCargandoHClinicas(false);
                 }}
               >
                 <i className="fa fa-refresh" aria-hidden="true"></i>
               </button>
               <button
-                  className="btn btn-success rounded-circle mx-1"
-                  onClick={() => {
-                    setModalCrearHClinica(true);
-                  }}
-                >
-                  <i className="fa fa-plus" aria-hidden="true"></i>
-                </button>
+                className="btn btn-success rounded-circle mx-1"
+                onClick={() => {
+                  setModalCrearHClinica(true);
+                }}
+              >
+                <i className="fa fa-plus" aria-hidden="true"></i>
+              </button>
             </div>
             <div className="table-responsive mt-1">
               <table className="table table-bordered table-striped">
@@ -75,7 +80,6 @@ const HistoriasClinicas = () => {
                 <tbody>
                   {hClinicas.map((objHClinica) => {
                     return (
-                      
                       <tr key={objHClinica.id_hclinica}>
                         <td>{objHClinica.id_hclinica}</td>
 
@@ -86,9 +90,9 @@ const HistoriasClinicas = () => {
                         <td>{objHClinica.diagnostico}</td>
                         <td>{objHClinica.tratamiento}</td>
                         <td>
-                        <button
-                          className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-                          /*onClick={(e) => {
+                          <button
+                            className="btn rounded-circle fa-lg px-0 py-0 ml-1"
+                            /*onClick={(e) => {
                             setHClinicaDetalle(true);
                             setObjDetallePaciente({
                               id_hclinica: objHClinica.id_hclinica,
@@ -104,22 +108,24 @@ const HistoriasClinicas = () => {
                             });
                             console.log(objDetallePaciente);
                           }} */
-                        >
-                          <i
-                            className="fa fa-info-circle fa-sm" // boton info
-                            aria-hidden="true"
-                          ></i>
-                        </button>
+                          >
+                            <i
+                              className="fa fa-info-circle fa-sm" // boton info
+                              aria-hidden="true"
+                            ></i>
+                          </button>
                           <button
-                          
                             className="btn px-0 py-0 ml-1"
                             onClick={() => {
                               setHClinicaEditar(objHClinica);
                               setModalEditarHClinica(true);
                             }}
                           >
-                            <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-                          </button> 
+                            <i
+                              className="fa fa-pencil-square fa-lg"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
                         </td>
                       </tr>
                     );
@@ -133,7 +139,7 @@ const HistoriasClinicas = () => {
     </section>
   );
 };
- /*
+/*
 const eliminar = (hclinica_id) => {
   Swal.fire({
     title: "¿Seguro de eliminar paciente?",
