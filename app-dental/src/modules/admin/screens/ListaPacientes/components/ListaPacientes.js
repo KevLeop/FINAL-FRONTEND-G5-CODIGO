@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import PacientesContext from "../../../contexts/pacientesContext";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import Moment from "moment";
 import { MDBDataTable } from "mdbreact";
-import { deletePaciente } from "../../../services/pacientesService";
+import { deletePaciente } from "../../../../../services/pacientesService";
 import "moment/min/locales";
 
 Moment.locale("es");
@@ -64,7 +64,7 @@ const ListaPacientes = () => {
           <>
             <button
               className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-               onClick={(e) => {
+              onClick={(e) => {
                 setPacienteDetalle(true);
                 setObjDetallePaciente({
                   id_paciente: objPaciente.id_paciente,
@@ -93,7 +93,7 @@ const ListaPacientes = () => {
               }}
             >
               <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-            </button> 
+            </button>
             <button
               className="btn rounded-circle px-0 py-0 ml-1"
               onClick={() => {

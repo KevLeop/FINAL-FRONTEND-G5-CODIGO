@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import HistoriasClinicasContext from "../../../contexts/historiasClinicasContext";
-import HistoriasClinicasState from "../../../contexts/historiasClinicasState";
-import PacientesContext from "../../../contexts/pacientesContext";
+import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
+import HistoriasClinicasState from "../../../../../contexts/historiasClinicasState";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
 import Swal from "sweetalert2";
-import { posthClinica } from "../../../services/historiasClinicasService";
+import { posthClinica } from "../../../../../services/historiasClinicasService";
 const formularioVacio = {
   fecha: "",
   id_paciente: "",

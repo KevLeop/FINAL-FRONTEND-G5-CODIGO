@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import PacientesContext from "../../../contexts/pacientesContext";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import * as Math from "mathjs";
-import { postPacientes } from "../../../services/pacientesService";
+import { postPacientes } from "../../../../../services/pacientesService";
 
 const formularioVacio = {
   nombre: "",

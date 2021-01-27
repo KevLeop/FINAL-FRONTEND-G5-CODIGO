@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import CitasContext from "../../../contexts/citasContext";
-import PacientesContext from "../../../contexts/pacientesContext";
+import CitasContext from "../../../../../contexts/citasContext";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
 import Swal from "sweetalert2";
-import { postCitas } from "../../../services/citasService";
+import { postCitas } from "../../../../../services/citasService";
 
 const formularioVacio = {
   id_paciente: "",

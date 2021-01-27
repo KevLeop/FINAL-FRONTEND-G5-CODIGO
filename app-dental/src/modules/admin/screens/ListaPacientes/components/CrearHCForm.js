@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import PacientesContext from "../../../contexts/pacientesContext";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { posthClinica } from "../../../services/historiasClinicasService";
+import { posthClinica } from "../../../../../services/historiasClinicasService";
 
 const formularioVacio = {
   fecha: "",

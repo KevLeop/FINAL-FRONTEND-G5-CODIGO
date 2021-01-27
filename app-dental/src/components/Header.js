@@ -21,22 +21,27 @@ const Header = () => {
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item ">
-            <NavLink className="nav-link" activeClassName="active" exact to="/">
+            <NavLink
+              className="nav-link"
+              activeClassName="active"
+              exact
+              to="/admin/home"
+            >
               Home
             </NavLink>
           </li>
           <li className="nav-item ">
-            <NavLink className="nav-link" to="/ListaPacientes">
+            <NavLink className="nav-link" to="/admin/ListaPacientes">
               Pacientes
             </NavLink>
           </li>
           <li className="nav-item ">
-            <NavLink className="nav-link" to="/HistoriasClinicas">
+            <NavLink className="nav-link" to="/admin/HistoriasClinicas">
               Historias Clinicas
             </NavLink>
           </li>
           <li className="nav-item ">
-            <Link className="nav-link" to="/Citas">
+            <Link className="nav-link" to="/admin/Citas">
               Citas
             </Link>
           </li>

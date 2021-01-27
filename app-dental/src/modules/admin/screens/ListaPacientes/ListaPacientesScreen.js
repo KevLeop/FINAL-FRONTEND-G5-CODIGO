@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import PacientesContext from "../../contexts/pacientesContext";
-import ListaPacienteDetalle from "../ListaPacientes/components/ListaPacienteDetalle";
-import ListaPacientes from "../ListaPacientes/components/ListaPacientes";
+import PacientesContext from "../../../../contexts/pacientesContext";
+import ListaPacienteDetalle from "./components/ListaPacienteDetalle";
+import ListaPacientes from "./components/ListaPacientes";
 import { Modal } from "react-bootstrap";
 import PacienteFormCrear from "./components/PacienteFormCrear";
 import PacienteFormEditar from "./components/PacienteFormEditar";

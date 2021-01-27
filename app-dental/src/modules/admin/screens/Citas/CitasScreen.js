@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Modal } from "react-bootstrap";
-import CitasContext from "../../contexts/citasContext";
+import CitasContext from "../../../../contexts/citasContext";
 
 import CitasCalendario from "./components/CitasCalendario";
 import ModalCrearCita from "./components/ModalCrearCita";

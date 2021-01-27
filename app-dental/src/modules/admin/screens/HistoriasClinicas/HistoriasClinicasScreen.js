@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
-import HistoriasClinicasContext from "../../contexts/historiasClinicasContext";
-import DetalleHClinica from "../HistoriasClinicas/components/DetalleHClinica";
+import HistoriasClinicasContext from "../../../../contexts/historiasClinicasContext";
 import HistoriasClinicas from "../HistoriasClinicas/components/HistoriasClinicas";
 import HClinicaFormCrear from "./components/HClinicaFormCrear";
 import HClinicaFormEditar from "./components/HClinicaFormEditar";

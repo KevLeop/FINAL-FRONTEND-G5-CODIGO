@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import PacientesContext from "../../../contexts/pacientesContext";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
-import "./../../../App.css";
+import "./../../../../../App.css";
 import "moment/min/locales";
 Moment.locale("es");
 

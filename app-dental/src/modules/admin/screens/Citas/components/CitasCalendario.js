@@ -3,7 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import CitasContext from "../../../contexts/citasContext";
+import CitasContext from "../../../../../contexts/citasContext";
 require("moment/locale/es.js");
 const localizer = momentLocalizer(moment);
 

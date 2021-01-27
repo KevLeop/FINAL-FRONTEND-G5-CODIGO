@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
-import PacientesContext from "../../../contexts/pacientesContext";
-import { putPacientes } from "../../../services/pacientesService";
+import PacientesContext from "../../../../../contexts/pacientesContext";
+import { putPacientes } from "../../../../../services/pacientesService";
 import moment from "moment";
 const PacienteFormEditar = () => {
   const {

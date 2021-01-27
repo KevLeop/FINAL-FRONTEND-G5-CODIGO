@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import HistoriasClinicasContext from "../../../contexts/historiasClinicasContext";
+import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import Moment from "moment";
-import PacientesContext from "../../../contexts/pacientesContext";
-import { deleteHclinica } from "../../../services/pacientesService";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 
 Moment.locale("es");
 const HistoriasClinicas = () => {
