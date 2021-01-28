@@ -8,6 +8,15 @@ const HistoriasClinicasState = ({ children }) => {
   const [hClinicas, setHClinicas] = useState([]);
   const [cargandoHClinicas, setCargandoHClinicas] = useState(true);
   const [hClinicasEditar, setHClinicaEditar] = useState({});
+  const [detalleHC, setDetalleHC] = useState(false);
+  const [objDetalleHC, setObjDetalleHC] = useState({
+    id_paciente: "",
+    fecha: "",
+    problema: "",
+    diagnostico: "",
+    tratamiento: "",
+    pagado: "",
+  });
 
   const obtenerHClinicas = () => {
     getHistoriasClinicas().then((data) => {
@@ -35,6 +44,10 @@ const HistoriasClinicasState = ({ children }) => {
         setModalEditarHClinica: setModalEditarHClinica,
         hClinicasEditar: hClinicasEditar,
         setHClinicaEditar: setHClinicaEditar,
+        detalleHC: detalleHC,
+        setDetalleHC: setDetalleHC,
+        objDetalleHC: objDetalleHC,
+        setObjDetalleHC: setObjDetalleHC,
       }}
     >
       {children}

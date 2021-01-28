@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import Moment from "moment";
 import PacientesContext from "../../../../../contexts/pacientesContext";
@@ -14,14 +14,15 @@ const HistoriasClinicas = () => {
     setModalCrearHClinica,
     setHClinicaEditar,
     setModalEditarHClinica,
+    setDetalleHC,
+    setObjDetalleHC,
   } = useContext(HistoriasClinicasContext);
 
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
   const nombrePaciente = (idPacHC) => {
-    console.log(idPacHC);
     const pac = pacientes.find((pac) => +pac.id_paciente === +idPacHC);
-    return pac ? pac.nombre : "S/N";
+    return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
   };
 
   return (
@@ -83,7 +84,7 @@ const HistoriasClinicas = () => {
                         <td>{objHClinica.id_hclinica}</td>
 
                         <td>{nombrePaciente(objHClinica.id_paciente)}</td>
-                        {/* <td>{objHClinica.id_paciente}</td> */}
+
                         <td>{objHClinica.fecha}</td>
                         <td>{objHClinica.problema}</td>
                         <td>{objHClinica.diagnostico}</td>
@@ -91,22 +92,17 @@ const HistoriasClinicas = () => {
                         <td>
                           <button
                             className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-                            /*onClick={(e) => {
-                            setHClinicaDetalle(true);
-                            setObjDetallePaciente({
-                              id_hclinica: objHClinica.id_hclinica,
-                              fecha: objHClinica.fecha,
-                              tratamiento: objHClinica.tratamiento,
-                              problema: objHClinica.problema,
-                              Moment(
-                                objHClinica.fecha
-                              ).format("LL"),
-                              telefono: objHClinica.telefono,
-                              sexo: objHClinica.sexo,
-                              paciente_img: objHClinica.paciente_img,
-                            });
-                            console.log(objDetallePaciente);
-                          }} */
+                            onClick={() => {
+                              setDetalleHC(true);
+                              setObjDetalleHC({
+                                id_paciente: objHClinica.id_paciente,
+                                fecha: objHClinica.fecha,
+                                problema: objHClinica.problema,
+                                diagnostico: objHClinica.diagnostico,
+                                tratamiento: objHClinica.tratamiento,
+                                pagado: false,
+                              });
+                            }}
                           >
                             <i
                               className="fa fa-info-circle fa-sm" // boton info

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { posthClinica } from "../../../../../services/historiasClinicasService";
 import Swal from "sweetalert2";
 import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 
 const DetalleHClinica = () => {
   const formularioVacio = {
@@ -14,138 +15,70 @@ const DetalleHClinica = () => {
   };
 
   const [formulario, setFormulario] = useState(formularioVacio);
+  const { pacientes, cargandoPacientes } = useContext(PacientesContext);
+  const {
+    obtenerHClinicas,
+    setModalCrearHClinica,
+    objDetalleHC,
+    setObjDetalleHC,
+  } = useContext(HistoriasClinicasContext);
 
-  const { obtenerHClinicas, setModalCrearHClinica } = useContext(
-    HistoriasClinicasContext
-  );
-
-  const handleChange = (e) => {
-    setFormulario({
-      ...formulario,
-      [e.target.name]: e.target.value,
-    });
+  const imagenPaciente = (id_pacienteHC) => {
+    const paciente = pacientes.find(
+      (pac) => +pac.id_paciente === +id_pacienteHC
+    );
+    return paciente ? paciente.paciente_img : "https://via.placeholder.com/150";
   };
 
-  const submit = (e) => {
-    e.preventDefault();
-    Swal.fire({
-      title: "¿Seguro de editar paciente",
-      icon: "question",
-      text: "Los cambios se guardarán en la base de datos",
-      showCancelButton: "true",
-    }).then((rpta) => {
-      if (rpta.isConfirmed) {
-        posthClinica(formulario).then((data) => {
-          if (data.id_hclinica) {
-            setFormulario(formularioVacio);
-            obtenerHClinicas();
-            Swal.fire({
-              title: "Hecho!",
-              text: "El paciente ha sido creado exitosamente",
-              icon: "success",
-              showCancelButton: false,
-              timer: 800,
-            });
-            setModalCrearHClinica(false);
-          } else {
-            Swal.fire({
-              title: "Error!",
-              text: "No se pudo registrar paciente",
-              icon: "error",
-              showCancelButton: false,
-              timer: 800,
-            });
-          }
-        });
-      }
-    });
+  const nombrePaciente = (idPacHC) => {
+    const pac = pacientes.find((pac) => +pac.id_paciente === +idPacHC);
+    return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
   };
 
   return (
-    <section className="col-md-12">
-      <div className="card shadow">
+    <section className="col-md-3">
+      <div className="card shadow animate__animated animate__fadeInRight">
+        <div className="card-title text-center mt-3">
+          <h4>
+            <strong>Detalle de Historia Clinica</strong>
+          </h4>
+        </div>
         <div className="card-body">
-          <form onSubmit={submit}>
+          <figure className="text-center">
+            <img
+              className="rounded-circle"
+              src={imagenPaciente(objDetalleHC.id_paciente)}
+              alt=""
+              width="150"
+            />
+          </figure>
+          <legend>
             <div className="form-group">
-              <label htmlfor="">Codigo de Paciente</label>
-              <input
-                type="text"
-                name="id_paciente"
-                id="id_paciente"
-                class="form-control"
-                placeholder="Id de Paciente"
-                aria-describedby="helpId"
-                value={formulario.id_paciente}
-                onChange={handleChange}
-              />
+              <strong>Nombres y Apellidos del Paciente:</strong>
               <br />
-              <label htmlfor="">Fecha</label>
-              <input
-                type="date"
-                name="fecha"
-                id="fecha"
-                class="form-control"
-                placeholder="Fecha"
-                aria-describedby="helpId"
-                value={formulario.fecha}
-                onChange={handleChange}
-              />
-              <br />
-              <label htmlfor="">Problema</label>
-              <input
-                type="text"
-                name="problema"
-                id="problema"
-                class="form-control"
-                placeholder="Problema"
-                aria-describedby="helpId"
-                value={formulario.problema}
-                onChange={handleChange}
-              />
-              <br />
-              <label htmlfor="">Diagnostico</label>
-              <input
-                type="text"
-                name="diagnostico"
-                id="diagnostico"
-                class="form-control"
-                placeholder="Diagnostico"
-                aria-describedby="helpId"
-                value={formulario.diagnostico}
-                onChange={handleChange}
-              />
-              <br />
-              <label htmlfor="">Tratamiento</label>
-              <input
-                type="text"
-                name="tratamiento"
-                id="tratamiento"
-                className="form-control"
-                placeholder="Tratamiento"
-                aria-describedby="helpId"
-                value={formulario.tratamiento}
-                onChange={handleChange}
-              />
-              <br />
-              <div className="custom-control custom-switch">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="customSwitch1"
-                  name="pagado"
-                  value={formulario.pagado}
-                  onChange={handleChange}
-                />
-                <label class="custom-control-label" for="customSwitch1">
-                  Pago Realizado
-                </label>
-              </div>
-              <br />
-              <button type="submit" class="btn btn-primary">
-                Registrar
-              </button>
+              <p>{nombrePaciente(objDetalleHC.id_paciente)}</p>
             </div>
-          </form>
+            <div className="form-group">
+              <strong>Fecha de Historia Clinica</strong>
+              <br />
+              <p>{objDetalleHC.fecha}</p>
+            </div>
+            <div className="form-group">
+              <strong>Problema</strong>
+              <br />
+              <p>{objDetalleHC.problema}</p>
+            </div>
+            <div className="form-group">
+              <strong>Tratamiento</strong>
+              <br />
+              <p>{objDetalleHC.tratamiento}</p>
+            </div>
+            <div className="form-group">
+              <strong>Diagnostico</strong>
+              <br />
+              <p>{objDetalleHC.diagnostico}</p>
+            </div>
+          </legend>
         </div>
       </div>
     </section>
