@@ -9,6 +9,7 @@ const PacienteFormEditar = () => {
     setModalEditarPaciente,
     obtenerPacientes,
   } = useContext(PacientesContext);
+
   const [formEditar, setFormEditar] = useState({
     ...pacienteEditar,
   });

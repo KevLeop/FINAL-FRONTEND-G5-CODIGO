@@ -24,7 +24,6 @@ const Header = () => {
             <NavLink
               className="nav-link"
               activeClassName="active"
-              exact
               to="/admin/home"
             >
               Home

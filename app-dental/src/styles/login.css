@@ -2,9 +2,10 @@
 
 html,
 body {
-  background-image: url("http://getwallpapers.com/wallpaper/full/a/9/c/537963.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  /* background-image: url("http://getwallpapers.com/wallpaper/full/a/9/c/537963.jpg"); */
+
   height: 100%;
   font-family: "Numans", sans-serif;
 }
@@ -19,7 +20,7 @@ body {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
-  background-color: rgba(213, 255, 238, 0.87) !important;
+  background-color: rgba(255, 255, 255, 0.904) !important;
   border: none;
 }
 
@@ -30,7 +31,7 @@ body {
 }
 
 .social_icon span:hover {
-  color: white;
+  color: #a1ebff;
   cursor: pointer;
 }
 
@@ -47,8 +48,12 @@ body {
 .input-group-prepend span {
   width: 50px;
   background-color: #01debb;
-  color: black;
+  color: #005e4f;
   border: 0 !important;
+}
+
+.input-group-text {
+  padding: 0px 19px !important;
 }
 
 input:focus {
@@ -57,7 +62,7 @@ input:focus {
 }
 
 .remember {
-  color: white;
+  color: #005e4f;
 }
 
 .remember input {
@@ -68,18 +73,18 @@ input:focus {
 }
 
 .login_btn {
-  color: white !important;
+  color: #005e4f !important;
   background-color: #01debb !important;
   width: 100px;
 }
 
 .login_btn:hover {
-  color: black;
+  color: black !important;
   background-color: white;
 }
 
 .links {
-  color: white;
+  color: #005e4f;
 }
 
 .links a {

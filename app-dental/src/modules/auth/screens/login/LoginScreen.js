@@ -25,14 +25,14 @@ const LoginScreen = () => {
             <form>
               <div className="input-group form-group">
                 <div className="input-group-prepend">
-                  <span className="input-group-text">
+                  <span className="input-group-text ">
                     <i className="fa fa-user"></i>
                   </span>
                 </div>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="username"
+                  placeholder="Ingrese su nombre de Usuario"
                 />
               </div>
               <div className="input-group form-group">
@@ -44,7 +44,7 @@ const LoginScreen = () => {
                 <input
                   type="password"
                   className="form-control"
-                  placeholder="password"
+                  placeholder="Ingrese su contraseña"
                 />
               </div>
               <div className="row align-items-center remember">
