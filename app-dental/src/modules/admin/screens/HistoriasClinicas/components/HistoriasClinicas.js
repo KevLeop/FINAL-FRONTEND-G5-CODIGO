@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import Moment from "moment";
 import PacientesContext from "../../../../../contexts/pacientesContext";
-
+import { MDBDataTable } from "mdbreact";
 Moment.locale("es");
 const HistoriasClinicas = () => {
   const {
@@ -23,6 +23,88 @@ const HistoriasClinicas = () => {
   const nombrePaciente = (idPacHC) => {
     const pac = pacientes.find((pac) => +pac.id_paciente === +idPacHC);
     return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
+  };
+
+  const data = {
+    columns: [
+      {
+        label: "Id",
+        field: "id_hclinica",
+      },
+      {
+        label: "Nombre",
+        field: "id_paciente",
+      },
+      {
+        label: "Fecha",
+        field: "fecha",
+      },
+      {
+        label: "Problema",
+        field: "problema",
+      },
+      {
+        label: "Diagnostico",
+        field: "diagnostico",
+      },
+      {
+        label: "Tratamiento",
+        field: "tratamiento",
+      },
+      {
+        label: "Acciones",
+        field: "acciones",
+      },
+    ],
+    rows: hClinicas.map((objHClinica) => {
+      return {
+        ...objHClinica,
+        id_paciente: nombrePaciente(objHClinica.id_paciente),
+        acciones: (
+          <>
+            <button
+              className="btn rounded-circle fa-lg px-0 py-0 ml-1"
+              onClick={() => {
+                setDetalleHC(true);
+                setObjDetalleHC({
+                  id_paciente: objHClinica.id_paciente,
+                  fecha: objHClinica.fecha,
+                  problema: objHClinica.problema,
+                  diagnostico: objHClinica.diagnostico,
+                  tratamiento: objHClinica.tratamiento,
+                  pagado: false,
+                });
+              }}
+            >
+              <i
+                className="fa fa-info-circle fa-sm" // boton info
+                aria-hidden="true"
+              ></i>
+            </button>
+            <button
+              className="btn px-0 py-0 ml-1"
+              onClick={() => {
+                setHClinicaEditar(objHClinica);
+                setModalEditarHClinica(true);
+              }}
+            >
+              <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              className="btn rounded-circle px-0 py-0 ml-1"
+              onClick={() => {
+                // eliminar(objPaciente.id_paciente);
+              }}
+            >
+              <i
+                className="fa fa-minus-circle fa-lg" // boton eliminar
+                aria-hidden="true"
+              ></i>
+            </button>
+          </>
+        ),
+      };
+    }),
   };
 
   return (
@@ -48,9 +130,8 @@ const HistoriasClinicas = () => {
               <button
                 className="btn btn-success"
                 onClick={() => {
-                  setCargandoHClinicas(true);
                   obtenerHClinicas();
-                  setCargandoHClinicas(false);
+                  // setCargandoHClinicas(false);
                 }}
               >
                 <i className="fa fa-refresh" aria-hidden="true"></i>
@@ -64,69 +145,23 @@ const HistoriasClinicas = () => {
                 <i className="fa fa-plus" aria-hidden="true"></i>
               </button>
             </div>
-            <div className="table-responsive mt-1">
-              <table className="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>Paciente</th>
-                    <th>Fecha</th>
-                    <th>Problema</th>
-                    <th>Diagnostico</th>
-                    <th>Tratamiento</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {hClinicas.map((objHClinica) => {
-                    return (
-                      <tr key={objHClinica.id_hclinica}>
-                        <td>{objHClinica.id_hclinica}</td>
-
-                        <td>{nombrePaciente(objHClinica.id_paciente)}</td>
-
-                        <td>{objHClinica.fecha}</td>
-                        <td>{objHClinica.problema}</td>
-                        <td>{objHClinica.diagnostico}</td>
-                        <td>{objHClinica.tratamiento}</td>
-                        <td>
-                          <button
-                            className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-                            onClick={() => {
-                              setDetalleHC(true);
-                              setObjDetalleHC({
-                                id_paciente: objHClinica.id_paciente,
-                                fecha: objHClinica.fecha,
-                                problema: objHClinica.problema,
-                                diagnostico: objHClinica.diagnostico,
-                                tratamiento: objHClinica.tratamiento,
-                                pagado: false,
-                              });
-                            }}
-                          >
-                            <i
-                              className="fa fa-info-circle fa-sm" // boton info
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                          <button
-                            className="btn px-0 py-0 ml-1"
-                            onClick={() => {
-                              setHClinicaEditar(objHClinica);
-                              setModalEditarHClinica(true);
-                            }}
-                          >
-                            <i
-                              className="fa fa-pencil-square fa-lg"
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+            <div className="table-responsive">
+              <MDBDataTable
+                data={data}
+                responsive
+                striped
+                hover
+                bordered
+                pagingTop
+                displayEntries={false}
+                entries={15}
+                fixed
+                infoLabel={["Mostrando", "a", "de", "pacientes"]}
+                paginationLabel={["Anterior", "Siguiente"]}
+                searchLabel="Buscar..."
+                searchTop
+                // materialSearch
+              />
             </div>
           </div>
         </div>
@@ -134,31 +169,5 @@ const HistoriasClinicas = () => {
     </section>
   );
 };
-/*
-const eliminar = (hclinica_id) => {
-  Swal.fire({
-    title: "¿Seguro de eliminar paciente?",
-    icon: "error",
-    text: "Los cambios serán irreversibles",
-    showCancelButton: true,
-  }).then((rpta) => {
-    if (rpta.isConfirmed) {
-      setPacienteDetalle(false);
-      deleteHclinica(hclinica_id).then((data) => {
-        if (data.id_hclinica) {
-          obtenerHClinicas();
-          set(false);
-          Swal.fire({
-            title: "Eliminado",
-            icon: "success",
-            timer: 800,
-            showCancelButton: false,
-            position: "top-center",
-          });
-        }
-      });
-    }
-  });
-};*/
 
 export default HistoriasClinicas;

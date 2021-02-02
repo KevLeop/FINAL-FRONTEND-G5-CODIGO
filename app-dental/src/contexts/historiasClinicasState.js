@@ -19,6 +19,7 @@ const HistoriasClinicasState = ({ children }) => {
   });
 
   const obtenerHClinicas = () => {
+    setCargandoHClinicas(true);
     getHistoriasClinicas().then((data) => {
       console.log(data);
       console.log("fromHclinicasState2");
