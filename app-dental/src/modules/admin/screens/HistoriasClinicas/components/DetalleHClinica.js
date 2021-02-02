@@ -3,7 +3,9 @@ import { posthClinica } from "../../../../../services/historiasClinicasService";
 import Swal from "sweetalert2";
 import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import PacientesContext from "../../../../../contexts/pacientesContext";
-
+import Moment from "moment";
+import "moment/min/locales";
+Moment.locale("es");
 const DetalleHClinica = () => {
   const formularioVacio = {
     id_paciente: 0,
@@ -35,6 +37,20 @@ const DetalleHClinica = () => {
     return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
   };
 
+  const handleChangePagado = (e) => {
+    if (e.target.value === false) {
+      setObjDetalleHC({
+        ...objDetalleHC,
+        pagado: true,
+      });
+    } else {
+      setObjDetalleHC({
+        ...objDetalleHC,
+        pagado: false,
+      });
+    }
+  };
+
   return (
     <section className="col-md-3">
       <div className="card shadow animate__animated animate__fadeInRight">
@@ -61,7 +77,7 @@ const DetalleHClinica = () => {
             <div className="form-group">
               <strong>Fecha de Historia Clinica</strong>
               <br />
-              <p>{objDetalleHC.fecha}</p>
+              <p>{Moment(objDetalleHC.fecha).format("LL")}</p>
             </div>
             <div className="form-group">
               <strong>Problema</strong>
@@ -77,6 +93,21 @@ const DetalleHClinica = () => {
               <strong>Diagnostico</strong>
               <br />
               <p>{objDetalleHC.diagnostico}</p>
+            </div>
+            <div className="form-group">
+              <div className="custom-control custom-switch">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="customSwitch1"
+                  name="pagado"
+                  value={objDetalleHC.pagado}
+                  onChange={handleChangePagado}
+                />
+                <label class="custom-control-label" for="customSwitch1">
+                  Pago Realizado
+                </label>
+              </div>
             </div>
           </legend>
         </div>

@@ -59,7 +59,9 @@ const HistoriasClinicas = () => {
     rows: hClinicas.map((objHClinica) => {
       return {
         ...objHClinica,
+        id_hclinica: +objHClinica.id_hclinica,
         id_paciente: nombrePaciente(objHClinica.id_paciente),
+        fecha: Moment(objHClinica.fecha).format("DD-MM-YYYY"),
         acciones: (
           <>
             <button
@@ -84,7 +86,10 @@ const HistoriasClinicas = () => {
             <button
               className="btn px-0 py-0 ml-1"
               onClick={() => {
-                setHClinicaEditar(objHClinica);
+                setHClinicaEditar({
+                  ...objHClinica,
+                  nombre: nombrePaciente(objHClinica.id_paciente),
+                });
                 setModalEditarHClinica(true);
               }}
             >
@@ -128,7 +133,7 @@ const HistoriasClinicas = () => {
           <div className="card-body ">
             <div className="text-right">
               <button
-                className="btn btn-success"
+                className="btn btn-success rounded-circle mx-1"
                 onClick={() => {
                   obtenerHClinicas();
                   // setCargandoHClinicas(false);

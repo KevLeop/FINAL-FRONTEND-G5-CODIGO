@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import historiasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import { putHclinica } from "../../../../../services/historiasClinicasService";
 import moment from "moment";
+import PacientesContext from "../../../../../contexts/pacientesContext";
 
 const HClinicaFormEditar = () => {
   const {
@@ -13,6 +14,8 @@ const HClinicaFormEditar = () => {
   const [formEditar, setFormEditar] = useState({
     ...hClinicasEditar,
   });
+
+  const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
   const handleChange = (e) => {
     setFormEditar({
@@ -50,38 +53,38 @@ const HClinicaFormEditar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlfor="">Codigo de Paciente</label>
+        <label htmlfor="">Codigo de Paciente:</label>
         <input
           type="text"
           name="id_paciente"
           id="id_paciente"
-          class="form-control"
+          className="form-control"
           placeholder="Id de Paciente"
           aria-describedby="helpId"
-          value={formEditar.id_paciente}
+          value={formEditar.nombre}
           onChange={handleChange}
         />
       </div>
       <div className="form-group">
-        <label htmlfor="">Fecha</label>
+        <label htmlfor="">Fecha de la Historia Clinica:</label>
         <input
           type="date"
           name="fecha"
           id="fecha"
-          class="form-control"
+          className="form-control"
           placeholder="Fecha"
           aria-describedby="helpId"
-          value={formEditar.fecha}
+          value={moment(formEditar.fecha).format("YYYY-MM-DD")}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label htmlfor="">Problema</label>
+        <label htmlfor="">Problema:</label>
         <input
           type="text"
           name="problema"
           id="problema"
-          class="form-control"
+          className="form-control"
           placeholder="Problema"
           aria-describedby="helpId"
           value={formEditar.problema}
@@ -89,12 +92,12 @@ const HClinicaFormEditar = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlfor="">Diagnostico</label>
+        <label htmlfor="">Diagnostico:</label>
         <input
           type="text"
           name="diagnostico"
           id="diagnostico"
-          class="form-control"
+          className="form-control"
           placeholder="Diagnostico"
           aria-describedby="helpId"
           value={formEditar.diagnostico}
@@ -102,7 +105,7 @@ const HClinicaFormEditar = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlfor="">Tratamiento</label>
+        <label htmlfor="">Tratamiento:</label>
         <input
           type="text"
           name="tratamiento"
@@ -118,13 +121,13 @@ const HClinicaFormEditar = () => {
         <div className="custom-control custom-switch">
           <input
             type="checkbox"
-            class="custom-control-input"
+            className="custom-control-input"
             id="customSwitch1"
             name="pagado"
             value={formEditar.pagado}
             onChange={handleChange}
           />
-          <label class="custom-control-label" for="customSwitch1">
+          <label className="custom-control-label" for="customSwitch1">
             Pago Realizado
           </label>
         </div>
