@@ -20,6 +20,10 @@ const HomeScreen = () => {
         label: "Piezas dentales",
         field: "pieza_dental",
       },
+      {
+        label: "Acciones",
+        field: "acciones",
+      },
     ],
     rows: [
       {
@@ -27,6 +31,7 @@ const HomeScreen = () => {
         nombre_tratamiento: "Nombre tratamiento 1",
         descripcion: "Descripcion1",
         pieza_dental: "Piezas dentales",
+        acciones: "Botones para agregar, editar, y eliminar",
       },
     ],
   };
