@@ -46,13 +46,3 @@ export const deletePaciente = async (prod_id) => {
   const data = await peticion.json();
   return data;
 };
-
-export const deleteHclinica = async (id_hclinica) => {
-  const peticion = await fetch(`${URL_BACKEND}/pacientes/${id_hclinica}`, {
-    method: "DELETE",
-  });
-  const data = await peticion.json();
-  return data;
-};
-
-

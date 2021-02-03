@@ -3,6 +3,8 @@ import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasC
 import Moment from "moment";
 import PacientesContext from "../../../../../contexts/pacientesContext";
 import { MDBDataTable } from "mdbreact";
+import Swal from "sweetalert2";
+import { deleteHclinica } from "../../../../../services/historiasClinicasService";
 Moment.locale("es");
 const HistoriasClinicas = () => {
   const {
@@ -23,6 +25,31 @@ const HistoriasClinicas = () => {
   const nombrePaciente = (idPacHC) => {
     const pac = pacientes.find((pac) => +pac.id_paciente === +idPacHC);
     return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
+  };
+
+  const eliminar = (id_hc) => {
+    Swal.fire({
+      title: "Seguro que desea eliminar Historia Clinica",
+      icon: "error",
+      text: "Los cambios se guardarán en la base de datos",
+      showCancelButton: true,
+    }).then((rpta) => {
+      if (rpta.isConfirmed) {
+        setDetalleHC(false);
+        deleteHclinica(id_hc).then((data) => {
+          if (data.id_hclinica) {
+            obtenerHClinicas();
+            setDetalleHC(false);
+            Swal.fire({
+              title: "Eliminado",
+              icon: "success",
+              timer: 800,
+              showCancelButton: false,
+            });
+          }
+        });
+      }
+    });
   };
 
   const data = {
@@ -98,7 +125,7 @@ const HistoriasClinicas = () => {
             <button
               className="btn rounded-circle px-0 py-0 ml-1"
               onClick={() => {
-                // eliminar(objPaciente.id_paciente);
+                eliminar(objHClinica.id_hclinica);
               }}
             >
               <i
@@ -135,6 +162,7 @@ const HistoriasClinicas = () => {
               <button
                 className="btn btn-success rounded-circle mx-1"
                 onClick={() => {
+                  setDetalleHC(false);
                   obtenerHClinicas();
                   // setCargandoHClinicas(false);
                 }}

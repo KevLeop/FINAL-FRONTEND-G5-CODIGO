@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
-import Moment from "moment";
 import { MDBDataTable } from "mdbreact";
 import { deletePaciente } from "../../../../../services/pacientesService";
+import Moment from "moment";
 import "moment/min/locales";
-
 Moment.locale("es");
+
 const ListaPacientes = () => {
   const {
     pacientes,

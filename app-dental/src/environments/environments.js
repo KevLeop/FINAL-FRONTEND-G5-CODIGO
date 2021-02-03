@@ -7,3 +7,5 @@ export const URL_BACKEND = "https://5fea12eb8ede8b0017ff1525.mockapi.io";
 // https://5fea12eb8ede8b0017ff1525.mockapi.io/hclinica
 
 // https://5fea12eb8ede8b0017ff1525.mockapi.io/detalle
+
+// https://5fea12eb8ede8b0017ff1525.mockapi.io/tratamientos

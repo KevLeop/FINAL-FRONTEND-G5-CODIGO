@@ -32,3 +32,11 @@ export const putHclinica = async (objHClinica) => {
   const data = await peticion.json();
   return data;
 };
+
+export const deleteHclinica = async (id_hclinica) => {
+  const peticion = await fetch(`${URL_BACKEND}/hclinica/${id_hclinica}`, {
+    method: "DELETE",
+  });
+  const data = await peticion.json();
+  return data;
+};
