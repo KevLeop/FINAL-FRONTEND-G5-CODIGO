@@ -9,3 +9,8 @@
   position: fixed !important;
   width: 50vh;
 }
+
+/* HomeScreen.js */
+.oscurecer {
+  filter: brightness(85%);
+}

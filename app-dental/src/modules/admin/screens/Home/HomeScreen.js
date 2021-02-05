@@ -1,6 +1,9 @@
 import React from "react";
-import { Accordion, Card, Button } from "react-bootstrap";
+import { Accordion, Card, Button, Carousel } from "react-bootstrap";
 import { MDBDataTable } from "mdbreact";
+import car1 from "../../../../images/Carousel1.jpg";
+import car2 from "../../../../images/Carousel2.png";
+import car3 from "../../../../images/Carousel3.jpg";
 const HomeScreen = () => {
   const data = {
     columns: [
@@ -41,7 +44,46 @@ const HomeScreen = () => {
       <div className="row">
         <div className="col">
           <div className="card shadow">
-            <h1 className="display-1"> Bienvenido!</h1>
+            <Carousel>
+              <Carousel.Item interval={1000}>
+                <img
+                  className="d-block w-100 oscurecer"
+                  src={car1}
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h2 className="display-1">Sistema Dental</h2>
+                  <p className="h1">Manten organizada tu lista de pacientes</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item interval={1000}>
+                <img
+                  className="d-block w-100 oscurecer"
+                  src={car2}
+                  alt="Third slide"
+                />
+                <Carousel.Caption>
+                  <h2 className="display-3">Manejo de historias Clinicas</h2>
+                  <p className="h1">
+                    Registra los tratamientos de tus pacientes en el modulo de
+                    Historias Clinicas
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 oscurecer"
+                  src={car3}
+                  alt="Third slide"
+                />
+                <Carousel.Caption>
+                  <h2 className="display-3"> Calendario de Citas</h2>
+                  <p className="h1">
+                    Organiza tu agenda con nuestro calendario de citas
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
           </div>
         </div>
       </div>
