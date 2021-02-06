@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "../../../components/Header";
 import CitasState from "../../../contexts/CitasState";
 import HistoriasClinicasState from "../../../contexts/historiasClinicasState";
+import TratamientosState from "../../../contexts/tratamientosState";
 import CitasScreen from "./Citas/CitasScreen";
 import HistoriasClinicasScreen from "./HistoriasClinicas/HistoriasClinicasScreen";
 import HomeScreen from "./Home/HomeScreen";
@@ -13,21 +14,23 @@ const AdminRouter = () => {
     <>
       <Header />
       <Switch>
-        <HistoriasClinicasState>
-          <Route
-            path="/admin/ListaPacientes"
-            component={ListaPacientesScreen}
-          />
-          <Route
-            path="/admin/HistoriasClinicas"
-            component={HistoriasClinicasScreen}
-          />
-          <CitasState>
-            <Route path="/admin/Citas" component={CitasScreen} />
-          </CitasState>
+        <TratamientosState>
+          <HistoriasClinicasState>
+            <Route
+              path="/admin/ListaPacientes"
+              component={ListaPacientesScreen}
+            />
+            <Route
+              path="/admin/HistoriasClinicas"
+              component={HistoriasClinicasScreen}
+            />
+            <CitasState>
+              <Route path="/admin/Citas" component={CitasScreen} />
+            </CitasState>
 
-          <Route path="/admin/home" component={HomeScreen} />
-        </HistoriasClinicasState>
+            <Route path="/admin/home" component={HomeScreen} />
+          </HistoriasClinicasState>
+        </TratamientosState>
       </Switch>
     </>
   );

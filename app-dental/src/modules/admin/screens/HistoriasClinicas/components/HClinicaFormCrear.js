@@ -5,6 +5,7 @@ import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
 import Swal from "sweetalert2";
 import { posthClinica } from "../../../../../services/historiasClinicasService";
+import TratamientosContext from "../../../../../contexts/tratamientosContext";
 const formularioVacio = {
   fecha: "",
   id_paciente: "",
@@ -17,6 +18,7 @@ const formularioVacio = {
 const HClinicaFormCrear = () => {
   const [formCrearHC, setFormCrearHC] = useState(formularioVacio);
   const { pacientes } = useContext(PacientesContext);
+  const { tratamientos } = useContext(TratamientosContext);
   const {
     setModalCrearHClinica,
     setCargandoHClinicas,
@@ -102,13 +104,25 @@ const HClinicaFormCrear = () => {
       </div>
       <div className="form-group">
         <label>Ingrese tratamiento:</label>
-        <input
+        <select
           className="form-control"
-          type="text"
           name="tratamiento"
-          value={formCrearHC.tratamiento}
           onChange={handleChange}
-        />
+        >
+          <option disabled selected>
+            --Seleccione Tratamiento--
+          </option>
+          {tratamientos.map((objTrat) => {
+            return (
+              <option
+                key={objTrat.id_tratamiento}
+                value={objTrat.nombre_tratamiento}
+              >
+                {objTrat.nombre_tratamiento}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div className="form-group">
         <label>Ingrese Problema:</label>

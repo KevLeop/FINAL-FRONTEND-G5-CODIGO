@@ -52,7 +52,7 @@ const LoginScreen = () => {
                 Recordar cuenta
               </div>
               <div className="form-group">
-                <Link className="btn float-right login_btn" to="/admin">
+                <Link className="btn float-right login_btn" to="/admin/home">
                   Ingresar
                 </Link>
               </div>

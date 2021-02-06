@@ -3,7 +3,8 @@ import Swal from "sweetalert2";
 import historiasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import { putHclinica } from "../../../../../services/historiasClinicasService";
 import moment from "moment";
-import PacientesContext from "../../../../../contexts/pacientesContext";
+// import PacientesContext from "../../../../../contexts/pacientesContext";
+import TratamientosContext from "../../../../../contexts/tratamientosContext";
 
 const HClinicaFormEditar = () => {
   const {
@@ -15,8 +16,8 @@ const HClinicaFormEditar = () => {
     ...hClinicasEditar,
   });
 
-  const { pacientes, cargandoPacientes } = useContext(PacientesContext);
-
+  // const { pacientes, cargandoPacientes } = useContext(PacientesContext);
+  const { tratamientos } = useContext(TratamientosContext);
   const handleChange = (e) => {
     setFormEditar({
       ...formEditar,
@@ -53,7 +54,7 @@ const HClinicaFormEditar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlfor="">Codigo de Paciente:</label>
+        <label htmlfor="">Nombre del Paciente:</label>
         <input
           type="text"
           name="id_paciente"
@@ -63,6 +64,7 @@ const HClinicaFormEditar = () => {
           aria-describedby="helpId"
           value={formEditar.nombre}
           onChange={handleChange}
+          disabled
         />
       </div>
       <div className="form-group">
@@ -106,16 +108,23 @@ const HClinicaFormEditar = () => {
       </div>
       <div className="form-group">
         <label htmlfor="">Tratamiento:</label>
-        <input
-          type="text"
-          name="tratamiento"
-          id="tratamiento"
+        <select
           className="form-control"
-          placeholder="Tratamiento"
-          aria-describedby="helpId"
-          value={formEditar.tratamiento}
+          name="tratamiento"
           onChange={handleChange}
-        />
+        >
+          <option disabled>{formEditar.tratamiento}</option>
+          {tratamientos.map((objTrat) => {
+            return (
+              <option
+                key={objTrat.id_tratamiento}
+                value={objTrat.nombre_tratamiento}
+              >
+                {objTrat.nombre_tratamiento}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div className="form-group">
         <div className="custom-control custom-switch">

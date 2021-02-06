@@ -20,7 +20,7 @@ export const posthClinica = async (objhClinica) => {
 
 export const putHclinica = async (objHClinica) => {
   const peticion = await fetch(
-    `${URL_BACKEND}/pacientes/${objHClinica.id_paciente}`,
+    `${URL_BACKEND}/hclinica/${objHClinica.id_paciente}`,
     {
       method: "PUT",
       body: JSON.stringify(objHClinica),
