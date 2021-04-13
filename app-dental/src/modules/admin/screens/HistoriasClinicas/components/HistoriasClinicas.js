@@ -11,8 +11,6 @@ const HistoriasClinicas = () => {
     hClinicas,
     cargandoHClinicas,
     obtenerHClinicas,
-    setHClinicaDetalle,
-    setCargandoHClinicas,
     setModalCrearHClinica,
     setHClinicaEditar,
     setModalEditarHClinica,
@@ -23,7 +21,8 @@ const HistoriasClinicas = () => {
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
   const nombrePaciente = (idPacHC) => {
-    const pac = pacientes.find((pac) => +pac.id_paciente === +idPacHC);
+    const pac = pacientes.find((pac) => +pac.pacienteId === +idPacHC);
+    console.log(pacientes);
     return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
   };
 
@@ -37,7 +36,7 @@ const HistoriasClinicas = () => {
       if (rpta.isConfirmed) {
         setDetalleHC(false);
         deleteHclinica(id_hc).then((data) => {
-          if (data.id_hclinica) {
+          if (data.success === true) {
             obtenerHClinicas();
             setDetalleHC(false);
             Swal.fire({
@@ -56,23 +55,23 @@ const HistoriasClinicas = () => {
     columns: [
       {
         label: "Id",
-        field: "id_hclinica",
+        field: "hclinicaId",
       },
       {
         label: "Nombre",
-        field: "id_paciente",
+        field: "paciente",
       },
       {
         label: "Fecha",
-        field: "fecha",
+        field: "hclinicaFecha",
       },
       {
         label: "Problema",
-        field: "problema",
+        field: "hclinicaProblema",
       },
       {
         label: "Diagnostico",
-        field: "diagnostico",
+        field: "hclinicaDiagnostico",
       },
       {
         label: "Tratamiento",
@@ -86,9 +85,9 @@ const HistoriasClinicas = () => {
     rows: hClinicas.map((objHClinica) => {
       return {
         ...objHClinica,
-        id_hclinica: +objHClinica.id_hclinica,
-        id_paciente: nombrePaciente(objHClinica.id_paciente),
-        fecha: Moment(objHClinica.fecha).format("DD-MM-YYYY"),
+        hclinicaId: +objHClinica.hclinicaId,
+        paciente: nombrePaciente(objHClinica.paciente),
+        hclinicaFecha: Moment(objHClinica.hclinicaFecha).format("DD-MM-YYYY"),
         acciones: (
           <>
             <button
@@ -96,12 +95,12 @@ const HistoriasClinicas = () => {
               onClick={() => {
                 setDetalleHC(true);
                 setObjDetalleHC({
-                  id_paciente: objHClinica.id_paciente,
-                  fecha: objHClinica.fecha,
-                  problema: objHClinica.problema,
-                  diagnostico: objHClinica.diagnostico,
-                  tratamiento: objHClinica.tratamiento,
-                  pagado: false,
+                  paciente: objHClinica.paciente,
+                  hclinicaFecha: objHClinica.hclinicaFecha,
+                  hclinicaProblema: objHClinica.hclinicaProblema,
+                  hclinicaDiagnostico: objHClinica.hclinicaDiagnostico,
+                  hclinicaTratamiento: objHClinica.tratamiento,
+                  hclinicaPagado: objHClinica.hclnicaPagado,
                 });
               }}
             >
@@ -115,7 +114,7 @@ const HistoriasClinicas = () => {
               onClick={() => {
                 setHClinicaEditar({
                   ...objHClinica,
-                  nombre: nombrePaciente(objHClinica.id_paciente),
+                  paciente: nombrePaciente(objHClinica.paciente),
                 });
                 setModalEditarHClinica(true);
               }}
@@ -125,7 +124,7 @@ const HistoriasClinicas = () => {
             <button
               className="btn rounded-circle px-0 py-0 ml-1"
               onClick={() => {
-                eliminar(objHClinica.id_hclinica);
+                eliminar(objHClinica.hclinicaId);
               }}
             >
               <i

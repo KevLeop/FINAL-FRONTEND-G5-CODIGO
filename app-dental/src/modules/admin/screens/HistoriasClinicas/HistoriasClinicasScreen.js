@@ -7,7 +7,7 @@ import HClinicaFormCrear from "./components/HClinicaFormCrear";
 import HClinicaFormEditar from "./components/HClinicaFormEditar";
 
 const HistoriasClinicasScreen = () => {
-  const [formCrear, setFormCrear] = useState(true);
+  // const [formCrear, setFormCrear] = useState(true);
   const {
     modalCrearHClinica,
     setModalCrearHClinica,

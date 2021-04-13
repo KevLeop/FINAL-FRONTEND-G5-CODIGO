@@ -54,7 +54,7 @@ const ListaPacientes = () => {
     ],
 
     rows: pacientes.map((objPaciente) => {
-      if (objPaciente.pacienteEstado === false) {
+      if (objPaciente.pacienteEstado === true) {
         return {
           ...objPaciente,
           // pacienteDni: objPaciente.pacienteDni,

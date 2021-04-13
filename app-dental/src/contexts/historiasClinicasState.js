@@ -10,12 +10,12 @@ const HistoriasClinicasState = ({ children }) => {
   const [hClinicasEditar, setHClinicaEditar] = useState({});
   const [detalleHC, setDetalleHC] = useState(false);
   const [objDetalleHC, setObjDetalleHC] = useState({
-    id_paciente: "",
-    fecha: "",
-    problema: "",
-    diagnostico: "",
+    paciente: "",
+    hclinicaFecha: "",
+    hclinicaProblema: "",
+    hclinicaDiagnostico: "",
     tratamiento: "",
-    pagado: "",
+    hclinicaPagado: "",
   });
 
   const obtenerHClinicas = () => {
@@ -23,7 +23,7 @@ const HistoriasClinicasState = ({ children }) => {
     getHistoriasClinicas().then((data) => {
       console.log(data);
       console.log("fromHclinicasState2");
-      setHClinicas(data);
+      setHClinicas(data.content);
       setCargandoHClinicas(false);
     });
   };

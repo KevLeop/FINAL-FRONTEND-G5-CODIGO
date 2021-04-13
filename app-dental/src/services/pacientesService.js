@@ -26,7 +26,7 @@ export const postPacientes = async (objPaciente) => {
 
 export const putPacientes = async (objPaciente) => {
   const peticion = await fetch(
-    `${URL_BACKEND}/pacientes/${objPaciente.id_paciente}`,
+    `${URL_BACKEND}/pacientes/${objPaciente.pacienteId}`,
     {
       method: "PUT",
       body: JSON.stringify(objPaciente),
@@ -39,8 +39,8 @@ export const putPacientes = async (objPaciente) => {
   return data;
 };
 
-export const deletePaciente = async (prod_id) => {
-  const peticion = await fetch(`${URL_BACKEND}/pacientes/${prod_id}`, {
+export const deletePaciente = async (pacienteId) => {
+  const peticion = await fetch(`${URL_BACKEND}/pacientes/${pacienteId}`, {
     method: "DELETE",
   });
   const data = await peticion.json();

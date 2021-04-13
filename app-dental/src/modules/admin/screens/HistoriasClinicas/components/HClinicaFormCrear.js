@@ -7,12 +7,13 @@ import Swal from "sweetalert2";
 import { posthClinica } from "../../../../../services/historiasClinicasService";
 import TratamientosContext from "../../../../../contexts/tratamientosContext";
 const formularioVacio = {
-  fecha: "",
-  id_paciente: "",
+  hclinicaFecha: "",
+  paciente: "",
   tratamiento: "",
-  problema: "",
-  diagnostico: "",
-  pagado: false,
+  hclinicaProblema: "",
+  hclinicaDiagnostico: "",
+  hclinicaPrecio: "",
+  hclinicaPagado: false,
 };
 
 const HClinicaFormCrear = () => {
@@ -36,9 +37,11 @@ const HClinicaFormCrear = () => {
       if (rpta.isConfirmed) {
         posthClinica({
           ...formCrearHC,
-          fecha: Moment(formCrearHC.fecha).format(),
+          hclinicaFecha: Moment(formCrearHC.hclinicaFecha).format("YYYY-MM-DD"),
         }).then((data) => {
-          if (data.id_hclinica) {
+          console.log("Dataaaaaaa hclinica");
+          console.log(data);
+          if (data.success === true) {
             setFormCrearHC(formularioVacio);
             setCargandoHClinicas(true);
             obtenerHClinicas();
@@ -69,6 +72,7 @@ const HClinicaFormCrear = () => {
       ...formCrearHC,
       [e.target.name]: e.target.value,
     });
+    console.log(formCrearHC);
   };
 
   return (
@@ -78,8 +82,8 @@ const HClinicaFormCrear = () => {
         <input
           className="form-control"
           type="date"
-          name="fecha"
-          value={formCrearHC.fecha}
+          name="hclinicaFecha"
+          value={formCrearHC.hclinicaFecha}
           onChange={handleChange}
         />
       </div>
@@ -87,7 +91,7 @@ const HClinicaFormCrear = () => {
         <label> Elija el nombre del paciente: </label>
         <select
           className="form-control"
-          name="id_paciente"
+          name="paciente"
           onChange={handleChange}
         >
           <option disabled selected>
@@ -95,8 +99,8 @@ const HClinicaFormCrear = () => {
           </option>
           {pacientes.map((pac) => {
             return (
-              <option key={pac.id_paciente} value={pac.id_paciente}>
-                {`${pac.nombre} ${pac.apellido}`}
+              <option key={pac.pacienteDni} value={pac.pacienteDni}>
+                {`${pac.pacienteNombre} ${pac.pacienteApellido}`}
               </option>
             );
           })}
@@ -114,11 +118,8 @@ const HClinicaFormCrear = () => {
           </option>
           {tratamientos.map((objTrat) => {
             return (
-              <option
-                key={objTrat.id_tratamiento}
-                value={objTrat.nombre_tratamiento}
-              >
-                {objTrat.nombre_tratamiento}
+              <option key={objTrat.tratamientoId} value={objTrat.tratamientoId}>
+                {objTrat.tratamientoNombre}
               </option>
             );
           })}
@@ -129,8 +130,8 @@ const HClinicaFormCrear = () => {
         <input
           className="form-control"
           type="text"
-          name="problema"
-          value={formCrearHC.problema}
+          name="hclinicaProblema"
+          value={formCrearHC.hclinicaProblema}
           onChange={handleChange}
         />
       </div>
@@ -139,8 +140,18 @@ const HClinicaFormCrear = () => {
         <input
           className="form-control"
           type="text"
-          name="diagnostico"
-          value={formCrearHC.diagnostico}
+          name="hclinicaDiagnostico"
+          value={formCrearHC.hclinicaDiagnostico}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group">
+        <label>Ingrese precio: </label>
+        <input
+          type="number"
+          className="form-control"
+          name="hclinicaPrecio"
+          value={formCrearHC.hclinicaPrecio}
           onChange={handleChange}
         />
       </div>

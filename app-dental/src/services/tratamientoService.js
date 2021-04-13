@@ -20,7 +20,7 @@ export const postTratamientos = async (objTratamiento) => {
 
 export const putTratamientos = async (objTratamiento) => {
   const peticion = await fetch(
-    `${URL_BACKEND}/tratamientos/${objTratamiento.id_paciente}`,
+    `${URL_BACKEND}/tratamientos/${objTratamiento.paciente}`,
     {
       method: "PUT",
       body: JSON.stringify(objTratamiento),
@@ -33,8 +33,8 @@ export const putTratamientos = async (objTratamiento) => {
   return data;
 };
 
-export const deleteTratamiento = async (prod_id) => {
-  const peticion = await fetch(`${URL_BACKEND}/tratamientos/${prod_id}`, {
+export const deleteTratamiento = async (trat_id) => {
+  const peticion = await fetch(`${URL_BACKEND}/tratamientos/${trat_id}`, {
     method: "DELETE",
   });
   const data = await peticion.json();
