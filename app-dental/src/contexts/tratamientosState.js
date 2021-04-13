@@ -10,7 +10,7 @@ const TratamientosState = ({ children }) => {
   const obtenerTratamientos = () => {
     // setCargandoTratamientos(true);
     getTratamientos().then((data) => {
-      setTratamientos(data);
+      setTratamientos(data.content);
       setCargandoTratamientos(false);
     });
   };

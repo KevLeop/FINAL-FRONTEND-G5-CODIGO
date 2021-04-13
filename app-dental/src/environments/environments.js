@@ -1,4 +1,6 @@
-export const URL_BACKEND = "https://5fea12eb8ede8b0017ff1525.mockapi.io";
+// export const URL_BACKEND = "https://5fea12eb8ede8b0017ff1525.mockapi.io";
+
+export const URL_BACKEND = "http://127.0.0.1:8000";
 
 // https://5fea12eb8ede8b0017ff1525.mockapi.io/pacientes
 

@@ -90,3 +90,11 @@ input:focus {
 .links a {
   margin-left: 4px;
 }
+
+body {
+  font-size: 2rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: darkblue;
+  text-align: center;
+}

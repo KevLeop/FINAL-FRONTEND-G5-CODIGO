@@ -15,7 +15,7 @@ const CitasState = ({ children }) => {
   const obtenerCitas = () => {
     getCitas().then((data) => {
       console.log(data);
-      setCitas(data);
+      setCitas(data.content);
       setCargandoCitas(false);
     });
 

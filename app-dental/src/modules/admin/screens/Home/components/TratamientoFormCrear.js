@@ -8,8 +8,8 @@ const TratamientoFormCrear = () => {
     TratamientosContext
   );
   const formularioVacio = {
-    nombre_tratamiento: "",
-    descripcion: "",
+    tratamientoNombre: "",
+    tratamientoDescripcion: "",
   };
 
   const [formCrear, setFormCrear] = useState(formularioVacio);
@@ -23,7 +23,7 @@ const TratamientoFormCrear = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Swal.fire({
-      title: `Seguro de crear paciente ${formCrear.nombre_tratamiento}`,
+      title: `Seguro de crear paciente ${formCrear.tratamientoNombre}`,
       icon: "question",
       text: "Los cambios se guardarán en la base de datos",
       showCancelButton: true,
@@ -32,7 +32,9 @@ const TratamientoFormCrear = () => {
         postTratamientos({
           ...formCrear,
         }).then((data) => {
-          if (data.id_tratamiento) {
+          console.log("Dataaaaaaaaaaaaaaaaaa");
+          console.log(data);
+          if (data.success === true) {
             setFormCrear(formularioVacio);
             obtenerTratamientos();
             Swal.fire({
@@ -63,8 +65,8 @@ const TratamientoFormCrear = () => {
         <input
           className="form-control"
           type="text"
-          name="nombre_tratamiento"
-          value={formCrear.nombre_tratamiento}
+          name="tratamientoNombre"
+          value={formCrear.tratamientoNombre}
           onChange={handleChange}
         />
       </div>
@@ -73,8 +75,8 @@ const TratamientoFormCrear = () => {
         <input
           className="form-control"
           type="text"
-          name="descripcion"
-          value={formCrear.descripcion}
+          name="tratamientoDescripcion"
+          value={formCrear.tratamientoDescripcion}
           onChange={handleChange}
         />
       </div>

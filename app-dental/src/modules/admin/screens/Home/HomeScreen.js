@@ -19,7 +19,7 @@ const HomeScreen = () => {
     setMostrarModal,
   } = useContext(TratamientosContext);
 
-  const eliminarTratamiento = (tratamiento_id) => {
+  const eliminarTratamiento = (tratamientoId) => {
     Swal.fire({
       title: "¿Seguro de eliminar tratamiento?",
       icon: "error",
@@ -27,7 +27,7 @@ const HomeScreen = () => {
       showCancelButton: true,
     }).then((rpta) => {
       if (rpta.isConfirmed) {
-        deleteTratamiento(tratamiento_id).then((data) => {
+        deleteTratamiento(tratamientoId).then((data) => {
           if (data.id_tratamiento) {
             obtenerTratamientos();
             Swal.fire({
@@ -47,15 +47,15 @@ const HomeScreen = () => {
     columns: [
       {
         label: "Id",
-        field: "id_tratamiento",
+        field: "tratamientoId",
       },
       {
         label: "Nombre del Tratamiento",
-        field: "nombre_tratamiento",
+        field: "tratamientoNombre",
       },
       {
         label: "Descripcion",
-        field: "descripcion",
+        field: "tratamientoDescripcion",
       },
       {
         label: "Acciones",
@@ -73,7 +73,7 @@ const HomeScreen = () => {
             <button
               className="btn rounded-circle px-0 py-0 ml-1"
               onClick={() => {
-                eliminarTratamiento(objTratamiento.id_tratamiento);
+                eliminarTratamiento(objTratamiento.tratamientoId);
               }}
             >
               <i
