@@ -7,12 +7,12 @@ const PacientesState = ({ children }) => {
   const [cargandoPacientes, setCargandoPacientes] = useState(true);
   const [pacienteDetalle, setPacienteDetalle] = useState(false);
   const [objDetallePaciente, setObjDetallePaciente] = useState({
-    id_paciente: "",
-    nombre: "",
-    apellido: "",
-    fechadenacimiento: "",
-    telefono: "",
-    sexo: "",
+    pacienteDni: "",
+    pacienteNombre: "",
+    pacienteApellido: "",
+    pacienteFnacimiento: "",
+    pacienteTelefono: "",
+    pacienteSexo: "",
   });
   const [modalCrearPaciente, setmodalCrearPaciente] = useState(false);
 
@@ -23,7 +23,8 @@ const PacientesState = ({ children }) => {
   const obtenerPacientes = () => {
     setCargandoPacientes(true);
     getPacientes().then((data) => {
-      setPacientes(data);
+      console.log(data);
+      setPacientes(data.content);
       setCargandoPacientes(false);
     });
   };

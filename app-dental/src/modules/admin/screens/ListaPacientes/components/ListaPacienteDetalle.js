@@ -29,7 +29,7 @@ const ListaPacienteDetalle = () => {
           <figure className="text-center">
             <img
               className="rounded-circle"
-              src={objDetallePaciente.paciente_img}
+              src={objDetallePaciente.pacienteImagen}
               alt=""
               width="150"
             />
@@ -39,32 +39,32 @@ const ListaPacienteDetalle = () => {
               <strong>Nombre y Apellidos: </strong>
               <br />
               <p>
-                {`${objDetallePaciente.nombre} ${objDetallePaciente.apellido}`}
+                {`${objDetallePaciente.pacienteNombre} ${objDetallePaciente.pacienteNombre}`}
               </p>
             </div>
             <div className="form-group">
               <strong>Fecha de Nacimiento: </strong>
               <br />
-              <p>{objDetallePaciente.fechadenacimiento}</p>
+              <p>{objDetallePaciente.pacienteFnacimiento}</p>
             </div>
             <div className="form-group">
               <strong>Edad:</strong>
               <br />
               <p>
                 {calcularEdad(
-                  Moment(objDetallePaciente.fechadenacimiento, "LL")
+                  Moment(objDetallePaciente.pacienteFnacimiento, "LL")
                 )}
               </p>
             </div>
             <div className="form-group">
               <strong>Telefono: </strong>
               <br />
-              <p>{objDetallePaciente.telefono}</p>
+              <p>{objDetallePaciente.pacienteTelefono}</p>
             </div>
             <div className="form-group">
               <strong>Sexo: </strong>
               <br />
-              <p>{objDetallePaciente.sexo}</p>
+              <p>{objDetallePaciente.pacienteSexo}</p>
             </div>
           </legend>
           <div className="form-group text-center">

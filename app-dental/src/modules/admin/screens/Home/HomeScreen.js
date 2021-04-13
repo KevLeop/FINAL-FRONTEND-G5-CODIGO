@@ -28,14 +28,14 @@ const HomeScreen = () => {
     }).then((rpta) => {
       if (rpta.isConfirmed) {
         deleteTratamiento(tratamientoId).then((data) => {
-          if (data.id_tratamiento) {
+          if (data.success === true) {
             obtenerTratamientos();
             Swal.fire({
               title: "Eliminado",
               icon: "success",
               timer: 800,
               showCancelButton: false,
-              position: "top-center",
+              position: "center",
             });
           }
         });
@@ -63,27 +63,32 @@ const HomeScreen = () => {
       },
     ],
     rows: tratamientos.map((objTratamiento) => {
-      return {
-        ...objTratamiento,
-        acciones: (
-          <>
-            <button className="btn px-0 py-0 ml-1">
-              <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-            </button>
-            <button
-              className="btn rounded-circle px-0 py-0 ml-1"
-              onClick={() => {
-                eliminarTratamiento(objTratamiento.tratamientoId);
-              }}
-            >
-              <i
-                className="fa fa-minus-circle fa-lg" // boton eliminar
-                aria-hidden="true"
-              ></i>
-            </button>
-          </>
-        ),
-      };
+      if (objTratamiento.tratamientoEstado === true) {
+        return {
+          ...objTratamiento,
+          acciones: (
+            <>
+              <button className="btn px-0 py-0 ml-1">
+                <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+              </button>
+              <button
+                className="btn rounded-circle px-0 py-0 ml-1"
+                onClick={() => {
+                  eliminarTratamiento(objTratamiento.tratamientoId);
+                  console.log(objTratamiento);
+                }}
+              >
+                <i
+                  className="fa fa-minus-circle fa-lg" // boton eliminar
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </>
+          ),
+        };
+      } else {
+        return;
+      }
     }),
   };
 

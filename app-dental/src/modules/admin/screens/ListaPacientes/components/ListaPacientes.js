@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import { MDBDataTable } from "mdbreact";
@@ -24,28 +24,28 @@ const ListaPacientes = () => {
     columns: [
       {
         label: "Id",
-        field: "id_paciente",
+        field: "pacienteDni",
       },
       {
         label: "Nombre",
-        field: "nombre",
+        field: "pacienteNombre",
       },
       {
         label: "Apellido",
-        field: "apellido",
+        field: "pacienteApellido",
       },
       {
         label: "Fech. Nac.",
-        field: "fechadenacimiento",
+        field: "pacienteFnacimiento",
       },
 
       {
         label: "Sexo",
-        field: "sexo",
+        field: "pacienteSexo",
       },
       {
         label: "Cel",
-        field: "telefono",
+        field: "pacienteTelefono",
       },
       {
         label: "Acciones",
@@ -54,67 +54,69 @@ const ListaPacientes = () => {
     ],
 
     rows: pacientes.map((objPaciente) => {
-      return {
-        ...objPaciente,
-        id_paciente: +objPaciente.id_paciente,
-        fechadenacimiento: Moment(objPaciente.fechadenacimiento).format(
-          "DD-MM-YYYY"
-        ),
-        acciones: (
-          <>
-            <button
-              className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-              onClick={(e) => {
-                setPacienteDetalle(true);
-                setObjDetallePaciente({
-                  id_paciente: objPaciente.id_paciente,
-                  nombre: objPaciente.nombre,
-                  apellido: objPaciente.apellido,
-                  fechadenacimiento: Moment(
-                    objPaciente.fechadenacimiento
-                  ).format("LL"),
-                  telefono: objPaciente.telefono,
-                  sexo: objPaciente.sexo,
-                  paciente_img: objPaciente.paciente_img,
-                });
-                console.log(objDetallePaciente);
-              }}
-            >
-              <i
-                className="fa fa-info-circle fa-sm" // boton info
-                aria-hidden="true"
-              ></i>
-            </button>
-            <button
-              className="btn px-0 py-0 ml-1"
-              onClick={() => {
-                setPacienteEditar(objPaciente);
-                setModalEditarPaciente(true);
-              }}
-            >
-              <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-            </button>
-            <button
-              className="btn rounded-circle px-0 py-0 ml-1"
-              onClick={() => {
-                eliminar(objPaciente.id_paciente);
-              }}
-            >
-              <i
-                className="fa fa-minus-circle fa-lg" // boton eliminar
-                aria-hidden="true"
-              ></i>
-            </button>
-          </>
-        ),
-      };
+      if (objPaciente.pacienteEstado === false) {
+        return {
+          ...objPaciente,
+          // pacienteDni: objPaciente.pacienteDni,
+          fechadenacimiento: Moment(objPaciente.pacienteFnacimiento).format(
+            "DD-MM-YYYY"
+          ),
+          acciones: (
+            <>
+              <button
+                className="btn rounded-circle fa-lg px-0 py-0 ml-1"
+                onClick={(e) => {
+                  setPacienteDetalle(true);
+                  setObjDetallePaciente({
+                    pacienteDni: objPaciente.pacienteDni,
+                    pacienteNombre: objPaciente.pacienteNombre,
+                    pacienteApellido: objPaciente.pacienteApellido,
+                    pacienteFnacimiento: Moment(
+                      objPaciente.pacienteFnacimiento
+                    ).format("LL"),
+                    pacienteTelefono: objPaciente.pacienteTelefono,
+                    pacienteSexo: objPaciente.pacienteSexo,
+                    pacienteImagen: objPaciente.pacienteImagen,
+                  });
+                  console.log(objDetallePaciente);
+                }}
+              >
+                <i
+                  className="fa fa-info-circle fa-sm" // boton info
+                  aria-hidden="true"
+                ></i>
+              </button>
+              <button
+                className="btn px-0 py-0 ml-1"
+                onClick={() => {
+                  setPacienteEditar(objPaciente);
+                  setModalEditarPaciente(true);
+                }}
+              >
+                <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+              </button>
+              <button
+                className="btn rounded-circle px-0 py-0 ml-1"
+                onClick={() => {
+                  eliminar(objPaciente.pacienteDni);
+                }}
+              >
+                <i
+                  className="fa fa-minus-circle fa-lg" // boton eliminar
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </>
+          ),
+        };
+      }
     }),
   };
 
   // console.log(pacientes);
   // console.log("fromListaPacientes2");
 
-  const eliminar = (paciente_id) => {
+  const eliminar = (pacienteDni) => {
     Swal.fire({
       title: "¿Seguro de eliminar paciente?",
       icon: "error",
@@ -123,8 +125,8 @@ const ListaPacientes = () => {
     }).then((rpta) => {
       if (rpta.isConfirmed) {
         setPacienteDetalle(false);
-        deletePaciente(paciente_id).then((data) => {
-          if (data.id_paciente) {
+        deletePaciente(pacienteDni).then((data) => {
+          if (data.success === true) {
             obtenerPacientes();
             setPacienteDetalle(false);
             Swal.fire({
