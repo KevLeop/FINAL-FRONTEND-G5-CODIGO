@@ -20,14 +20,12 @@ const CitasState = ({ children }) => {
     });
 
     if (cargandoCitas === false) {
-      console.log("lista2");
-      console.log(listaEventos2);
       citas.forEach((cita) => {
         let nuevo = new Object();
-        nuevo.title = cita.titulo;
+        nuevo.title = cita.citaTitulo;
         nuevo.allDay = false;
-        nuevo.start = new Date(moment(cita.fechahora_inicio).format());
-        nuevo.end = new Date(moment(cita.fechahora_fin).format());
+        nuevo.start = new Date(moment(cita.citaFechaInicio).format());
+        nuevo.end = new Date(moment(cita.citaFechaFin).format());
         listaEventos2.push(nuevo);
       });
       setEventosCalendario(listaEventos2);

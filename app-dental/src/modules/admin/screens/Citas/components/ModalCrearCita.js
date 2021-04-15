@@ -7,11 +7,11 @@ import Swal from "sweetalert2";
 import { postCitas } from "../../../../../services/citasService";
 
 const formularioVacio = {
-  id_paciente: "",
-  titulo: "",
-  fechahora_inicio: "",
-  fechahora_fin: "",
-  estado: "pendiente",
+  paciente: "",
+  citaTitulo: "",
+  citaFechaInicio: "",
+  citaFechaFin: "",
+  citaEstado: "PEND",
 };
 
 const ModalCrearCita = () => {
@@ -37,7 +37,7 @@ const ModalCrearCita = () => {
     setFechaInicio(e);
     setFormCrearCita({
       ...formCrearCita,
-      fechahora_inicio: Moment(e).format(),
+      citaFechaInicio: Moment(e).format(),
     });
   };
 
@@ -46,21 +46,22 @@ const ModalCrearCita = () => {
     setFechaFin(e);
     setFormCrearCita({
       ...formCrearCita,
-      fechahora_fin: Moment(e).format(),
+      citaFechaFin: Moment(e).format(),
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     Swal.fire({
-      title: `Seguro de crear evento ${formCrearCita.titulo}`,
+      title: `Seguro de crear evento ${formCrearCita.citaTitulo}`,
       icon: "question",
       text: "Los cambios se guardarán en la Base de Datos",
       showCancelButton: true,
     }).then((rpta) => {
       if (rpta.isConfirmed) {
         postCitas(formCrearCita).then((data) => {
-          if (data.id_paciente) {
+          console.log(data);
+          if (data.success === true) {
             setFormCrearCita(formularioVacio);
             setCargandoCitas(true);
             obtenerCitas();
@@ -91,8 +92,8 @@ const ModalCrearCita = () => {
       <div className="form-group">
         <label>Seleccione paciente:</label>
         <select
-          name="id_paciente"
-          id="id_paciente"
+          name="paciente"
+          id="pacienteDni"
           className="form-control"
           onChange={handleChange}
         >
@@ -102,9 +103,9 @@ const ModalCrearCita = () => {
           {pacientes.map((pac) => {
             return (
               <option
-                key={pac.id_paciente}
-                value={pac.id_paciente}
-              >{`${pac.nombre} ${pac.apellido}`}</option>
+                key={pac.pacienteDni}
+                value={pac.pacienteDni}
+              >{`${pac.pacienteNombre} ${pac.pacienteApellido}`}</option>
             );
           })}
         </select>
@@ -118,8 +119,8 @@ const ModalCrearCita = () => {
           className="form-control"
           type="text"
           placeholder="Ingrese titulo de la cita"
-          name="titulo"
-          value={formCrearCita.titulo}
+          name="citaTitulo"
+          value={formCrearCita.citaTitulo}
           onChange={handleChange}
         />
       </div>
@@ -131,7 +132,7 @@ const ModalCrearCita = () => {
             <DateTimePicker
               value={fechaInicio}
               onChange={handleChangeFechaInicio}
-              name="fechahora_inicio"
+              name="citaFechaInicio"
             />
           </div>
         </div>
@@ -141,7 +142,7 @@ const ModalCrearCita = () => {
             <DateTimePicker
               value={fechaFin}
               onChange={handleChangeFechaFin}
-              name="fechahora_fin"
+              name="citaFechaFin"
             />
           </div>
         </div>

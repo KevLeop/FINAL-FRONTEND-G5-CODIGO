@@ -23,7 +23,7 @@ const ListaPacientes = () => {
   const data = {
     columns: [
       {
-        label: "Id",
+        label: "DNI",
         field: "pacienteDni",
       },
       {
@@ -48,19 +48,25 @@ const ListaPacientes = () => {
         field: "pacienteTelefono",
       },
       {
+        label: "Estado",
+        field: "pacienteEstado",
+      },
+      {
         label: "Acciones",
         field: "acciones",
       },
     ],
 
     rows: pacientes.map((objPaciente) => {
+      console.log(objPaciente);
       if (objPaciente.pacienteEstado === true) {
         return {
           ...objPaciente,
-          // pacienteDni: objPaciente.pacienteDni,
-          fechadenacimiento: Moment(objPaciente.pacienteFnacimiento).format(
-            "DD-MM-YYYY"
+          pacienteDni: objPaciente.pacienteDni,
+          pacienteFnacimiento: Moment(objPaciente.pacienteFnacimiento).format(
+            "YYYY-MM-DD"
           ),
+          pacienteEstado: +objPaciente.pacienteEstado,
           acciones: (
             <>
               <button
@@ -191,15 +197,12 @@ const ListaPacientes = () => {
                 striped
                 hover
                 bordered
-                pagingTop
                 displayEntries={false}
                 entries={15}
                 fixed
                 infoLabel={["Mostrando", "a", "de", "pacientes"]}
                 paginationLabel={["Anterior", "Siguiente"]}
                 searchLabel="Buscar..."
-                searchTop
-                // materialSearch
               />
             </div>
           </div>

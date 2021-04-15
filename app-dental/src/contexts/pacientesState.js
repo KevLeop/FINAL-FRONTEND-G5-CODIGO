@@ -13,6 +13,7 @@ const PacientesState = ({ children }) => {
     pacienteFnacimiento: "",
     pacienteTelefono: "",
     pacienteSexo: "",
+    pacienteEstado: "",
   });
   const [modalCrearPaciente, setmodalCrearPaciente] = useState(false);
 
@@ -23,8 +24,9 @@ const PacientesState = ({ children }) => {
   const obtenerPacientes = () => {
     setCargandoPacientes(true);
     getPacientes().then((data) => {
-      console.log(data);
+      // console.log(data);
       setPacientes(data.content);
+      // console.log(pacientes);
       setCargandoPacientes(false);
     });
   };

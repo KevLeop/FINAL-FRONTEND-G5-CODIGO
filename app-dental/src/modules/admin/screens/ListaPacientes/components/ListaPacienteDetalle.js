@@ -29,7 +29,11 @@ const ListaPacienteDetalle = () => {
           <figure className="text-center">
             <img
               className="rounded-circle"
-              src={objDetallePaciente.pacienteImagen}
+              src={
+                objDetallePaciente.pacienteImagen !== null
+                  ? objDetallePaciente.pacienteImagen
+                  : "https://via.placeholder.com/150"
+              }
               alt=""
               width="150"
             />
