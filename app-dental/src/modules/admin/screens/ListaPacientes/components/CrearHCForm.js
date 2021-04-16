@@ -111,11 +111,16 @@ const CrearHCForm = () => {
             --Seleccione Tratamiento--
           </option>
           {tratamientos.map((objTrat) => {
-            return (
-              <option key={objTrat.tratamiendoId} value={objTrat.tratamientoId}>
-                {objTrat.tratamientoNombre}
-              </option>
-            );
+            if (objTrat.tratamientoEstado) {
+              return (
+                <option
+                  key={objTrat.tratamiendoId}
+                  value={objTrat.tratamientoId}
+                >
+                  {objTrat.tratamientoNombre}
+                </option>
+              );
+            }
           })}
         </select>
       </div>
