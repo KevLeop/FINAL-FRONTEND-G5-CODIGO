@@ -45,7 +45,7 @@ const ListaPacienteDetalle = () => {
               <strong>Nombre y Apellidos: </strong>
               <br />
               <p>
-                {`${objDetallePaciente.pacienteNombre} ${objDetallePaciente.pacienteNombre}`}
+                {`${objDetallePaciente.pacienteNombre} ${objDetallePaciente.pacienteApellido}`}
               </p>
             </div>
             <div className="form-group">

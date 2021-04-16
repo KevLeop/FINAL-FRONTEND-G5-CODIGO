@@ -3,7 +3,6 @@ import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import { postPacientes } from "../../../../../services/pacientesService";
 import { useForm } from "react-hook-form";
-import { URL_BACKEND } from "../../../../../environments/environments";
 
 const formularioVacio = {
   nombre: "",

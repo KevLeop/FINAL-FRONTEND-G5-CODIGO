@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Modal } from "react-bootstrap";
 import HistoriasClinicasContext from "../../../../contexts/historiasClinicasContext";
 import HistoriasClinicas from "../HistoriasClinicas/components/HistoriasClinicas";

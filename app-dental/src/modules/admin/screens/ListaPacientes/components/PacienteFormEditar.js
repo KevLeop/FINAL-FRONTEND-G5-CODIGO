@@ -30,13 +30,14 @@ const PacienteFormEditar = () => {
       showCancelButton: "true",
     }).then((rpta) => {
       if (rpta.isConfirmed) {
+        delete formEditar["pacienteImagen"];
         putPacientes({ ...formEditar }).then((data) => {
-          if (data.id_paciente) {
+          console.log(data);
+          if (data.success) {
             setModalEditarPaciente(false);
             obtenerPacientes();
             Swal.fire({
               title: "Editado",
-
               icon: "success",
               showCancelButton: false,
               showConfirmButton: false,
@@ -47,7 +48,7 @@ const PacienteFormEditar = () => {
       }
     });
   };
-  console.log(pacienteEditar.fechadenacimiento);
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -57,8 +58,8 @@ const PacienteFormEditar = () => {
           className="form-control"
           type="text"
           placeholder="Nombres del paciente"
-          name="nombre"
-          value={formEditar.nombre}
+          name="pacienteNombre"
+          value={formEditar.pacienteNombre}
           onChange={handleChange}
         />
       </div>
@@ -69,8 +70,8 @@ const PacienteFormEditar = () => {
           className="form-control"
           type="text"
           placeholder="Apellidos del paciente"
-          name="apellido"
-          value={formEditar.apellido}
+          name="pacienteApellido"
+          value={formEditar.pacienteApellido}
           onChange={handleChange}
         />
       </div>
@@ -81,8 +82,8 @@ const PacienteFormEditar = () => {
             className="custom-date"
             type="date"
             id="fechadenacimiento"
-            name="fechadenacimiento"
-            value={moment(formEditar.fechadenacimiento).format("YYYY-MM-DD")}
+            name="pacienteFnacimiento"
+            value={moment(formEditar.pacienteFnacimiento).format("YYYY-MM-DD")}
             onChange={handleChange}
           />
         </div>
@@ -95,22 +96,22 @@ const PacienteFormEditar = () => {
           className="form-control"
           type="text"
           placeholder="Teléfono"
-          name="telefono"
-          value={formEditar.telefono}
+          name="pacienteTelefono"
+          value={formEditar.pacienteTelefono}
           onChange={handleChange}
         />
       </div>
       <div className="form-group">
         <select
           className="form-control"
-          name="sexo"
+          name="pacienteSexo"
           id="sexo"
           onChange={handleChange}
         >
           <option value="">--Seleccione genero del paciente...</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Masculino">Masculino</option>
-          <option value="No especificar">No especificar</option>
+          <option value="F">Femenino</option>
+          <option value="M">Masculino</option>
+          <option value="O">No especificar</option>
         </select>
       </div>
       <div className="form-group d-flex justify-content-between">

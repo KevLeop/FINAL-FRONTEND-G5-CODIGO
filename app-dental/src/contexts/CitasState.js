@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { getCitas } from "../services/citasService";
-import { Calendar, momentLocalizer } from "react-big-calendar";
 import CitasContext from "./citasContext";
 import moment from "moment";
 require("moment/locale/es.js");

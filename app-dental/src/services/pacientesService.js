@@ -16,26 +16,10 @@ export const postPacientes = async (formData) => {
   const peticion = await fetch(`${URL_BACKEND}/pacientes`, {
     method: "POST",
     body: formData,
-    // headers: {
-    //   // "Content-type": "application/json", //multipart/form-data
-    //   "Content-Type": "multipart/form-data",
-    // },
   });
   const data = await peticion.json();
   return data;
 };
-// export const postPacientes = async (objPaciente) => {
-
-//   const peticion = await fetch(`${URL_BACKEND}/pacientes`, {
-//     method: "POST",
-//     body: JSON.stringify(objPaciente),
-//     headers: {
-//       "Content-type": "application/json", // multipart/form-data
-//     },
-//   });
-//   const data = await peticion.json();
-//   return data;
-// };
 
 export const putPacientes = async (objPaciente) => {
   const peticion = await fetch(

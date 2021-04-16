@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react";
-import { posthClinica } from "../../../../../services/historiasClinicasService";
-import Swal from "sweetalert2";
 import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasContext";
 import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
