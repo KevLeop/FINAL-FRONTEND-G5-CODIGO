@@ -40,7 +40,7 @@ const LoginScreen = (props) => {
     <div className="container container-login">
       <div className="d-flex justify-content-center h-100">
         <div className="card card-login shadow">
-          <div className="card-header">
+          <div className="card-header pb-0">
             <h3>Ingresar:</h3>
             <div className="d-flex justify-content-end social_icon">
               <span>
@@ -88,11 +88,11 @@ const LoginScreen = (props) => {
               </div>
               <div className="input-group form-group">
                 {logueado === false ? (
-                  <span class="alert alert-danger pt-0 pb-0">
+                  <span class="alert alert-danger pt-0 pb-0 mb-0">
                     Usuario o contraseña incorrectos
                   </span>
                 ) : (
-                  <p></p>
+                  <p className="mb-0"></p>
                 )}
               </div>
               <div className="row align-items-center remember">
@@ -106,7 +106,7 @@ const LoginScreen = (props) => {
               </div>
             </form>
           </div>
-          <div className="card-footer">
+          <div className="card-footer mt-0 mb-0">
             <div className="d-flex justify-content-center links">
               ¿No tienes una cuenta?<Link to="/register">Registrate</Link>
             </div>
