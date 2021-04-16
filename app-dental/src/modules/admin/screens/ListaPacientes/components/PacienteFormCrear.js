@@ -41,6 +41,7 @@ const PacienteFormCrear = () => {
     dataPaciente.append("pacienteSexo", fData.pacienteSexo);
     dataPaciente.append("pacienteTelefono", fData.pacienteTelefono);
     dataPaciente.append("pacienteEmail", fData.pacienteEmail);
+    dataPaciente.append("pacienteEstado", true);
     console.log(dataPaciente.get("pacienteImagen"));
 
     Swal.fire({
@@ -64,12 +65,14 @@ const PacienteFormCrear = () => {
             });
             setmodalCrearPaciente(false);
           } else {
+            console.log(data.content[Object.keys(data.content)[0]]);
+
             Swal.fire({
               title: "Error!",
-              text: "No se pudo registrar paciente",
+              text: data.content[Object.keys(data.content)[0]],
               icon: "error",
               showCancelButton: false,
-              timer: 800,
+              timer: 1600,
             });
           }
         });

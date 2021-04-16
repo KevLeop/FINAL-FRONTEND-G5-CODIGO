@@ -6,9 +6,9 @@ import RegisterScreen from "./screens/register/RegisterScreen";
 const AuthRouter = () => {
   return (
     <>
-      <LoginScreen />
+      {/* <LoginScreen /> */}
       <Switch>
-        {/* <Route path="/login" component={LoginScreen} /> */}
+        <Route path="/" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
       </Switch>
     </>

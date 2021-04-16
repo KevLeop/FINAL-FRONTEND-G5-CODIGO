@@ -27,7 +27,7 @@ const LoginScreen = (props) => {
       if (rpta.access) {
         // setAuth({})
         iniciarSesionContext(rpta.access);
-        props.history.push("/admin");
+        props.history.push("/admin/home");
       }
     });
   };

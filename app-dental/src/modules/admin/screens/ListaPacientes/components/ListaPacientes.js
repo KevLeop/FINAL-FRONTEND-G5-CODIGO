@@ -23,16 +23,16 @@ const ListaPacientes = () => {
 
   useEffect(() => {
     setPacientesFilter(
-      pacientes.map((objPaciente) => {
-        console.log(pacientes);
-        if (objPaciente.pacienteEstado) {
+      pacientes
+        .filter((objPaciente) => objPaciente.pacienteEstado === true)
+        .map((pac) => {
           return {
-            ...objPaciente,
-            // pacienteDni: objPaciente.pacienteDni,
-            pacienteFnacimiento: Moment(objPaciente.pacienteFnacimiento).format(
+            ...pac,
+            // pacienteDni: pac.pacienteDni,
+            pacienteFnacimiento: Moment(pac.pacienteFnacimiento).format(
               "YYYY-MM-DD"
             ),
-            // pacienteEstado: true,
+            pacienteEstado: true,
             acciones: (
               <>
                 <button
@@ -40,15 +40,15 @@ const ListaPacientes = () => {
                   onClick={(e) => {
                     setPacienteDetalle(true);
                     setObjDetallePaciente({
-                      pacienteDni: objPaciente.pacienteDni,
-                      pacienteNombre: objPaciente.pacienteNombre,
-                      pacienteApellido: objPaciente.pacienteApellido,
+                      pacienteDni: pac.pacienteDni,
+                      pacienteNombre: pac.pacienteNombre,
+                      pacienteApellido: pac.pacienteApellido,
                       pacienteFnacimiento: Moment(
-                        objPaciente.pacienteFnacimiento
+                        pac.pacienteFnacimiento
                       ).format("LL"),
-                      pacienteTelefono: objPaciente.pacienteTelefono,
-                      pacienteSexo: objPaciente.pacienteSexo,
-                      pacienteImagen: objPaciente.pacienteImagen,
+                      pacienteTelefono: pac.pacienteTelefono,
+                      pacienteSexo: pac.pacienteSexo,
+                      pacienteImagen: pac.pacienteImagen,
                     });
                     // console.log(objDetallePaciente);
                   }}
@@ -61,7 +61,7 @@ const ListaPacientes = () => {
                 <button
                   className="btn px-0 py-0 ml-1"
                   onClick={() => {
-                    setPacienteEditar(objPaciente);
+                    setPacienteEditar(pac);
                     setModalEditarPaciente(true);
                   }}
                 >
@@ -73,7 +73,7 @@ const ListaPacientes = () => {
                 <button
                   className="btn rounded-circle px-0 py-0 ml-1"
                   onClick={() => {
-                    eliminar(objPaciente.pacienteDni);
+                    eliminar(pac.pacienteDni);
                   }}
                 >
                   <i
@@ -84,10 +84,7 @@ const ListaPacientes = () => {
               </>
             ),
           };
-        } else {
-          return;
-        }
-      })
+        })
     );
     // console.log(pacientesFilter);
   }, [pacientes]);

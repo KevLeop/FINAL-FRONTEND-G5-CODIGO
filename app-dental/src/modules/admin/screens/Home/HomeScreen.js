@@ -63,10 +63,12 @@ const HomeScreen = () => {
         field: "acciones",
       },
     ],
-    rows: tratamientos.map((objTratamiento) => {
-      if (objTratamiento.tratamientoEstado === true) {
+
+    rows: tratamientos
+      .filter((objTratamiento) => objTratamiento.tratamientoEstado === true)
+      .map((trat) => {
         return {
-          ...objTratamiento,
+          ...trat,
           acciones: (
             <>
               <button className="btn px-0 py-0 ml-1">
@@ -75,8 +77,8 @@ const HomeScreen = () => {
               <button
                 className="btn rounded-circle px-0 py-0 ml-1"
                 onClick={() => {
-                  eliminarTratamiento(objTratamiento.tratamientoId);
-                  console.log(objTratamiento);
+                  eliminarTratamiento(trat.tratamientoId);
+                  console.log(trat);
                 }}
               >
                 <i
@@ -87,10 +89,36 @@ const HomeScreen = () => {
             </>
           ),
         };
-      } else {
-        return;
-      }
-    }),
+      }),
+
+    // rows: tratamientos.map((objTratamiento) => {
+    //   if (objTratamiento.tratamientoEstado === true) {
+    //     return {
+    //       ...objTratamiento,
+    //       acciones: (
+    //         <>
+    //           <button className="btn px-0 py-0 ml-1">
+    //             <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+    //           </button>
+    //           <button
+    //             className="btn rounded-circle px-0 py-0 ml-1"
+    //             onClick={() => {
+    //               eliminarTratamiento(objTratamiento.tratamientoId);
+    //               console.log(objTratamiento);
+    //             }}
+    //           >
+    //             <i
+    //               className="fa fa-minus-circle fa-lg" // boton eliminar
+    //               aria-hidden="true"
+    //             ></i>
+    //           </button>
+    //         </>
+    //       ),
+    //     };
+    //   } else {
+    //     return;
+    //   }
+    // }),
   };
 
   return (
