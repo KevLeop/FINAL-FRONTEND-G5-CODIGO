@@ -39,9 +39,8 @@ const HClinicaFormCrear = () => {
           ...formCrearHC,
           hclinicaFecha: Moment(formCrearHC.hclinicaFecha).format("YYYY-MM-DD"),
         }).then((data) => {
-          console.log("Dataaaaaaa hclinica");
           console.log(data);
-          if (data.success === true) {
+          if (data.success) {
             setFormCrearHC(formularioVacio);
             setCargandoHClinicas(true);
             obtenerHClinicas();

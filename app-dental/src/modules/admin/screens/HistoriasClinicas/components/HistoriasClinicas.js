@@ -5,6 +5,7 @@ import PacientesContext from "../../../../../contexts/pacientesContext";
 import { MDBDataTable } from "mdbreact";
 import Swal from "sweetalert2";
 import { deleteHclinica } from "../../../../../services/historiasClinicasService";
+import TratamientosContext from "../../../../../contexts/tratamientosContext";
 Moment.locale("es");
 const HistoriasClinicas = () => {
   const {
@@ -18,12 +19,22 @@ const HistoriasClinicas = () => {
     setObjDetalleHC,
   } = useContext(HistoriasClinicasContext);
 
+  const { tratamientos } = useContext(TratamientosContext);
+
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
 
   const nombrePaciente = (idPacHC) => {
-    const pac = pacientes.find((pac) => +pac.pacienteId === +idPacHC);
-    console.log(pacientes);
-    return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
+    const pac = pacientes.find((pac) => +pac.pacienteDni === +idPacHC);
+    return pac ? `${pac.pacienteNombre} ${pac.pacienteApellido}` : "S/N";
+  };
+
+  const nombreTratamiento = (idTratHC) => {
+    const tratamientoEncontrado = tratamientos.find(
+      (trat) => +trat.tratamientoId === +idTratHC
+    );
+    return tratamientoEncontrado
+      ? tratamientoEncontrado.tratamientoNombre
+      : "S/N";
   };
 
   const eliminar = (id_hc) => {
@@ -36,7 +47,8 @@ const HistoriasClinicas = () => {
       if (rpta.isConfirmed) {
         setDetalleHC(false);
         deleteHclinica(id_hc).then((data) => {
-          if (data.success === true) {
+          console.log(data);
+          if (data.success) {
             obtenerHClinicas();
             setDetalleHC(false);
             Swal.fire({
@@ -88,6 +100,7 @@ const HistoriasClinicas = () => {
         hclinicaId: +objHClinica.hclinicaId,
         paciente: nombrePaciente(objHClinica.paciente),
         hclinicaFecha: Moment(objHClinica.hclinicaFecha).format("DD-MM-YYYY"),
+        tratamiento: nombreTratamiento(objHClinica.tratamiento),
         acciones: (
           <>
             <button

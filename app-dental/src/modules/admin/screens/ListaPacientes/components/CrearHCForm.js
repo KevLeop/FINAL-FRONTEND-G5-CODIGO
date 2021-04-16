@@ -6,12 +6,13 @@ import { posthClinica } from "../../../../../services/historiasClinicasService";
 import TratamientosContext from "../../../../../contexts/tratamientosContext";
 
 const formularioVacio = {
-  fecha: "",
-  id_paciente: "",
+  hclinicaFecha: "",
+  paciente: "",
   tratamiento: "",
-  problema: "",
-  diagnostico: "",
-  pagado: false,
+  hclinicaProblema: "",
+  hclinicaDiagnostico: "",
+  hclinicaPagado: false,
+  hclinicaPrecio: 0,
 };
 
 const CrearHCForm = () => {
@@ -21,8 +22,8 @@ const CrearHCForm = () => {
   );
   const [formCrearHCPacientes, setFormCrearHCPacientes] = useState({
     ...formularioVacio,
-    id_paciente: objDetallePaciente.id_paciente,
-    fecha: moment().format("YYYY-MM-DD"),
+    paciente: objDetallePaciente.pacienteDni,
+    hclinicaFecha: moment().format("YYYY-MM-DD"),
   });
 
   const handleChange = (e) => {
@@ -36,12 +37,12 @@ const CrearHCForm = () => {
     e.preventDefault();
     setFormCrearHCPacientes({
       ...formCrearHCPacientes,
-      fecha: e.target[0].value,
-      id_paciente: objDetallePaciente.id_paciente,
+      hclinicaFecha: e.target[0].value,
+      paciente: objDetallePaciente.pacienteDni,
     });
     console.log(formCrearHCPacientes);
     Swal.fire({
-      title: `Seguro de crear Historia Clinica para el paciente ${objDetallePaciente.nombre} ${objDetallePaciente.apellido}`,
+      title: `Seguro de crear Historia Clinica para el paciente ${objDetallePaciente.pacienteNombre} ${objDetallePaciente.pacienteApellido}`,
       icon: "question",
       text: "Los cambios se guardarán en la Base de Datos",
       showCancelButton: true,
@@ -49,7 +50,8 @@ const CrearHCForm = () => {
       if (rpta.isConfirmed) {
         console.log(formCrearHCPacientes);
         posthClinica(formCrearHCPacientes).then((data) => {
-          if (data.id_hclinica) {
+          console.log(data);
+          if (data.success) {
             setFormCrearHCPacientes(formularioVacio);
             Swal.fire({
               title: "Hecho!",
@@ -82,8 +84,8 @@ const CrearHCForm = () => {
         <input
           className="form-control"
           type="date"
-          name="fecha"
-          value={formCrearHCPacientes.fecha}
+          name="hclinicaFecha"
+          value={formCrearHCPacientes.hclinicaFecha}
           onChange={handleChange}
         />
       </div>
@@ -92,8 +94,8 @@ const CrearHCForm = () => {
         <input
           className="form-control"
           type="text"
-          name="id_paciente"
-          value={`${objDetallePaciente.nombre} ${objDetallePaciente.apellido}`}
+          name="paciente"
+          value={`${objDetallePaciente.pacienteNombre} ${objDetallePaciente.pacienteApellido}`}
           onChange={handleChange}
           readOnly
         />
@@ -110,11 +112,8 @@ const CrearHCForm = () => {
           </option>
           {tratamientos.map((objTrat) => {
             return (
-              <option
-                key={objTrat.id_tratamiento}
-                value={objTrat.nombre_tratamiento}
-              >
-                {objTrat.nombre_tratamiento}
+              <option key={objTrat.tratamiendoId} value={objTrat.tratamientoId}>
+                {objTrat.tratamientoNombre}
               </option>
             );
           })}
@@ -125,8 +124,8 @@ const CrearHCForm = () => {
         <input
           className="form-control"
           type="text"
-          name="problema"
-          value={formCrearHCPacientes.problema}
+          name="hclinicaProblema"
+          value={formCrearHCPacientes.hclinicaProblema}
           onChange={handleChange}
         />
       </div>
@@ -135,8 +134,18 @@ const CrearHCForm = () => {
         <input
           className="form-control"
           type="text"
-          name="diagnostico"
-          value={formCrearHCPacientes.diagnostico}
+          name="hclinicaDiagnostico"
+          value={formCrearHCPacientes.hclinicaDiagnostico}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group">
+        <input
+          className="form-control"
+          type="number"
+          placeholder="Ingrese precio"
+          name="hclinicaPrecio"
+          value={formCrearHCPacientes.hclinicaPrecio}
           onChange={handleChange}
         />
       </div>
