@@ -88,7 +88,7 @@ const LoginScreen = (props) => {
               </div>
               <div className="input-group form-group">
                 {logueado === false ? (
-                  <span class="badge badge-danger">
+                  <span class="alert alert-danger pt-0 pb-0">
                     Usuario o contraseña incorrectos
                   </span>
                 ) : (
