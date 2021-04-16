@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../../contexts/authContext";
 import { postLogin } from "../../../../services/authService";
@@ -12,8 +11,10 @@ const LoginScreen = (props) => {
     personalCorreo: "",
     password: "",
   });
+  const [logueado, setLogueado] = useState();
 
   const handleChange = (e) => {
+    setLogueado();
     setFormulario({
       ...formulario,
       [e.target.name]: e.target.value,
@@ -28,6 +29,9 @@ const LoginScreen = (props) => {
         // setAuth({})
         iniciarSesionContext(rpta.access);
         props.history.push("/admin/home");
+        setLogueado(true);
+      } else {
+        setLogueado(false);
       }
     });
   };
@@ -82,18 +86,20 @@ const LoginScreen = (props) => {
                   value={formulario.password}
                 />
               </div>
+              <div className="input-group form-group">
+                {logueado === false ? (
+                  <span class="badge badge-danger">
+                    Usuario o contraseña incorrectos
+                  </span>
+                ) : (
+                  <p></p>
+                )}
+              </div>
               <div className="row align-items-center remember">
                 <input type="checkbox" />
                 Recordar cuenta
               </div>
               <div className="form-group">
-                {/* <Link
-                  className="btn float-right login_btn"
-                  onClick={handleSubmit}
-                  to="/admin/home"
-                >
-                  Ingresar
-                </Link> */}
                 <button className="btn float-right login_btn" type="submit">
                   Ingresar
                 </button>

@@ -184,7 +184,6 @@ const HistoriasClinicas = () => {
                 striped
                 hover
                 bordered
-                pagingTop
                 displayEntries={false}
                 entries={15}
                 fixed
