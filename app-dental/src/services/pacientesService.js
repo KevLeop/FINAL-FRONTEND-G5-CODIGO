@@ -16,10 +16,10 @@ export const postPacientes = async (formData) => {
   const peticion = await fetch(`${URL_BACKEND}/pacientes`, {
     method: "POST",
     body: formData,
-    headers: {
-      // "Content-type": "application/json", //multipart/form-data
-      "Content-Type": "multipart/form-data",
-    },
+    // headers: {
+    //   // "Content-type": "application/json", //multipart/form-data
+    //   "Content-Type": "multipart/form-data",
+    // },
   });
   const data = await peticion.json();
   return data;

@@ -8,6 +8,7 @@ const AuthRouter = () => {
     <>
       <LoginScreen />
       <Switch>
+        {/* <Route path="/login" component={LoginScreen} /> */}
         <Route path="/register" component={RegisterScreen} />
       </Switch>
     </>

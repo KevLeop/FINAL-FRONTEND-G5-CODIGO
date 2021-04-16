@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
+import TratamientosContext from "../../../../contexts/tratamientosContext";
+import TratamientoFormCrear from "./components/TratamientoFormCrear";
+import { deleteTratamiento } from "../../../../services/tratamientoService";
+
 import { Accordion, Card, Button, Carousel, Modal } from "react-bootstrap";
 import { MDBDataTable } from "mdbreact";
+import Swal from "sweetalert2";
 import car1 from "../../../../images/Carousel1.jpg";
 import car2 from "../../../../images/Carousel2.png";
 import car3 from "../../../../images/Carousel3.jpg";
 
-import TratamientosContext from "../../../../contexts/tratamientosContext";
-import TratamientoFormCrear from "./components/TratamientoFormCrear";
-import { deleteTratamiento } from "../../../../services/tratamientoService";
-import Swal from "sweetalert2";
 const HomeScreen = () => {
   const {
     obtenerTratamientos,

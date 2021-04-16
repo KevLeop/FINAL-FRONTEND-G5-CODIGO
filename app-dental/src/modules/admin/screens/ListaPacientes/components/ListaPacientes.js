@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import { MDBDataTable } from "mdbreact";
@@ -19,6 +19,78 @@ const ListaPacientes = () => {
     setModalEditarPaciente,
     setPacienteEditar,
   } = useContext(PacientesContext);
+  const [pacientesFilter, setPacientesFilter] = useState({});
+
+  useEffect(() => {
+    setPacientesFilter(
+      pacientes.map((objPaciente) => {
+        console.log(pacientes);
+        if (objPaciente.pacienteEstado) {
+          return {
+            ...objPaciente,
+            // pacienteDni: objPaciente.pacienteDni,
+            pacienteFnacimiento: Moment(objPaciente.pacienteFnacimiento).format(
+              "YYYY-MM-DD"
+            ),
+            // pacienteEstado: true,
+            acciones: (
+              <>
+                <button
+                  className="btn rounded-circle fa-lg px-0 py-0 ml-1"
+                  onClick={(e) => {
+                    setPacienteDetalle(true);
+                    setObjDetallePaciente({
+                      pacienteDni: objPaciente.pacienteDni,
+                      pacienteNombre: objPaciente.pacienteNombre,
+                      pacienteApellido: objPaciente.pacienteApellido,
+                      pacienteFnacimiento: Moment(
+                        objPaciente.pacienteFnacimiento
+                      ).format("LL"),
+                      pacienteTelefono: objPaciente.pacienteTelefono,
+                      pacienteSexo: objPaciente.pacienteSexo,
+                      pacienteImagen: objPaciente.pacienteImagen,
+                    });
+                    // console.log(objDetallePaciente);
+                  }}
+                >
+                  <i
+                    className="fa fa-info-circle fa-sm" // boton info
+                    aria-hidden="true"
+                  ></i>
+                </button>
+                <button
+                  className="btn px-0 py-0 ml-1"
+                  onClick={() => {
+                    setPacienteEditar(objPaciente);
+                    setModalEditarPaciente(true);
+                  }}
+                >
+                  <i
+                    className="fa fa-pencil-square fa-lg"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+                <button
+                  className="btn rounded-circle px-0 py-0 ml-1"
+                  onClick={() => {
+                    eliminar(objPaciente.pacienteDni);
+                  }}
+                >
+                  <i
+                    className="fa fa-minus-circle fa-lg" // boton eliminar
+                    aria-hidden="true"
+                  ></i>
+                </button>
+              </>
+            ),
+          };
+        } else {
+          return;
+        }
+      })
+    );
+    // console.log(pacientesFilter);
+  }, [pacientes]);
 
   const data = {
     columns: [
@@ -47,76 +119,17 @@ const ListaPacientes = () => {
         label: "Cel",
         field: "pacienteTelefono",
       },
-      {
-        label: "Estado",
-        field: "pacienteEstado",
-      },
+      // {
+      //   label: "Estado",
+      //   field: "pacienteEstado",
+      // },
       {
         label: "Acciones",
         field: "acciones",
       },
     ],
 
-    rows: pacientes.map((objPaciente) => {
-      console.log(objPaciente);
-      if (objPaciente.pacienteEstado === true) {
-        return {
-          ...objPaciente,
-          pacienteDni: objPaciente.pacienteDni,
-          pacienteFnacimiento: Moment(objPaciente.pacienteFnacimiento).format(
-            "YYYY-MM-DD"
-          ),
-          pacienteEstado: +objPaciente.pacienteEstado,
-          acciones: (
-            <>
-              <button
-                className="btn rounded-circle fa-lg px-0 py-0 ml-1"
-                onClick={(e) => {
-                  setPacienteDetalle(true);
-                  setObjDetallePaciente({
-                    pacienteDni: objPaciente.pacienteDni,
-                    pacienteNombre: objPaciente.pacienteNombre,
-                    pacienteApellido: objPaciente.pacienteApellido,
-                    pacienteFnacimiento: Moment(
-                      objPaciente.pacienteFnacimiento
-                    ).format("LL"),
-                    pacienteTelefono: objPaciente.pacienteTelefono,
-                    pacienteSexo: objPaciente.pacienteSexo,
-                    pacienteImagen: objPaciente.pacienteImagen,
-                  });
-                  console.log(objDetallePaciente);
-                }}
-              >
-                <i
-                  className="fa fa-info-circle fa-sm" // boton info
-                  aria-hidden="true"
-                ></i>
-              </button>
-              <button
-                className="btn px-0 py-0 ml-1"
-                onClick={() => {
-                  setPacienteEditar(objPaciente);
-                  setModalEditarPaciente(true);
-                }}
-              >
-                <i className="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-              </button>
-              <button
-                className="btn rounded-circle px-0 py-0 ml-1"
-                onClick={() => {
-                  eliminar(objPaciente.pacienteDni);
-                }}
-              >
-                <i
-                  className="fa fa-minus-circle fa-lg" // boton eliminar
-                  aria-hidden="true"
-                ></i>
-              </button>
-            </>
-          ),
-        };
-      }
-    }),
+    rows: pacientesFilter,
   };
 
   // console.log(pacientes);

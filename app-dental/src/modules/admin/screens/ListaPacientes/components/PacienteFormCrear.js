@@ -3,6 +3,7 @@ import PacientesContext from "../../../../../contexts/pacientesContext";
 import Swal from "sweetalert2";
 import { postPacientes } from "../../../../../services/pacientesService";
 import { useForm } from "react-hook-form";
+import { URL_BACKEND } from "../../../../../environments/environments";
 
 const formularioVacio = {
   nombre: "",
@@ -30,24 +31,17 @@ const PacienteFormCrear = () => {
   //   console.log(formCrear);
   // };
 
-  const handleChangeFile = (e) => {
-    // setPicture(...picture, e.target.files[0]);
-
-    console.log(register);
-
-    console.log(formCrear);
-  };
-
   const onSubmit = (fData) => {
-    const data = new FormData();
-    data.pacienteImagen = fData.pacienteImagen["0"];
-    data.pacienteNombre = fData.pacienteNombre;
-    data.pacienteDni = fData.pacienteDni;
-    data.pacienteApellido = fData.pacienteApellido;
-    data.pacienteFnacimiento = fData.pacienteFnacimiento;
-    data.pacienteSexo = fData.pacienteSexo;
-    data.pacienteTelefono = fData.pacienteTelefono;
-    console.log(data);
+    const dataPaciente = new FormData();
+    dataPaciente.append("pacienteImagen", fData.pacienteImagen[0]);
+    dataPaciente.append("pacienteNombre ", fData.pacienteNombre);
+    dataPaciente.append("pacienteDni", fData.pacienteDni);
+    dataPaciente.append("pacienteApellido", fData.pacienteApellido);
+    dataPaciente.append("pacienteFnacimiento", fData.pacienteFnacimiento);
+    dataPaciente.append("pacienteSexo", fData.pacienteSexo);
+    dataPaciente.append("pacienteTelefono", fData.pacienteTelefono);
+    dataPaciente.append("pacienteEmail", fData.pacienteEmail);
+    console.log(dataPaciente.get("pacienteImagen"));
 
     Swal.fire({
       title: `Seguro de crear paciente ${formCrear.nombre} ${formCrear.apellido}`,
@@ -55,10 +49,10 @@ const PacienteFormCrear = () => {
       text: "Los cambios se guardarán en la base de datos",
       showCancelButton: true,
     }).then((rpta) => {
-      console.log(data);
+      // console.log(data);
       if (rpta.isConfirmed) {
-        postPacientes(data).then((data) => {
-          if (data.pacienteDni) {
+        postPacientes(dataPaciente).then((data) => {
+          if (data.success) {
             setFormCrear(formularioVacio);
             obtenerPacientes();
             Swal.fire({
@@ -178,7 +172,11 @@ const PacienteFormCrear = () => {
               name="pacienteImagen"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
-              onChange={handleChangeFile}
+              // onerror={`"this.src='${URL_BACKEND}/paciente_default.jpg'"`}
+
+              // data={`${URL_BACKEND}´/paciente_default.png`}
+              // onerror="if (this.src != 'error.jpg') this.src = 'error.jpg';"
+              // onChange={handleChangeFile}
             />
             <label className="custom-file-label" for="inputGroupFile04">
               Seleccione foto del paciente

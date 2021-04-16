@@ -7,17 +7,23 @@ import PacientesState from "./contexts/pacientesState";
 import "animate.css/animate.min.css";
 import AdminRouter from "./modules/admin/screens/AdminRouter";
 import AuthRouter from "./modules/auth/AuthRouter";
+import AuthState from "./contexts/authState";
 
 const App = () => {
   return (
-    <PacientesState>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/admin" component={AdminRouter} />
-          <Route path="/" exact component={AuthRouter} />
-        </Switch>
-      </BrowserRouter>
-    </PacientesState>
+    <AuthState>
+      <PacientesState>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/admin" component={AdminRouter} />
+            <Route path="/" exact component={AuthRouter} />
+            {/* <Route path="/" componrnet={InvitadoHomeScreen} /> */}
+            {/* <Redirect to={"/"}>  otra opcion */}
+            {/* <Route component={InvitadoHomeScreen} />  cualquier ruta  que no exista, envia a invitadoHomeScreen*/}
+          </Switch>
+        </BrowserRouter>
+      </PacientesState>
+    </AuthState>
   );
 };
 

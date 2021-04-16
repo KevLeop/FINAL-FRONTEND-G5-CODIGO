@@ -3,6 +3,7 @@ import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
 import "./../../../../../App.css";
 import "moment/min/locales";
+import { URL_BACKEND } from "../../../../../environments/environments";
 Moment.locale("es");
 
 const ListaPacienteDetalle = () => {
@@ -30,12 +31,13 @@ const ListaPacienteDetalle = () => {
             <img
               className="rounded-circle"
               src={
-                objDetallePaciente.pacienteImagen !== null
-                  ? objDetallePaciente.pacienteImagen
-                  : "https://via.placeholder.com/150"
+                objDetallePaciente.pacienteImagen
+                  ? `${URL_BACKEND}${objDetallePaciente.pacienteImagen}`
+                  : `${URL_BACKEND}´paciente_default.png`
               }
               alt=""
               width="150"
+              height="150"
             />
           </figure>
           <legend>
