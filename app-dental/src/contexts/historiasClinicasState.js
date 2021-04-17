@@ -9,14 +9,7 @@ const HistoriasClinicasState = ({ children }) => {
   const [cargandoHClinicas, setCargandoHClinicas] = useState(true);
   const [hClinicasEditar, setHClinicaEditar] = useState({});
   const [detalleHC, setDetalleHC] = useState(false);
-  const [objDetalleHC, setObjDetalleHC] = useState({
-    paciente: "",
-    hclinicaFecha: "",
-    hclinicaProblema: "",
-    hclinicaDiagnostico: "",
-    tratamiento: "",
-    hclinicaPagado: "",
-  });
+  const [objDetalleHC, setObjDetalleHC] = useState({});
 
   const obtenerHClinicas = () => {
     setCargandoHClinicas(true);

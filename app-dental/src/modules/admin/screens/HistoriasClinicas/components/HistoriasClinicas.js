@@ -17,6 +17,7 @@ const HistoriasClinicas = () => {
     setModalEditarHClinica,
     setDetalleHC,
     setObjDetalleHC,
+    objDetalleHC,
   } = useContext(HistoriasClinicasContext);
 
   const { tratamientos } = useContext(TratamientosContext);
@@ -108,13 +109,15 @@ const HistoriasClinicas = () => {
               onClick={() => {
                 setDetalleHC(true);
                 setObjDetalleHC({
-                  paciente: objHClinica.paciente,
-                  hclinicaFecha: objHClinica.hclinicaFecha,
-                  hclinicaProblema: objHClinica.hclinicaProblema,
-                  hclinicaDiagnostico: objHClinica.hclinicaDiagnostico,
+                  ...objHClinica,
+                  paciente: nombrePaciente(objHClinica.paciente),
+                  // hclinicaFecha: objHClinica.hclinicaFecha,
+                  // hclinicaProblema: objHClinica.hclinicaProblema,
+                  // hclinicaDiagnostico: objHClinica.hclinicaDiagnostico,
                   hclinicaTratamiento: objHClinica.tratamiento,
-                  hclinicaPagado: objHClinica.hclnicaPagado,
+                  // hclinicaPagado: objHClinica.hclinicaPagado,
                 });
+                console.log(objDetalleHC);
               }}
             >
               <i

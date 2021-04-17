@@ -3,18 +3,11 @@ import HistoriasClinicasContext from "../../../../../contexts/historiasClinicasC
 import PacientesContext from "../../../../../contexts/pacientesContext";
 import Moment from "moment";
 import "moment/min/locales";
+
+import { URL_BACKEND } from "../../../../../environments/environments";
+import TratamientosContext from "../../../../../contexts/tratamientosContext";
 Moment.locale("es");
 const DetalleHClinica = () => {
-  const formularioVacio = {
-    id_paciente: 0,
-    fecha: "",
-    problema: "",
-    diagnostico: "",
-    tratamiento: "",
-    pagado: false,
-  };
-
-  const [formulario, setFormulario] = useState(formularioVacio);
   const { pacientes, cargandoPacientes } = useContext(PacientesContext);
   const {
     obtenerHClinicas,
@@ -23,28 +16,45 @@ const DetalleHClinica = () => {
     setObjDetalleHC,
   } = useContext(HistoriasClinicasContext);
 
+  const { tratamientos } = useContext(TratamientosContext);
+
   const imagenPaciente = (id_pacienteHC) => {
     const paciente = pacientes.find(
-      (pac) => +pac.id_paciente === +id_pacienteHC
+      (pac) => +pac.pacienteDni === +id_pacienteHC
     );
-    return paciente ? paciente.paciente_img : "https://via.placeholder.com/150";
+    return paciente
+      ? `${URL_BACKEND}/paciente.pacienteImagen`
+      : "https://via.placeholder.com/150";
   };
 
   const nombrePaciente = (idPacHC) => {
-    const pac = pacientes.find((pac) => +pac.id_paciente === +idPacHC);
-    return pac ? `${pac.nombre} ${pac.apellido}` : "S/N";
+    const pacienteEncontrado = pacientes.find(
+      (pac) => +pac.pacienteDni == +idPacHC
+    );
+    return pacienteEncontrado
+      ? `${pacienteEncontrado.pacienteNombre} ${pacienteEncontrado.pacienteApellido}`
+      : "S/N";
+  };
+
+  const nombreTratamiento = (idTratHC) => {
+    const tratamientoEncontrado = tratamientos.find(
+      (trat) => +trat.tratamientoId === +idTratHC
+    );
+    return tratamientoEncontrado
+      ? tratamientoEncontrado.tratamientoNombre
+      : "S/N";
   };
 
   const handleChangePagado = (e) => {
     if (e.target.value === false) {
       setObjDetalleHC({
         ...objDetalleHC,
-        pagado: true,
+        hclinicaPagado: true,
       });
     } else {
       setObjDetalleHC({
         ...objDetalleHC,
-        pagado: false,
+        hclinicaPagado: false,
       });
     }
   };
@@ -61,7 +71,7 @@ const DetalleHClinica = () => {
           <figure className="text-center">
             <img
               className="rounded-circle"
-              src={imagenPaciente(objDetalleHC.id_paciente)}
+              src={imagenPaciente(objDetalleHC.paciente)}
               alt=""
               width="150"
             />
@@ -70,27 +80,27 @@ const DetalleHClinica = () => {
             <div className="form-group">
               <strong>Nombres y Apellidos del Paciente:</strong>
               <br />
-              <p>{nombrePaciente(objDetalleHC.id_paciente)}</p>
+              <p>{objDetalleHC.paciente}</p>
             </div>
             <div className="form-group">
               <strong>Fecha de Historia Clinica</strong>
               <br />
-              <p>{Moment(objDetalleHC.fecha).format("LL")}</p>
+              <p>{Moment(objDetalleHC.hclinicaFecha).format("LL")}</p>
             </div>
             <div className="form-group">
               <strong>Problema</strong>
               <br />
-              <p>{objDetalleHC.problema}</p>
+              <p>{objDetalleHC.hclinicaProblema}</p>
             </div>
             <div className="form-group">
               <strong>Tratamiento</strong>
               <br />
-              <p>{objDetalleHC.tratamiento}</p>
+              <p>{nombreTratamiento(objDetalleHC.tratamiento)}</p>
             </div>
             <div className="form-group">
               <strong>Diagnostico</strong>
               <br />
-              <p>{objDetalleHC.diagnostico}</p>
+              <p>{objDetalleHC.hclinicaDiagnostico}</p>
             </div>
             <div className="form-group">
               <div className="custom-control custom-switch">
@@ -99,7 +109,7 @@ const DetalleHClinica = () => {
                   className="custom-control-input"
                   id="customSwitch1"
                   name="pagado"
-                  value={objDetalleHC.pagado}
+                  value={objDetalleHC.hclinicaPagado}
                   onChange={handleChangePagado}
                 />
                 <label class="custom-control-label" for="customSwitch1">
