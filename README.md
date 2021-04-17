@@ -18,3 +18,14 @@ _Que cosas necesitas para instalar el software y como instalarlas._
 npm install -g yarn
 ```
 _Instalar el NODE.js en el equipo._
+
+### Instalación 🔧
+
+_Una serie paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+
+_Dí cómo será ese paso_
+
+1.Una vez instalado, y clonado el git, debera ejecutar el comando por consola
+```
+yarn start
+```
