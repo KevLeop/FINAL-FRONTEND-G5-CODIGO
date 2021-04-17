@@ -12,8 +12,9 @@ Mira **Deployment** para conocer como desplegar el proyecto
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+_Que cosas necesitas para instalar el software y como instalarlas._
 
 ```
-yarn install
+npm install -g yarn
 ```
+_Instalar el NODE.js en el equipo._
