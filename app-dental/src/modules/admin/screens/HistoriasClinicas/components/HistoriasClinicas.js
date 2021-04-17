@@ -110,12 +110,8 @@ const HistoriasClinicas = () => {
                 setDetalleHC(true);
                 setObjDetalleHC({
                   ...objHClinica,
-                  paciente: nombrePaciente(objHClinica.paciente),
-                  // hclinicaFecha: objHClinica.hclinicaFecha,
-                  // hclinicaProblema: objHClinica.hclinicaProblema,
-                  // hclinicaDiagnostico: objHClinica.hclinicaDiagnostico,
+                  paciente: objHClinica.paciente,
                   hclinicaTratamiento: objHClinica.tratamiento,
-                  // hclinicaPagado: objHClinica.hclinicaPagado,
                 });
                 console.log(objDetalleHC);
               }}

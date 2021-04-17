@@ -8,13 +8,10 @@ import { URL_BACKEND } from "../../../../../environments/environments";
 import TratamientosContext from "../../../../../contexts/tratamientosContext";
 Moment.locale("es");
 const DetalleHClinica = () => {
-  const { pacientes, cargandoPacientes } = useContext(PacientesContext);
-  const {
-    obtenerHClinicas,
-    setModalCrearHClinica,
-    objDetalleHC,
-    setObjDetalleHC,
-  } = useContext(HistoriasClinicasContext);
+  const { pacientes } = useContext(PacientesContext);
+  const { objDetalleHC, setObjDetalleHC } = useContext(
+    HistoriasClinicasContext
+  );
 
   const { tratamientos } = useContext(TratamientosContext);
 
@@ -90,7 +87,7 @@ const DetalleHClinica = () => {
             <div className="form-group">
               <strong>Problema</strong>
               <br />
-              <p>{objDetalleHC.hclinicaProblema}</p>
+              <p>{nombrePaciente(objDetalleHC.hclinicaProblema)}</p>
             </div>
             <div className="form-group">
               <strong>Tratamiento</strong>
