@@ -101,12 +101,14 @@ const ModalCrearCita = () => {
             --Seleccione paciente
           </option>
           {pacientes.map((pac) => {
-            return (
-              <option
-                key={pac.pacienteDni}
-                value={pac.pacienteDni}
-              >{`${pac.pacienteNombre} ${pac.pacienteApellido}`}</option>
-            );
+            if (pac.pacienteEstado) {
+              return (
+                <option
+                  key={pac.pacienteDni}
+                  value={pac.pacienteDni}
+                >{`${pac.pacienteNombre} ${pac.pacienteApellido}`}</option>
+              );
+            }
           })}
         </select>
       </div>

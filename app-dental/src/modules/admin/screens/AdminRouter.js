@@ -19,11 +19,11 @@ const AdminRouter = () => {
       <Switch>
         <TratamientosState>
           <PacientesState>
+            <Route
+              path="/admin/ListaPacientes"
+              component={ListaPacientesScreen}
+            />
             <HistoriasClinicasState>
-              <Route
-                path="/admin/ListaPacientes"
-                component={ListaPacientesScreen}
-              />
               <Route
                 path="/admin/HistoriasClinicas"
                 component={HistoriasClinicasScreen}

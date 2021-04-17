@@ -1,9 +1,10 @@
 import React from "react";
+import ListaPorCobrar from "./components/ListaPorCobrar";
 
 const ContabilidadScreen = () => {
   return (
     <div>
-      <h2>Contabilidad</h2>
+      <ListaPorCobrar />
     </div>
   );
 };
