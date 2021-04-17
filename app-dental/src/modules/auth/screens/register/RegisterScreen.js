@@ -20,12 +20,11 @@ const RegisterScreen = () => {
   const handleChange = (e) => {
     setRegisterForm({
       ...registerForm,
-      personalTipo: 1,
       [e.target.name]: e.target.value,
     });
   };
 
-  const onSubmit = (fData) => {
+  const onSubmit = () => {
     console.log(registerForm);
     Swal.fire({
       title: "¿Seguro de crear usuario con estos datos",
@@ -154,6 +153,7 @@ const RegisterScreen = () => {
                       maxlength="12"
                       className="form-control"
                       placeholder="Telefono"
+                      name="personalTelefono"
                       onChange={handleChange}
                       value={registerForm.personalTelefono}
                     />
