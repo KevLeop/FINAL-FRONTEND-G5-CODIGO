@@ -22,7 +22,7 @@ const HistoriasClinicas = () => {
 
   const { tratamientos } = useContext(TratamientosContext);
 
-  const { pacientes, cargandoPacientes } = useContext(PacientesContext);
+  const { pacientes } = useContext(PacientesContext);
 
   const nombrePaciente = (idPacHC) => {
     const pac = pacientes.find((pac) => +pac.pacienteDni === +idPacHC);
