@@ -44,6 +44,11 @@ const Header = () => {
               Citas
             </Link>
           </li>
+          <li className="nav-item ">
+            <Link className="nav-link" to="/admin/Contabilidad">
+              Contabilidad
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

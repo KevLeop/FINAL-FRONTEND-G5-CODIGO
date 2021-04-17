@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../../contexts/authContext";
 import { postLogin } from "../../../../services/authService";
-import "../../../../styles/login.css";
 import { withRouter } from "react-router";
+import "../../../../styles/login.css";
 
 const LoginScreen = (props) => {
   const { iniciarSesionContext } = useContext(AuthContext);
@@ -121,3 +121,4 @@ const LoginScreen = (props) => {
 };
 
 export default withRouter(LoginScreen);
+// export default LoginScreen;

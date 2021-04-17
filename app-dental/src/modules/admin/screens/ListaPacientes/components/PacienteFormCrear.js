@@ -22,14 +22,6 @@ const PacienteFormCrear = () => {
   const [formCrear, setFormCrear] = useState(formularioVacio);
   const { register, handleSubmit } = useForm();
 
-  // const handleChange = (e) => {
-  //   setFormCrear({
-  //     ...formCrear,
-  //     [e.target.name]: e.target.value,
-  //   });
-  //   console.log(formCrear);
-  // };
-
   const onSubmit = (fData) => {
     const dataPaciente = new FormData();
     dataPaciente.append("pacienteImagen", fData.pacienteImagen[0]);
